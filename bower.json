@@ -33,7 +33,7 @@
     "angular-ui-grid":"~3.2.9"
   },
   "main":[
-    "./src/directives/search/search.js"
+    "./src/services/bkmCommGetDict.services.js"
   ],
   "devDependencies": {
     "Chart.js": "~1.0.2",
