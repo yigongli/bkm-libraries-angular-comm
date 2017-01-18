@@ -59,13 +59,13 @@
                      * @returns {string} 返回替换后的值
                      */
                     return function (input) {
-                        return input;
                         //从 'bkmCommGetDict' 服务中获取 dictionary 配置
                         var dicts = bkmCommGetDict.dictionary[key];
                         if (angular.isArray(dicts) && !!dicts.length) {
                             var filtered = $filter('filter')(dicts, {key: input});
                             return filtered[0].name;
                         }
+                        return input;
                     }
                 });
             })(i);
