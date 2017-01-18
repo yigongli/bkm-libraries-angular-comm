@@ -55,6 +55,10 @@
         .constant("dictionaryConst", {
             GoodsCategory: 'GoodsCategory',
             GoodsStatus: 'GoodsStatus',
-            OrderStatus: 'OrderStatus'
+            OrderStatus: 'OrderStatus',
+            CompanyStatus: 'CompanyStatus',
+            VehicleStatus: 'VehicleStatus',
+            OperaType:'OperaType',
+            expiredType:'expiredType'
         });
 })();
