@@ -13,28 +13,28 @@
             (function declareServiceFn(keyName) {
                 self[keyName] = function () {
 
-                    if (!angular.isArray(self.dictionary[dictConst[keyName]])) {
-                        self.dictionary[dictConst[keyName]] = [];
+                    if (!angular.isArray(self.dictionary[keyName])) {
+                        self.dictionary[keyName] = [];
                     }
-                    if (!!self.dictionary[dictConst[keyName]].length) {
-                        return self.dictionary[dictConst[keyName]];
+                    if (!!self.dictionary[keyName].length) {
+                        return self.dictionary[keyName];
                     } else {
                         abpDict.getAll({ 'type': dictConst[keyName] }).then(function (result) {
-                            self.dictionary[dictConst[keyName]].splice(0, self.dictionary[dictConst[keyName]].length);
-                            Array.prototype.push.apply(self.dictionary[dictConst[keyName]], result.data.items);
+                            self.dictionary[keyName].splice(0, self.dictionary[keyName].length);
+                            Array.prototype.push.apply(self.dictionary[keyName], result.data.items);
                         }, null);
                     }
 
                     return dictConst[keyName];
                 };
 
-                self['set' + dictConst[keyName]] = function (items) {
+                self['set' + keyName] = function (items) {
 
-                    if (!angular.isArray(self.dictionary[dictConst[keyName]])) {
-                        self.dictionary[dictConst[keyName]] = items;
+                    if (!angular.isArray(self.dictionary[keyName])) {
+                        self.dictionary[keyName] = items;
                     } else {
-                        self.dictionary[dictConst[keyName]].splice(0, self.dictionary[dictConst[keyName]].length);
-                        Array.prototype.push.apply(self.dictionary[dictConst[keyName]], items);
+                        self.dictionary[keyName].splice(0, self.dictionary[keyName].length);
+                        Array.prototype.push.apply(self.dictionary[keyName], items);
                     }
                 };
             })(i);
@@ -61,7 +61,7 @@
                      */
                     return function (input) {
                         //从 'bkmCommGetDict' 服务中获取 dictionary 配置
-                        var dicts = bkmCommGetDict.dictionary[bkmCommGetDict['get' + key]()];
+                        var dicts = bkmCommGetDict.dictionary[key];
                         var filtered = $filter('filter')(dicts, {key: input});
                         return filtered[0].name;
                     }
