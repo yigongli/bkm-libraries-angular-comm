@@ -62,7 +62,7 @@
                     return function (input) {
                         //从 'bkmCommGetDict' 服务中获取 dictionary 配置
                         var dicts = bkmCommGetDict.dictionary[key];
-                        var filtered = $filter('filter')(dicts, {key: input});
+                        var filtered = $filter('filter')(dicts, { key: input });
                         return filtered[0].name;
                     }
                 });
@@ -71,13 +71,25 @@
     }
 
     myModule.constant("dictionaryConst", {
-        GoodsCategory: 'GoodsCategory',
-        GoodsStatus: 'GoodsStatus',
-        OrderStatus: 'OrderStatus',
-        CompanyStatus: 'CompanyStatus',
-        VehicleStatus: 'VehicleStatus',
-        OperaType: 'OperaType',
-        expiredType: 'expiredType'
+        DrivingLicense: "DrivingLicense",
+        Bank: "Bank",
+        Unit: "Unit",
+        GoodsCategory: "GoodsCategory",
+        VehicleType: "VehicleType",
+        OperationModel: "OperationModel",
+        DispatchCancelReason: "DispatchCancelReason",
+        OrderStatus: "OrderStatus",
+        DrivingCertificate: "DrivingCertificate",
+        ExpiredType: "ExpiredType",
+        VehicleStatus: "VehicleStatus",
+        DispatchStatus: "DispatchStatus",
+        ShipType: "ShipType",
+        VehicleDocument: "VehicleDocument",
+        GoodsStatus: "GoodsStatus",
+        SettlementWay: "SettlementWay",
+        CompanyDocument: "CompanyDocument",
+        AgentType: "AgentType"
+
     });
 
 })();
