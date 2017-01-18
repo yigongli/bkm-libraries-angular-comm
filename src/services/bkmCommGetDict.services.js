@@ -2,8 +2,7 @@
     'use strict';
 
     var myModule = angular.module('bkm.library.angular.comm', ['abp'])
-        .service('bkmCommGetDict', ['abp.services.app.sysDictionary', 'dictionaryConst', bkmCommGetDict])
-        .config(myConfig);
+        .service('bkmCommGetDict', ['abp.services.app.sysDictionary', 'dictionaryConst', bkmCommGetDict]);
 
     /** @ngInject */
     function bkmCommGetDict(abpDict, dictConst) {
@@ -41,13 +40,13 @@
         }
     }
 
-    function myConfig(dictionaryConst) {
-        declareFilter(dictionaryConst);
-    };
+    function init(constantVal) {
 
-    //根据常量定义 filter
-    function declareFilter(dc) {
-        for (var i in dc) {
+        //创建常量
+        myModule.constant("dictionaryConst", constantVal);
+
+        //根据常量创建 filter
+        for (var i in constantVal) {
             (function declareFilterFn(key) {
                 myModule.filter(key, function (bkmCommGetDict, $filter) {
                     /**
@@ -60,17 +59,20 @@
                      * @returns {string} 返回替换后的值
                      */
                     return function (input) {
+                        return input;
                         //从 'bkmCommGetDict' 服务中获取 dictionary 配置
                         var dicts = bkmCommGetDict.dictionary[key];
-                        var filtered = $filter('filter')(dicts, { key: input });
-                        return filtered[0].name;
+                        if (angular.isArray(dicts) && !!dicts.length) {
+                            var filtered = $filter('filter')(dicts, {key: input});
+                            return filtered[0].name;
+                        }
                     }
                 });
             })(i);
         }
-    }
+    };
 
-    myModule.constant("dictionaryConst", {
+    var constant = {
         DrivingLicense: "DrivingLicense",
         Bank: "Bank",
         Unit: "Unit",
@@ -90,6 +92,7 @@
         CompanyDocument: "CompanyDocument",
         AgentType: "AgentType"
 
-    });
+    };
+    init(constant);
 
 })();
