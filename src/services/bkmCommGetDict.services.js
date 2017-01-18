@@ -19,7 +19,8 @@
                     if (!!self.dictionary[dictConst[keyName]].length) {
                         return self.dictionary[dictConst[keyName]];
                     } else {
-                        abpDict.getAll({'type': dictConst[keyName]}).then(function (result) {
+                        abpDict.getAll({ 'type': dictConst[keyName] }).then(function (result) {
+                            self.dictionary[dictConst[keyName]].splice(0, self.dictionary[dictConst[keyName]].length);
                             Array.prototype.push.apply(self.dictionary[dictConst[keyName]], result.data.items);
                         }, null);
                     }
@@ -32,8 +33,8 @@
                     if (!angular.isArray(self.dictionary[dictConst[keyName]])) {
                         self.dictionary[dictConst[keyName]] = items;
                     } else {
-                        self.dictionary[dictConst[keyName]].splice(0,
-                            self.dictionary[dictConst[keyName]].length, items);
+                        self.dictionary[dictConst[keyName]].splice(0, self.dictionary[dictConst[keyName]].length);
+                        Array.prototype.push.apply(self.dictionary[dictConst[keyName]], items);
                     }
                 };
             })(i);
