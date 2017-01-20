@@ -71,7 +71,7 @@
                         self.dictionary[keyName] = [];
                     }
                     if (!!self.dictionary[keyName].length) {
-                        return self.dictionary[keyName];
+                        return dictConst[keyName];
                     } else {
                         abpDict.getAll({'type': dictConst[keyName]}).then(function (result) {
                             self.dictionary[keyName].splice(0, self.dictionary[keyName].length);
