@@ -2,7 +2,62 @@
     'use strict';
 
     var myModule = angular.module('bkm.library.angular.comm', ['abp'])
+        .factory('bkm.library.angular.comm.httpInterceptor', httpInterceptor)
         .service('bkmCommGetDict', ['abp.services.app.sysDictionary', 'dictionaryConst', bkmCommGetDict]);
+
+    //http 请求拦截器
+    function httpInterceptor($q, $injector) {
+        return {
+            request: function (config) {
+                sendDictionaryMD5Request(config);
+                return config;
+            },
+            requestError: function (config) {
+                return $q.reject(config);
+            },
+            response: function (response) {
+                return response || $q.when(response);
+            },
+            responseError: function (response) {
+                return $q.reject(response);
+            }
+        };
+
+        //判断是否为WebApi请求
+        function isApi(url) {
+            var reg = /^\/web\/api\/[\w]{1,}/ig;
+            reg.lastIndex = 0;
+            return reg.test(url);
+        }
+
+        //发送字典缓存MD5请求
+        function sendDictionaryMD5Request(config) {
+            if (!isApi(config.url)) {
+                return;
+            }
+            var param = angular.fromJson(config.data || config.params);
+            if (!!param && angular.isArray(param.dictionaryTypes) && !!param.dictionaryTypes.length) {
+                var dctionaryService = $injector.get('bkmCommGetDict'), key = '', arr, tArr = [], tStr = '';
+                for (var i in param.dictionaryTypes) {
+                    key = param.dictionaryTypes[i];
+                    arr = dctionaryService.dictionary[key];
+                    if (!!arr && !!arr.length) {
+                        Array.prototype.push.apply(tArr, arr);
+                    }
+                }
+                if (!!!tArr.length) {
+                    return;
+                }
+                tStr = JSON.stringify(tArr);
+                param.dictionaryHash = md5(tStr.split('').sort().join(''));
+                if (!!config.data) {
+                    config.data = angular.toJson(param);
+                } else if (!!config.params) {
+                    config.params = angular.toJson(param);
+                }
+            }
+        }
+    }
 
     /** @ngInject */
     function bkmCommGetDict(abpDict, dictConst) {
@@ -18,7 +73,7 @@
                     if (!!self.dictionary[keyName].length) {
                         return self.dictionary[keyName];
                     } else {
-                        abpDict.getAll({ 'type': dictConst[keyName] }).then(function (result) {
+                        abpDict.getAll({'type': dictConst[keyName]}).then(function (result) {
                             self.dictionary[keyName].splice(0, self.dictionary[keyName].length);
                             Array.prototype.push.apply(self.dictionary[keyName], result.data.items);
                         }, null);
