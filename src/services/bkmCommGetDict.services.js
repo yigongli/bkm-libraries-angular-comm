@@ -16,6 +16,7 @@
                 return $q.reject(config);
             },
             response: function (response) {
+                setDictionary(response);
                 return response || $q.when(response);
             },
             responseError: function (response) {
@@ -54,6 +55,23 @@
                     config.data = angular.toJson(param);
                 } else if (!!config.params) {
                     config.params = angular.toJson(param);
+                }
+            }
+        }
+
+        //设置字典缓存
+        function setDictionary(response) {
+            if (!isApi(response.config.url)) {
+                return;
+            }
+            if (!!response.data.result.dictioanries && !!response.data.result.dictioanries.length) {
+                var dctionaryService = $injector.get('bkmCommGetDict');
+                var param = angular.fromJson(response.config.data || response.config.params);
+                for (var i in param.dictionaryTypes) {
+                    var key = param.dictionaryTypes[i];
+                    if (angular.isFunction(dctionaryService['set' + key])) {
+                        dctionaryService['set' + key]($filter('filter')(response.data.result.dictioanries, {type: key}));
+                    }
                 }
             }
         }
