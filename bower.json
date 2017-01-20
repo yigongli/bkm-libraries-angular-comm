@@ -16,7 +16,8 @@
     "angular": "~1.4.8"
   },
   "main":[
-    "./src/services/bkmCommGetDict.services.js"
+    "./src/services/bkmCommGetDict.services.js",
+    "./src/services/md5.js"
   ],
   "devDependencies": {
     
