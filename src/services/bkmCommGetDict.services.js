@@ -6,7 +6,7 @@
         .service('bkmCommGetDict', ['abp.services.app.sysDictionary', 'dictionaryConst', bkmCommGetDict]);
 
     //http 请求拦截器
-    function httpInterceptor($q, $injector) {
+    function httpInterceptor($q, $injector, $filter) {
         return {
             request: function (config) {
                 sendDictionaryMD5Request(config);
