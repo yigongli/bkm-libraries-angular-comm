@@ -17,7 +17,7 @@
   },
   "main":[
     "./src/services/bkmCommGetDict.services.js",
-    "./src/services/md5.js"
+    "./src/services/md5.min.js"
   ],
   "devDependencies": {
     
