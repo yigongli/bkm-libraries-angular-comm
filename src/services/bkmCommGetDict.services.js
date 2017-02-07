@@ -119,33 +119,31 @@
         myModule.constant("dictionaryConst", constantVal);
 
         //根据常量创建 filter
-        for (var i in constantVal) {
-            (function declareFilterFn(key) {
-                myModule.filter(key, function (bkmCommGetDict, $filter) {
-                    /**
-                     * @description
-                     *
-                     * 根据 dictionary 中的配置，替换 input 的值
-                     *
-                     * @param input {string} 接收的值
-                     *   error from returned function, for cases when a particular type of error is useful.
-                     * @returns {string} 返回替换后的值
-                     */
-                    return function (input) {
-                        //从 'bkmCommGetDict' 服务中获取 dictionary 配置
-                        var dicts = bkmCommGetDict.dictionary[key];
-                        if (angular.isArray(dicts) && !!dicts.length) {
-                            var filtered = $filter('filter')(dicts, {key: input});
-                            return filtered[0].name;
-                        }
-                        return input;
+        angular.forEach (constantVal, function declareFilterFn(i, key) {
+            myModule.filter(key, ['bkmCommGetDict', '$filter', function (s, f) {
+                /**
+                 * @description
+                 *
+                 * 根据 dictionary 中的配置，替换 input 的值
+                 *
+                 * @param input {string} 接收的值
+                 *   error from returned function, for cases when a particular type of error is useful.
+                 * @returns {string} 返回替换后的值
+                 */
+                return function (input) {
+                    //从 'bkmCommGetDict' 服务中获取 dictionary 配置
+                    var dicts = s.dictionary[key];
+                    if (angular.isArray(dicts) && !!dicts.length) {
+                        var filtered = f('filter')(dicts, {key: input});
+                        return filtered[0].name;
                     }
-                });
-            })(i);
-        }
-    };
+                    return input;
+                }
+            }]);
+        });
+    }
 
-    var constant = {
+    init({
         DrivingLicense: "DrivingLicense",
         Bank: "Bank",
         Unit: "Unit",
@@ -164,8 +162,6 @@
         SettlementWay: "SettlementWay",
         CompanyDocument: "CompanyDocument",
         AgentType: "AgentType"
-
-    };
-    init(constant);
+    });
 
 })();
