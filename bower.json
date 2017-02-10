@@ -18,6 +18,7 @@
   "main":[
     "./src/services/bkmCommGetDict.services.js",
     "./src/services/bkmFormValidator.service.js",
+    "./src/services/bkmInput.directive.js",
     "./src/services/md5.min.js"
   ],
   "devDependencies": {
