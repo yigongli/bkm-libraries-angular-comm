@@ -6,8 +6,8 @@
 
     angular.module('bkm.library.angular.comm')
         .directive('bkmInput', inputvalidator);
-
-    function inputvalidator($q, $parse, bkmWebApiService) {
+    //function inputvalidator($q, $parse, bkmWebApiService)
+    function inputvalidator($q, $parse) {
         return {
             restrict: 'EA',
             require: 'ngModel',
@@ -51,8 +51,8 @@
                                 deferred.resolve(true);
                                 return deferred.promise;
                             }
-
-                            bkmWebApiService[remoteOpt.apiName](angular.extend({phone: (ngModel.$modelValue || ngModel.$viewValue)}, remoteOpt.sendData),
+                            deferred.resolve(true);
+                            /*bkmWebApiService[remoteOpt.apiName](angular.extend({phone: (ngModel.$modelValue || ngModel.$viewValue)}, remoteOpt.sendData),
                                 function (result) {
                                     if (result.valid) {
                                         deferred.resolve(true);
@@ -65,7 +65,7 @@
                                 }, function (result) {
                                     ngModel.$setValidity('remoteRequest', false);
                                     deferred.resolve(true);
-                                });
+                                });*/
                             return deferred.promise;
                         };
                     }
