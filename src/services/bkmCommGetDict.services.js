@@ -3,7 +3,7 @@
 
     var myModule = angular.module('bkm.library.angular.comm', ['abp'])
         .factory('bkm.library.angular.comm.httpInterceptor', httpInterceptor)
-        .service('bkmCommGetDict', ['abp.services.app.sysDictionary', 'dictionaryConst', bkmCommGetDict]);
+        .service('bkmCommGetDict', ['abp.services.app.sysDictionary', 'dictionaryConst', '$q', bkmCommGetDict]);
 
     //http 请求拦截器
     function httpInterceptor($q, $injector, $filter) {
@@ -64,9 +64,7 @@
             if (!isApi(response.config.url)) {
                 return;
             }
-            if (!!response.data.result &&
-                !!response.data.result.dictioanries &&
-                !!response.data.result.dictioanries.length) {
+            if (!!response.data.result && !!response.data.result.dictioanries && !!response.data.result.dictioanries.length) {
                 var dctionaryService = $injector.get('bkmCommGetDict');
                 var param = angular.fromJson(response.config.data || response.config.params);
                 for (var i in param.dictionaryTypes) {
@@ -80,7 +78,7 @@
     }
 
     /** @ngInject */
-    function bkmCommGetDict(abpDict, dictConst) {
+    function bkmCommGetDict(abpDict, dictConst, $q) {
         var self = this;
         self.dictionary = {};
         for (var i in dictConst) {
@@ -93,13 +91,33 @@
                     if (!!self.dictionary[keyName].length) {
                         return dictConst[keyName];
                     } else {
-                        abpDict.getAll({'type': dictConst[keyName]}).then(function (result) {
-                            self.dictionary[keyName].splice(0, self.dictionary[keyName].length);
-                            Array.prototype.push.apply(self.dictionary[keyName], result.data.items);
-                        }, null);
+                        self[keyName + 'defer']();
+                        //abpDict.getAll({'type': dictConst[keyName]}).then(function (result) {
+                        //    self.dictionary[keyName].splice(0, self.dictionary[keyName].length);
+                        //    Array.prototype.push.apply(self.dictionary[keyName], result.data.items);
+                        //}, null);
                     }
-
                     return dictConst[keyName];
+                };
+
+                self[keyName + 'defer'] = function () {
+                    var deferred = $q.defer();
+
+                    if (self.dictionary[keyName] && !!self.dictionary[keyName].length) {
+                        deferred.reject(self.dictionary[keyName]);
+                    } else {
+                        abpDict.getAll({'type': dictConst[keyName]}).then(function (result) {
+                            if (!angular.isArray(self.dictionary[keyName])) {
+                                self.dictionary[keyName] = [];
+                            }
+                            self.dictionary[keyName].splice(0, self.dictionary[keyName].length);
+                            Array.prototype.push.apply(self.dictionary[keyName], result.data.result.items);
+                            deferred.resolve(self.dictionary[keyName]);
+                        }, function (result) {
+                            deferred.reject(result.data);
+                        });
+                    }
+                    return deferred.promise;
                 };
 
                 self['set' + keyName] = function (items) {
@@ -133,6 +151,7 @@
                  * @returns {string} 返回替换后的值
                  */
                 return function (input) {
+                    if (angular.isUndefined(input))return input;
                     //从 'bkmCommGetDict' 服务中获取 dictionary 配置
                     var dicts = s.dictionary[key];
                     if (angular.isArray(dicts) && !!dicts.length) {
