@@ -91,12 +91,12 @@
                     if (!!self.dictionary[dictConst[keyName]].length) {
                         return dictConst[keyName];
                     } else {
-                        self[keyName + 'defer']();
+                        self[keyName + 'Defer']();
                     }
                     return dictConst[keyName];
                 };
 
-                self[keyName + 'defer'] = function () {
+                self[keyName + 'Defer'] = function () {
                     var deferred = $q.defer();
 
                     if (self.dictionary[dictConst[keyName]] && !!self.dictionary[dictConst[keyName]].length) {
