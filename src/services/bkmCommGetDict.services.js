@@ -85,17 +85,13 @@
             (function declareServiceFn(keyName) {
                 self[keyName] = function () {
 
-                    if (!angular.isArray(self.dictionary[keyName])) {
-                        self.dictionary[keyName] = [];
+                    if (!angular.isArray(self.dictionary[dictConst[keyName]])) {
+                        self.dictionary[dictConst[keyName]] = [];
                     }
-                    if (!!self.dictionary[keyName].length) {
+                    if (!!self.dictionary[dictConst[keyName]].length) {
                         return dictConst[keyName];
                     } else {
                         self[keyName + 'defer']();
-                        //abpDict.getAll({'type': dictConst[keyName]}).then(function (result) {
-                        //    self.dictionary[keyName].splice(0, self.dictionary[keyName].length);
-                        //    Array.prototype.push.apply(self.dictionary[keyName], result.data.items);
-                        //}, null);
                     }
                     return dictConst[keyName];
                 };
@@ -103,16 +99,16 @@
                 self[keyName + 'defer'] = function () {
                     var deferred = $q.defer();
 
-                    if (self.dictionary[keyName] && !!self.dictionary[keyName].length) {
-                        deferred.reject(self.dictionary[keyName]);
+                    if (self.dictionary[dictConst[keyName]] && !!self.dictionary[dictConst[keyName]].length) {
+                        deferred.reject(self.dictionary[dictConst[keyName]]);
                     } else {
                         abpDict.getAll({'type': dictConst[keyName]}).then(function (result) {
-                            if (!angular.isArray(self.dictionary[keyName])) {
-                                self.dictionary[keyName] = [];
+                            if (!angular.isArray(self.dictionary[dictConst[keyName]])) {
+                                self.dictionary[dictConst[keyName]] = [];
                             }
-                            self.dictionary[keyName].splice(0, self.dictionary[keyName].length);
-                            Array.prototype.push.apply(self.dictionary[keyName], result.data.result.items);
-                            deferred.resolve(self.dictionary[keyName]);
+                            self.dictionary[dictConst[keyName]].splice(0, self.dictionary[dictConst[keyName]].length);
+                            Array.prototype.push.apply(self.dictionary[dictConst[keyName]], result.data.items);
+                            deferred.resolve(self.dictionary[dictConst[keyName]]);
                         }, function (result) {
                             deferred.reject(result.data);
                         });
@@ -122,11 +118,11 @@
 
                 self['set' + keyName] = function (items) {
 
-                    if (!angular.isArray(self.dictionary[keyName])) {
-                        self.dictionary[keyName] = items;
+                    if (!angular.isArray(self.dictionary[dictConst[keyName]])) {
+                        self.dictionary[dictConst[keyName]] = items;
                     } else {
-                        self.dictionary[keyName].splice(0, self.dictionary[keyName].length);
-                        Array.prototype.push.apply(self.dictionary[keyName], items);
+                        self.dictionary[dictConst[keyName]].splice(0, self.dictionary[dictConst[keyName]].length);
+                        Array.prototype.push.apply(self.dictionary[dictConst[keyName]], items);
                     }
                 };
             })(i);
