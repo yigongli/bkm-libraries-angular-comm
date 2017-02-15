@@ -39,7 +39,7 @@
             var param = angular.fromJson(config.data || config.params);
             if (!!param && angular.isArray(param.dictionaryTypes) && !!param.dictionaryTypes.length) {
                 var dctionaryService = $injector.get('bkmCommGetDict'), key = '', arr, tArr = [];
-            //, tStr = '';
+                //, tStr = '';
                 for (var i in param.dictionaryTypes) {
                     key = param.dictionaryTypes[i];
                     arr = dctionaryService.dictionary[key];
@@ -180,7 +180,8 @@
         GoodsStatus: "GoodsStatus",
         SettlementWay: "SettlementWay",
         CompanyDocument: "CompanyDocument",
-        AgentType: "AgentType"
+        AgentType: "AgentType",
+        TransDocType: "TransDocType"
     });
 
 })();
