@@ -38,7 +38,8 @@
             }
             var param = angular.fromJson(config.data || config.params);
             if (!!param && angular.isArray(param.dictionaryTypes) && !!param.dictionaryTypes.length) {
-                var dctionaryService = $injector.get('bkmCommGetDict'), key = '', arr, tArr = [], tStr = '';
+                var dctionaryService = $injector.get('bkmCommGetDict'), key = '', arr, tArr = [];
+            //, tStr = '';
                 for (var i in param.dictionaryTypes) {
                     key = param.dictionaryTypes[i];
                     arr = dctionaryService.dictionary[key];
@@ -49,8 +50,9 @@
                 if (!!!tArr.length) {
                     return;
                 }
-                tStr = JSON.stringify(tArr);
-                param.dictionaryHash = md5(tStr.split('').sort().join(''));
+                //tStr = angular.toJson(tArr);
+                //param.dictionaryHash = md5(tStr.split('').sort().join(''));
+                param.dictionaryHash = md5(angular.toJson(tArr).split('').sort().join(''));
                 if (!!config.data) {
                     config.data = angular.toJson(param);
                 } else if (!!config.params) {
