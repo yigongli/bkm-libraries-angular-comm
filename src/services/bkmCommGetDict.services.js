@@ -180,8 +180,9 @@
         GoodsStatus: "GoodsStatus",
         SettlementWay: "SettlementWay",
         CompanyDocument: "CompanyDocument",
+        TransDocType: "TransDocType",
         AgentType: "AgentType",
-        TransDocType: "TransDocType"
+        ApproveStatus: "ApproveStatus"
     });
 
 })();
