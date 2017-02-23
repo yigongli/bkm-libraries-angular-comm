@@ -182,7 +182,12 @@
         CompanyDocument: "CompanyDocument",
         TransDocType: "TransDocType",
         AgentType: "AgentType",
-        ApproveStatus: "ApproveStatus"
+        ApproveStatus: "ApproveStatus",
+        VehicleContractType: 'VehicleContractType',
+        DriveModel: 'DriveModel',
+        FuelType: 'FuelType',
+        CertificateType: 'CertificateType',
+        Gender: 'Gender'
     });
 
 })();
