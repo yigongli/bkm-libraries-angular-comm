@@ -150,7 +150,7 @@
                     var deferred = $q.defer();
 
                     if (self.dictionary[dictConst[keyName]] && !!self.dictionary[dictConst[keyName]].length) {
-                        deferred.reject(self.dictionary[dictConst[keyName]]);
+                        deferred.resolve(self.dictionary[dictConst[keyName]]);
                     } else {
                         abpDict.getAll({'type': dictConst[keyName]}).then(function (result) {
                             if (!angular.isArray(self.dictionary[dictConst[keyName]])) {
