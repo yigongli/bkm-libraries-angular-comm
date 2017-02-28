@@ -73,7 +73,7 @@
                 for (var i in param.dictionaryTypes) {
                     var key = param.dictionaryTypes[i];
                     if (angular.isFunction(dctionaryService['set' + key])) {
-                        dctionaryService['set' + key]($filter('filter')(response.data.result.dictioanries, {type: key}));
+                        dctionaryService['set' + key]($filter('filter')(response.data.dictionaries, {type: key}));
                     }
                 }
             }
