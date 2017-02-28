@@ -67,7 +67,7 @@
             if (!isApi(response.config.url)) {
                 return;
             }
-            if (!!response.data.result && !!response.data.result.dictioanries && !!response.data.result.dictioanries.length) {
+            if (!!response.data && !!response.data.dictionaries && !!response.data.dictionaries.length) {
                 var dctionaryService = $injector.get('bkmCommGetDict');
                 var param = angular.fromJson(response.config.data || response.config.params);
                 for (var i in param.dictionaryTypes) {
