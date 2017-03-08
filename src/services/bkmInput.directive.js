@@ -53,21 +53,37 @@
                             }
                             deferred.resolve(true);
                             /*bkmWebApiService[remoteOpt.apiName](angular.extend({phone: (ngModel.$modelValue || ngModel.$viewValue)}, remoteOpt.sendData),
-                                function (result) {
-                                    if (result.valid) {
-                                        deferred.resolve(true);
-                                    } else {
-                                        if (!!result.msg) {
-                                            ngModel.errorMsg['remoteError'] = result.msg;
-                                        }
-                                        deferred.reject(false);
-                                    }
-                                }, function (result) {
-                                    ngModel.$setValidity('remoteRequest', false);
-                                    deferred.resolve(true);
-                                });*/
+                             function (result) {
+                             if (result.valid) {
+                             deferred.resolve(true);
+                             } else {
+                             if (!!result.msg) {
+                             ngModel.errorMsg['remoteError'] = result.msg;
+                             }
+                             deferred.reject(false);
+                             }
+                             }, function (result) {
+                             ngModel.$setValidity('remoteRequest', false);
+                             deferred.resolve(true);
+                             });*/
                             return deferred.promise;
                         };
+                    }
+
+                    //对输入的内容比较
+                    if (!!attr.compare) {
+                        ngModel.$validators.compare = function (modelValue, viewValue) {
+                            var value = modelValue || viewValue;
+                            // 如果值为空则不验证
+                            if (!!!value)return true;
+
+                            var compareVal = $parse(attr.compare)(scope);
+                            if (!!!compareVal) return true;
+
+                            return value === compareVal;
+
+                        };
+                        setErrorMsg('compare');
                     }
                 }
 
