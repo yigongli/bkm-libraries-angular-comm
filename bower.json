@@ -19,7 +19,9 @@
     "./src/services/bkmCommGetDict.services.js",
     "./src/services/bkmInput.directive.js",
     "./src/services/bkmFormValidator.service.js",
-    "./src/services/md5.min.js"
+    "./src/services/md5.min.js",
+    "./src/services/bkmFileUpload.service.js",
+    "./src/fileUpload/html5ImgCompress.min.js"
   ],
   "devDependencies": {
     
