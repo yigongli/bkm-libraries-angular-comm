@@ -82,7 +82,6 @@
                 deferreds = [],
                 promises = [],
                 fd = new FormData(),
-                fileNum = 0,
                 deferred = $q.defer();
 
             if (angular.isArray(files)) {
@@ -117,16 +116,14 @@
                                 imgInfo,
                                 deferreds.length - 1
                             ).then(function (result) {
-                                fd.append('file' + fileNum, dataURItoBlob(result.base64).blob, result.file.name);
-                                fileNum = fileNum + 1;
+                                fd.append(f.name, dataURItoBlob(result.base64).blob, result.file.name);
                                 deferreds[result.target].resolve();
                             }, function (result) {
-                                fd.append(result.file.name, f);
+                                fd.append(f.name, f);
                                 deferreds[result.target].resolve();
                             });
                         } else {
-                            fd.append('file' + fileNum, f);
-                            fileNum = fileNum + 1;
+                            fd.append(f.name, f);
                             deferreds.push($q.resolve());
                         }
                     });
@@ -139,16 +136,14 @@
                             imgInfo,
                             deferreds.length - 1
                         ).then(function (result) {
-                            fd.append('file' + fileNum, dataURItoBlob(result.base64).blob, result.file.name);
-                            fileNum = fileNum + 1;
+                            fd.append(v.name, dataURItoBlob(result.base64).blob, result.file.name);
                             deferreds[result.target].resolve();
                         }, function (result) {
-                            fd.append('file' + fileNum, t.blob, v.filePath);
-                            fileNum = fileNum + 1;
+                            fd.append(v.name, t.blob, v.filePath);
                             deferreds[result.target].resolve();
                         });
                     } else {
-                        fd.append('file' + fileNum, t.blob, v.filePath);
+                        fd.append(v.name, t.blob, v.filePath);
                         deferreds.push($q.resolve());
                     }
                 }
