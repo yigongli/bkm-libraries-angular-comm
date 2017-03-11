@@ -44,27 +44,29 @@
             return {blob: bb, u8Arr: ia, type: mimeString};
         }
 
-        function imgCompress(uploadFile, option) {
+        self.imgCompress = function (uploadFile, option, target) {
             var deferred = $q.defer();
             var opt = {
                 before: function (file) {
+                    //开始压缩
                     if (!file.type.match(/^image/)) {
                         return false;
                     }
                 },
                 done: function (file, base64) {
                     //压缩成功
-                    deferred.resolve({file: file, base64: base64, success: true});
+                    deferred.resolve({file: file, base64: base64, success: true, isSupport: true, target: target});
                 },
                 fail: function (file) {
                     //压缩失败
-                    deferred.reject({file: file, success: false});
+                    deferred.reject({file: file, success: false, isSupport: true, target: target});
                 },
                 complete: function (file) {
                     //console.log('单张: 压缩完成...');
                 },
                 notSupport: function (file) {
                     //alert('浏览器不支持！');
+                    deferred.reject({file: file, success: false, isSupport: false, target: target});
                 }
             };
             if (!!option) {
@@ -79,6 +81,7 @@
                 _imgInfo,
                 promises = [],
                 fd = new FormData(),
+                fileNum = 0,
                 deferred = $q.defer();
 
             if (angular.isArray(files)) {
@@ -106,31 +109,45 @@
                     angular.forEach(v.files, function (f, fi) {
                         var name = angular.element(v).attr("id") || "file";
                         if (f.type.match(/^image/) && !!_imgInfo) {
+                            promises.push($q.defer());
                             //图片压缩处理
-                            imgCompress(f, imgInfo).then(function (result) {
-                                fd.append(result.file.name, dataURItoBlob(result.base64).blob, result.file.name);
-                                promises.push($q.resolve());
+                            self.imgCompress(
+                                f,
+                                imgInfo,
+                                promises.length - 1
+                            ).then(function (result) {
+                                fd.append('file' + fileNum, dataURItoBlob(result.base64).blob, result.file.name);
+                                fileNum = fileNum + 1;
+                                promises[result.target].resolve();
                             }, function (result) {
                                 fd.append(result.file.name, f);
-                                promises.push($q.resolve());
+                                promises[result.target].resolve();
                             });
                         } else {
-                            fd.append(result.file.name, f);
+                            fd.append('file' + fileNum, f);
+                            fileNum = fileNum + 1;
                             promises.push($q.resolve());
                         }
                     });
                 } else {
                     var t = dataURItoBlob(v.base64url);
                     if (v.base64url.match(/^data:image/) && !!_imgInfo) {
-                        imgCompress(new File([t.u8Arr], v.filePath, t.type), imgInfo).then(function (result) {
-                            fd.append(result.file.name, dataURItoBlob(result.base64).blob, result.file.name);
-                            promises.push($q.resolve());
+                        promises.push($q.defer());
+                        self.imgCompress(
+                            new File([t.u8Arr], v.filePath, {"type": t.type}),
+                            imgInfo,
+                            promises.length - 1
+                        ).then(function (result) {
+                            fd.append('file' + fileNum, dataURItoBlob(result.base64).blob, result.file.name);
+                            fileNum = fileNum + 1;
+                            promises[result.target].resolve();
                         }, function (result) {
-                            fd.append(v.name, t.blob, v.filePath);
-                            promises.push($q.resolve());
+                            fd.append('file' + fileNum, t.blob, v.filePath);
+                            fileNum = fileNum + 1;
+                            promises[result.target].resolve();
                         });
                     } else {
-                        fd.append(v.name, t.blob, v.filePath);
+                        fd.append('file' + fileNum, t.blob, v.filePath);
                         promises.push($q.resolve());
                     }
                 }
