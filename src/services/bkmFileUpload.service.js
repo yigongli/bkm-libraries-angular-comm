@@ -79,6 +79,7 @@
         self.upload = function (files, imgInfo) {
             var _files = [],
                 _imgInfo,
+                deferreds = [],
                 promises = [],
                 fd = new FormData(),
                 fileNum = 0,
@@ -109,47 +110,55 @@
                     angular.forEach(v.files, function (f, fi) {
                         var name = angular.element(v).attr("id") || "file";
                         if (f.type.match(/^image/) && !!_imgInfo) {
-                            promises.push($q.defer());
+                            deferreds.push($q.defer());
                             //图片压缩处理
                             self.imgCompress(
                                 f,
                                 imgInfo,
-                                promises.length - 1
+                                deferreds.length - 1
                             ).then(function (result) {
                                 fd.append('file' + fileNum, dataURItoBlob(result.base64).blob, result.file.name);
                                 fileNum = fileNum + 1;
-                                promises[result.target].resolve();
+                                deferreds[result.target].resolve();
                             }, function (result) {
                                 fd.append(result.file.name, f);
-                                promises[result.target].resolve();
+                                deferreds[result.target].resolve();
                             });
                         } else {
                             fd.append('file' + fileNum, f);
                             fileNum = fileNum + 1;
-                            promises.push($q.resolve());
+                            deferreds.push($q.resolve());
                         }
                     });
                 } else {
                     var t = dataURItoBlob(v.base64url);
                     if (v.base64url.match(/^data:image/) && !!_imgInfo) {
-                        promises.push($q.defer());
+                        deferreds.push($q.defer());
                         self.imgCompress(
                             new File([t.u8Arr], v.filePath, {"type": t.type}),
                             imgInfo,
-                            promises.length - 1
+                            deferreds.length - 1
                         ).then(function (result) {
                             fd.append('file' + fileNum, dataURItoBlob(result.base64).blob, result.file.name);
                             fileNum = fileNum + 1;
-                            promises[result.target].resolve();
+                            deferreds[result.target].resolve();
                         }, function (result) {
                             fd.append('file' + fileNum, t.blob, v.filePath);
                             fileNum = fileNum + 1;
-                            promises[result.target].resolve();
+                            deferreds[result.target].resolve();
                         });
                     } else {
                         fd.append('file' + fileNum, t.blob, v.filePath);
-                        promises.push($q.resolve());
+                        deferreds.push($q.resolve());
                     }
+                }
+            });
+
+            angular.forEach(deferreds, function (v) {
+                if (!!v.promise) {
+                    promises.push(v.promise);
+                } else {
+                    promises.push(v);
                 }
             });
 
