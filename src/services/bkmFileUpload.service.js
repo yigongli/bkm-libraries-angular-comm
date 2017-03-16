@@ -105,7 +105,27 @@
             }
 
             angular.forEach(_files, function (v, i) {
-                if (angular.isElement(v)) {
+                if (v.constructor.name.toLowerCase() == "file") {
+                    var f = v;
+                    if (f.type.match(/^image/) && !!_imgInfo) {
+                        deferreds.push($q.defer());
+                        //图片压缩处理
+                        self.imgCompress(
+                            f,
+                            imgInfo,
+                            deferreds.length - 1
+                        ).then(function (result) {
+                            fd.append(f.name, dataURItoBlob(result.base64).blob, result.file.name);
+                            deferreds[result.target].resolve();
+                        }, function (result) {
+                            fd.append(f.name, f);
+                            deferreds[result.target].resolve();
+                        });
+                    } else {
+                        fd.append(f.name, f);
+                        deferreds.push($q.resolve());
+                    }
+                } else if (angular.isElement(v)) {
                     angular.forEach(v.files, function (f, fi) {
                         var name = angular.element(v).attr("id") || "file";
                         if (f.type.match(/^image/) && !!_imgInfo) {
