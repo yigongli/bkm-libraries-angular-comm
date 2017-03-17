@@ -202,7 +202,7 @@
                     var dicts = s.dictionary[key];
                     if (angular.isArray(dicts) && !!dicts.length) {
                         var filtered = f('filter')(dicts, {key: input});
-                        return filtered[0].name;
+                        return (filtered.length==0?'未知':filtered[0].name);
                     }
                     return input;
                 }
