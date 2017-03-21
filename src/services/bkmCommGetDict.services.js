@@ -235,7 +235,8 @@
         DriveModel: 'DriveModel',
         FuelType: 'FuelType',
         CertificateType: 'CertificateType',
-        Gender: 'Gender'
+        Gender: 'Gender',
+        AuditType: 'AuditType'
     });
 
 })();
