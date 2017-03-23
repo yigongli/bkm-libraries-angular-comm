@@ -236,7 +236,8 @@
         FuelType: 'FuelType',
         CertificateType: 'CertificateType',
         Gender: 'Gender',
-        AuditType: 'AuditType'
+        AuditType: 'AuditType',
+        DrivingLicenseType: 'DrivingLicenseType'
     });
 
 })();
