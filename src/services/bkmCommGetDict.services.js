@@ -196,13 +196,14 @@
                  *   error from returned function, for cases when a particular type of error is useful.
                  * @returns {string} 返回替换后的值
                  */
-                return function (input) {
+                return function (input,isObj) {
                     if (angular.isUndefined(input))return input;
                     //从 'bkmCommGetDict' 服务中获取 dictionary 配置
                     var dicts = s.dictionary[key];
                     if (angular.isArray(dicts) && !!dicts.length) {
                         var filtered = f('filter')(dicts, {key: input});
-                        return (filtered.length==0?'未知':filtered[0].name);
+                        return !!isObj ? (filtered.length == 0 ? '未知' : filtered[0]):
+                            (filtered.length == 0 ? '未知' : filtered[0].name);
                     }
                     return input;
                 }
