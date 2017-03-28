@@ -606,7 +606,7 @@ var bkm = bkm || {};
         if (!model) return;
         angular.forEach(model, function (v, i) {
             if (/\w{1,}Obj$/.test(i)) {
-                model[i.replace('Obj', '')] = model[i].key
+                model[i.replace('Obj', '')] = !!model[i]?model[i].key:'';
             }
         });
     };
