@@ -611,6 +611,29 @@ var bkm = bkm || {};
         });
     };
 
+    /* 
+     * 将日期字符串处理为日期对象并返回到表单模型中
+     */
+    bkm.util.converDateObj = function (outObj, inObj, cascadPropName) {
+
+        if (!outObj || !inObj || (typeof cascadPropName != "string")) return;
+
+        var rtnArr = cascadPropName.split(".");
+
+        if (rtnArr.length == 0) {
+            outObj[cascadPropName] = new Date(inObj[cascadPropName]);
+            return;
+        }
+
+        for (var i = 0; i < rtnArr.length-1; i++) {
+            if (!inObj[rtnArr[i]]) return;
+            inObj = inObj[rtnArr[i]];
+            outObj = outObj[rtnArr[i]] || {};
+        }
+        outObj[rtnArr[i]] = new Date(inObj[rtnArr[i]]);
+        
+    };
+
 
 
     return bkm.util;
