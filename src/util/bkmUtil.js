@@ -612,9 +612,9 @@ var bkm = bkm || {};
     };
 
     /* 
-     * 将日期字符串处理为日期对象并返回到表单模型中
+     * 将输入对象的日期字符串处理为日期对象并返回到输出对象模型中
      */
-    bkm.util.converDateObj = function (outObj, inObj, cascadPropName) {
+    bkm.util.converStr2Date = function (outObj, inObj, cascadPropName) {
 
         if (!outObj || !inObj || (typeof cascadPropName != "string")) return;
 
@@ -630,7 +630,9 @@ var bkm = bkm || {};
             inObj = inObj[rtnArr[i]];
             outObj = outObj[rtnArr[i]] || {};
         }
-        outObj[rtnArr[i]] = new Date(inObj[rtnArr[i]]);
+        if (!!inObj[rtnArr[i]]) {
+            outObj[rtnArr[i]] = new Date(inObj[rtnArr[i]]);
+        }
         
     };
 
