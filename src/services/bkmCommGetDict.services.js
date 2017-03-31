@@ -238,7 +238,8 @@
         CertificateType: 'CertificateType',
         Gender: 'Gender',
         AuditType: 'AuditType',
-        DrivingLicenseType: 'DrivingLicenseType'
+        DrivingLicenseType: 'DrivingLicenseType',
+        ManageStatus: 'ManageStatus'
     });
 
 })();
