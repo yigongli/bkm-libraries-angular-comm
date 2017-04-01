@@ -522,24 +522,6 @@ var bkm = bkm || {};
     };
 
     /*
-     *  是否枚举
-     */
-    bkm.util.trueFalseFn = function (opt) {
-
-        var trueFalse = [{ key: true, name: "是" }, { key: false, name: "否" }];
-
-        if (typeof (opt) == 'undefined') {
-            return trueFalse;
-        }
-
-        if (opt) {
-            return trueFalse[0];
-        } else {
-            return trueFalse[1];
-        }
-    };
-
-    /*
     *  格式化字符串首字母大写
     */
     bkm.util.firstCap = function (str) {
@@ -599,17 +581,7 @@ var bkm = bkm || {};
         return result;
     };
 
-    /* 
-     * 将字典对象数据转换为Key，并更新到model中
-     */
-    bkm.util.dictObjFmt = function (model) {
-        if (!model) return;
-        angular.forEach(model, function (v, i) {
-            if (/\w{1,}Obj$/.test(i)) {
-                model[i.replace('Obj', '')] = !!model[i]?model[i].key:'';
-            }
-        });
-    };
+  
 
     /* 
      * 将输入对象的日期字符串处理为日期对象并返回到输出对象模型中
