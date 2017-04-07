@@ -32,8 +32,6 @@ var bkm = bkm || {};
         return true;
     };
 
-
-
     bkm.util.postMockForm = function (URL, PARAMS) {
         var temp_form = document.createElement("form");
         temp_form.action = URL;
@@ -172,43 +170,7 @@ var bkm = bkm || {};
     bkm.util.isObject = function (value) {
         return value instanceof Object && value.constructor == Object;
     };
-
-   
-
-    /*
-     * 对象列表映射成字典
-     * data 对象数组, kvp 键值对{key,value},category 所属类别
-     */
-    //bkm.util.mapping = function (data, kvp, category) {
-    //    if (!data || !kvp.key || !kvp.value) return;
-    //    var getItems = function () {
-    //        var items = [];
-    //        for (var i in data) {
-    //            var item = {
-    //                key: data[i][kvp.key],
-    //                value: data[i][kvp.value]
-    //            };
-    //            if (kvp.props) {
-    //                var props = bkm.util.toArray(kvp.props);
-    //                for (var j in props) {
-    //                    var prop = props[j];
-    //                    item[prop] = data[i][prop];
-    //                }
-    //            }
-    //            items.push(item);
-    //        }
-    //        return items;
-    //    };
-    //    if (category == undefined) {
-    //        return getItems();
-    //    } else {
-    //        category = category.indexOf('c_codE_ABBR_') == 0 ? category : 'c_codE_ABBR_' + category;
-    //        var result = {};
-    //        result[category] = getItems();
-    //        return result;
-    //    }
-    //};
-
+    
     /*
      * 限制文本框只能输入整数
      */
@@ -525,6 +487,7 @@ var bkm = bkm || {};
     *  格式化字符串首字母大写
     */
     bkm.util.firstCap = function (str) {
+        if (!str) return str;
         str = str.toString().toLowerCase();
         str = str.replace(/\b\w+\b/g, function (word) {
             return word.substring(0, 1).toUpperCase() + word.substring(1);
