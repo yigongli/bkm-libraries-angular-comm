@@ -16,12 +16,12 @@
     "angular": "~1.4.8"
   },
   "main": [
-    "./src/directives/bkmFormValidIcon.js",
     "./src/services/bkmCommGetDict.services.js",
     "./src/services/bkmInput.directive.js",
     "./src/services/bkmFormValidator.service.js",
     "./src/services/md5.min.js",
     "./src/services/bkmFileUpload.service.js",
+    "./src/directives/bkmFormValidIcon.js",
     "./src/fileUpload/html5ImgCompress.min.js",
     "./src/fileUpload/0.chunk.min.js",
     "./src/fileUpload/1.chunk.min.js",
