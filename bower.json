@@ -2,7 +2,9 @@
   "name": "bkm-angular-comm",
   "version": "0.0.1",
   "homepage": "https://github.com/yigongli/bkm-libraries-angular-comm",
-  "authors": ["bkm"],
+  "authors": [
+    "bkm"
+  ],
   "description": "bkm library angular comm ",
   "license": "MIT",
   "ignore": [
@@ -22,6 +24,7 @@
     "./src/services/md5.min.js",
     "./src/services/bkmFileUpload.service.js",
     "./src/directives/bkmFormValidIcon.js",
+    "./src/directives/bkmFormValidIcon.css",
     "./src/fileUpload/html5ImgCompress.min.js",
     "./src/fileUpload/0.chunk.min.js",
     "./src/fileUpload/1.chunk.min.js",
@@ -29,12 +32,10 @@
     "./src/util/bkmUtil.js"
   ],
   "devDependencies": {
-    
   },
   "resolutions": {
     "angular": "~1.4.8"
   },
   "overrides": {
-
   }
 }
