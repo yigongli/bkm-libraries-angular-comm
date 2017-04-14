@@ -28,7 +28,7 @@
                         var tooltip,
                             doc = angular.element(document);
                         scope.m = ngModelCtrl;
-                        var icon = $compile('<div class="bkm-form-icon form-control"><i class="ion-alert-circled bkm-feedback" data-toggle="popover" ng-show="!m.$valid && (m.$dirt || m.$$parentForm.$submitted)" ng-click="showValidError($event);"></i></div>')(scope);
+                        var icon = $compile('<div class="bkm-form-icon form-control" style="border:none !important;"><i class="ion-alert-circled bkm-feedback" data-toggle="popover" ng-show="!m.$valid && (m.$dirt || m.$$parentForm.$submitted)" ng-click="showValidError($event);"></i></div>')(scope);
                         elem.after(icon);
                         elem.appendTo(icon);
                         //icon.popover();
