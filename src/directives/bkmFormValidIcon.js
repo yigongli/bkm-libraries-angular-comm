@@ -38,9 +38,7 @@
                                 tooltip = angular.element(toolTipTemp);
                             }
                             var msg = [];
-                            angular.forEach(ngModelCtrl.errorMsg, function (v, i) {
-                                msg.push(v + '<br/>')
-                            });
+                            getErrorMsg(ngModelCtrl.$error, ngModelCtrl.errorMsg, msg)
                             tooltip.find('.popover-content').append(msg.join(''));
                             tooltip.css("display", "block");
                             tooltip.css("top", "11px");
@@ -54,6 +52,21 @@
                                 doc.off('click');
                             });
 
+                        }
+
+                        // 递归获取错误消息
+                        function getErrorMsg(error, errorMegs, errorArr) {
+                            for (var k in error) {
+                                if (angular.isArray(error[k])) {
+                                    getErrorMsg(error[k], errorArr);
+                                } else if (error[k].$error) {
+                                    for (var key in error[k].$error) {
+                                        errorArr.push((errorMegs[key + 'Error'] || '验证未通过'));
+                                    }
+                                } else {
+                                    errorArr.push((errorMegs[k + 'Error'] || '验证未通过'));
+                                }
+                            }
                         }
 
                     }
