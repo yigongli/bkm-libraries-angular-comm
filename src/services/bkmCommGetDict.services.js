@@ -239,7 +239,8 @@
         Gender: 'Gender',
         AuditType: 'AuditType',
         DrivingLicenseType: 'DrivingLicenseType',
-        ManageStatus: 'ManageStatus'
+        ManageStatus: 'ManageStatus',
+        NotificationState: 'NotificationState'
     });
 
 })();
