@@ -240,7 +240,8 @@
         AuditType: 'AuditType',
         DrivingLicenseType: 'DrivingLicenseType',
         ManageStatus: 'ManageStatus',
-        NotificationState: 'NotificationState'
+        NotificationState: 'NotificationState',
+        AddressType: 'AddressType'
     });
 
 })();
