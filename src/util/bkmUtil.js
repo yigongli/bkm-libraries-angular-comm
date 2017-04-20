@@ -506,10 +506,9 @@ var bkm = bkm || {};
 
         for (var x in input) {
             if (typeof (input[x]) == 'object') {
-                angular.extend(result, bkm.util.address_out(input[x],type,x));
-            }
-            else {
-                if (!!type){
+                angular.extend(result, bkm.util.address_out(input[x], type, x));
+            } else if (index) {
+                if (type) {
                     result[type + bkm.util.firstCap(index) + bkm.util.firstCap(x)] = input[x];
                 }
                 else {
@@ -528,10 +527,10 @@ var bkm = bkm || {};
 
         if (!input) return;
         if (!!type) {
-            strReg = "(\\b" + type + ")(province|city|district)(id|name$)";
+            strReg = "(\\b" + type + ")(province|city|district|address)(id|name$)";
         }
         else {
-            strReg = "(\\b)(province|city|district)(id|name$)";
+            strReg = "(\\b)(province|city|district|address)(id|name$)";
         }
         var reg = new RegExp(strReg, "i");
         for (var x in input) {
