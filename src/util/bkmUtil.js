@@ -636,10 +636,18 @@ var bkm = bkm || {};
         return quarterStartMonth;
     }
     // 获取今天
-    bkm.date.today = function (input) {
+    bkm.date.today = function (input, isBegin,isCurrent) {
         var offset = input || 0;
-        var todayDate = new Date(nowYear, nowMonth, nowDay+offset);
-        return todayDate;
+        var todayDate = new Date(
+            nowYear,
+            nowMonth,
+            nowDay + offset,
+            isBegin ? 0 : 23,
+            isBegin ? 0 : 59,
+            isBegin ? 0 : 59,
+            isBegin ? 0 : 999
+            );
+        return isCurrent?now:todayDate;
     };
     //获得本周的开始日期 
     bkm.date.getWeekStartDate = function () {
