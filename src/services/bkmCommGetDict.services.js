@@ -241,7 +241,8 @@
         DrivingLicenseType: 'DrivingLicenseType',
         ManageStatus: 'ManageStatus',
         NotificationState: 'NotificationState',
-        AddressType: 'AddressType'
+        AddressType: 'AddressType',
+        ContractType: 'ContractType'
     });
 
 })();
