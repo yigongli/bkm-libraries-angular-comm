@@ -152,7 +152,7 @@
                     if (self.dictionary[dictConst[keyName]] && !!self.dictionary[dictConst[keyName]].length) {
                         deferred.resolve(self.dictionary[dictConst[keyName]]);
                     } else {
-                        abpDict.getAll({'type': dictConst[keyName]}).then(function (result) {
+                        abpDict.getAll({ 'type': dictConst[keyName], maxResultCount: '500' }).then(function (result) {
                             if (!angular.isArray(self.dictionary[dictConst[keyName]])) {
                                 self.dictionary[dictConst[keyName]] = [];
                             }
@@ -201,7 +201,9 @@
                     //从 'bkmCommGetDict' 服务中获取 dictionary 配置
                     var dicts = s.dictionary[key];
                     if (angular.isArray(dicts) && !!dicts.length) {
-                        var filtered = f('filter')(dicts, {key: input});
+                        var filtered = dicts.filter(function (item) {
+                            return item.key == input;
+                        });  
                         return !!isObj ? (filtered.length == 0 ? '未知' : filtered[0]):
                             (filtered.length == 0 ? '未知' : filtered[0].name);
                     }
