@@ -445,16 +445,30 @@ var bkm = bkm || {};
     /*
      * 获取字典项的值
      */
-    bkm.util.getDictionaryItemValue = function (items, key) {
+    bkm.util.getDictName = function (items, key) {
         if (key == undefined) return '';
         if (!items || !items.length) return key;
         for (var i = 0, len = items.length; i < len; i++) {
             var item = items[i];
             if (item.key == key) {
-                return item.value;
+                return item.name;
             }
         }
         return key;
+    };
+    /*
+     * 获取字典项的Key
+     */
+    bkm.util.getDictKey = function (items, name) {
+        if (name == undefined) return '';
+        if (!items || !items.length) return name;
+        for (var i = 0, len = items.length; i < len; i++) {
+            var item = items[i];
+            if (item.name == name) {
+                return item.key;
+            }
+        }
+        return name;
     };
 
     bkm.util.loadDependencies = function (dependencies) {
