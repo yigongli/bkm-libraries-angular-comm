@@ -245,7 +245,8 @@
         NotificationState: 'NotificationState',
         AddressType: 'AddressType',
         ContractType: 'ContractType',
-        ContractStatus: 'ContractStatus'
+        ContractStatus: 'ContractStatus',
+        TagType:'TagType'
     });
 
 })();
