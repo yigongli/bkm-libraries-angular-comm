@@ -29,7 +29,8 @@
     "./src/fileUpload/0.chunk.min.js",
     "./src/fileUpload/1.chunk.min.js",
     "./src/fileUpload/2.chunk.min.js",
-    "./src/util/bkmUtil.js"
+    "./src/util/bkmUtil.js",
+    "./src/constants/bkm.constant.js"
   ],
   "devDependencies": {
   },
