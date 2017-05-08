@@ -11,7 +11,7 @@
         </div>';
 
     angular.module('bkm.library.angular.comm')
-        .directive('bkmFormValidIcon', dfn);
+        .directive('bkmFormValidIcon', ['$compile',dfn]);
 
     /** @ngInject */
     function dfn($compile) {

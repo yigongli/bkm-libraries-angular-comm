@@ -2,9 +2,9 @@
     'use strict';
 
     var myModule = angular.module('bkm.library.angular.comm', ['abp'])
-        .factory('bkm.library.angular.comm.httpInterceptor', httpInterceptor)
+        .factory('bkm.library.angular.comm.httpInterceptor', ['$q', '$injector', '$filter', httpInterceptor])
         .service('bkmCommGetDict', ['abp.services.app.sysDictionary', 'dictionaryConst', '$q', bkmCommGetDict])
-        .filter('dateDiff', dateDiffFilter);
+        .filter('dateDiff', ['$filter',dateDiffFilter]);
 
     //http 请求拦截器
     function httpInterceptor($q, $injector, $filter) {
@@ -73,7 +73,7 @@
                 for (var i in param.dictionaryTypes) {
                     var key = param.dictionaryTypes[i];
                     if (angular.isFunction(dctionaryService['set' + key])) {
-                        dctionaryService['set' + key]($filter('filter')(response.data.dictionaries, {type: key}));
+                        dctionaryService['set' + key]($filter('filter')(response.data.dictionaries, {type: key},true));
                     }
                 }
             }
@@ -167,7 +167,7 @@
                 };
 
                 self['set' + keyName] = function (items) {
-
+                    items.sort(compare('index'));
                     if (!angular.isArray(self.dictionary[dictConst[keyName]])) {
                         self.dictionary[dictConst[keyName]] = items;
                     } else {
@@ -178,6 +178,24 @@
             })(i);
         }
     }
+
+    function compare(prop) {
+            return function (obj1, obj2) {
+                var val1 = obj1[prop];
+                var val2 = obj2[prop];
+                if (!isNaN(Number(val1)) && !isNaN(Number(val2))) {
+                    val1 = Number(val1);
+                    val2 = Number(val2);
+                }
+                if (val1 < val2) {
+                    return -1;
+                } else if (val1 > val2) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            }
+        }
 
     function init(constantVal) {
 
@@ -245,7 +263,8 @@
         NotificationState: 'NotificationState',
         AddressType: 'AddressType',
         ContractType: 'ContractType',
-        ContractStatus: 'ContractStatus'
+        ContractStatus: 'ContractStatus',
+        TagType:'TagType'
     });
 
 })();

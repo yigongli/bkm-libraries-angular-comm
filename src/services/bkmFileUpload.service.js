@@ -5,7 +5,7 @@
     'use strict';
 
     angular.module('bkm.library.angular.comm')
-        .service('bkmFileUpload', bkmFileUpload);
+        .service('bkmFileUpload', ['$http', '$q', bkmFileUpload]);
 
     /** @ngInject */
     function bkmFileUpload($http, $q) {

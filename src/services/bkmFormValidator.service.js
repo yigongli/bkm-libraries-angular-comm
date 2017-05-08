@@ -6,7 +6,7 @@
     'use strict';
 
     angular.module('bkm.library.angular.comm')
-        .service('bkmFmValSvc', bkmFormValidatorService);
+        .service('bkmFmValSvc', ['$q', '$timeout', bkmFormValidatorService]);
 
     /** @ngInject */
     function bkmFormValidatorService($q, $timeout) {

@@ -5,8 +5,7 @@
     'use strict';
 
     angular.module('bkm.library.angular.comm')
-        .directive('bkmInput', inputvalidator);
-    //function inputvalidator($q, $parse, bkmWebApiService)
+        .directive('bkmInput', ['$q', '$parse',inputvalidator]);
     function inputvalidator($q, $parse) {
         return {
             restrict: 'EA',
