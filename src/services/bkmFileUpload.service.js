@@ -6,7 +6,7 @@
 
     angular.module('bkm.library.angular.comm')
         .service('bkmFileUpload', ['$http', '$q', bkmFileUpload]);
-        
+
     /** @ngInject */
     function bkmFileUpload($http, $q) {
         var self = this,
@@ -33,13 +33,18 @@
          * 将 Image 对象转 base64 编码
          */
         function getBase64Image(img) {
-            var canvas = document.createElement("canvas");
-            canvas.width = img.width;
-            canvas.height = img.height;
-            var ctx = canvas.getContext("2d");
-            ctx.drawImage(img, 0, 0, img.width, img.height);
-            var dataURL = canvas.toDataURL("image/png");
-            return dataURL; // return dataURL.replace("data:image/png;base64,", ""); 
+            try {
+                var canvas = document.createElement("canvas");
+                canvas.width = img.width;
+                canvas.height = img.height;
+                var ctx = canvas.getContext("2d");
+                ctx.drawImage(img, 0, 0, img.width, img.height);
+                var dataURL = canvas.toDataURL("image/png");
+                return dataURL; // return dataURL.replace("data:image/png;base64,", ""); 
+            } catch (e) {
+                console.log(JSON.stringify(e));
+                return null;
+            }
         }
 
         /**
@@ -89,7 +94,7 @@
             return deferred.promise;
         }
 
-        self.upload = function (files, imgInfo) {
+        self.upload = function (files, imgInfo, isWeixin) {
             var _files = [],
                 _imgInfo,
                 deferreds = [],
@@ -160,46 +165,49 @@
                             deferreds.push($q.resolve());
                         }
                     });
-                } else if (v.base64url.match(/^data:image\/(jpeg|png);base64,/)) {
+                } else if (v.base64url.match(/^data:image\/(jpg|jpeg|png);base64,/)) {
                     var t = dataURItoBlob(v.base64url);
                     appendBase64ToFormData(deferreds, v, t, !!_imgInfo);
-                } else {
+                } else if (isWeixin && !!window.wx && !!wx.getLocalImgData) {
                     var defer = $q.defer();
                     deferreds.push(defer);
-                    var img = new Image();
-                    img.onload = function () {
-                        var t = dataURItoBlob(getBase64Image(img));
-                        appendBase64ToFormData(deferreds, v, t, !!_imgInfo)
-                            .then(function () {
-                                deferreds.push(defer.resolve());
-                            });
-                    };
-                    img.crossOrigin = 'anonymous';
-                    img.src = v.base64url;
+                    wx.getLocalImgData({
+                        // 图片的localID
+                        localId: v.base64url,
+                        success: function (res) {
+                            // localData是图片的base64数据，可以用img标签显示
+                            var localData = "data:image/jpeg;base64," + res.localData;
+                            var t = dataURItoBlob(localData);
+                            appendBase64ToFormData(deferreds, v, t, !!_imgInfo)
+                                .then(function () {
+                                    deferreds.push(defer.resolve());
+                                });
+                        }
+                    });
                 }
             });
 
-            function appendBase64ToFormData(deferreds, file, blob, isCompress) {
+            function appendBase64ToFormData(deferredArr, file, blob, isCompress) {
                 if (isCompress) {
-                    deferreds.push($q.defer());
+                    deferredArr.push($q.defer());
                     self.imgCompress(
                         new File([blob.u8Arr], file.filePath, { "type": blob.type }),
                         imgInfo,
-                        deferreds.length - 1
+                        deferredArr.length - 1
                     ).then(function (result) {
                         fd.append(file.name, dataURItoBlob(result.base64).blob, result.file.name);
-                        deferreds[result.target].resolve();
+                        deferredArr[result.target].resolve();
                     }, function (result) {
                         fd.append(file.name, blob.blob, file.filePath);
-                        deferreds[result.target].resolve();
+                        deferredArr[result.target].resolve();
                     });
                 } else {
                     fd.append(file.name, blob.blob, file.filePath);
-                    deferreds.push({ promise: $q.resolve() });
+                    deferredArr.push({ promise: $q.resolve() });
                 }
-                return deferreds[deferreds.length - 1].promise;
+                return deferredArr[deferredArr.length - 1].promise;
             }
-
+            
             angular.forEach(deferreds, function (v) {
                 if (!!v.promise) {
                     promises.push(v.promise);
@@ -224,5 +232,5 @@
             return deferred.promise;
         };
     }
-    
+
 })();
