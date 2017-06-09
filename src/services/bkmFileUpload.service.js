@@ -6,7 +6,7 @@
 
     angular.module('bkm.library.angular.comm')
         .service('bkmFileUpload', ['$http', '$q', bkmFileUpload]);
-
+        
     /** @ngInject */
     function bkmFileUpload($http, $q) {
         var self = this,
@@ -30,6 +30,19 @@
          */
 
         /**
+         * 将 Image 对象转 base64 编码
+         */
+        function getBase64Image(img) {
+            var canvas = document.createElement("canvas");
+            canvas.width = img.width;
+            canvas.height = img.height;
+            var ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, img.width, img.height);
+            var dataURL = canvas.toDataURL("image/png");
+            return dataURL; // return dataURL.replace("data:image/png;base64,", ""); 
+        }
+
+        /**
          * 将 data:image;base64 转 Blob 对象
          */
         function dataURItoBlob(dataURI) {
@@ -40,8 +53,8 @@
             for (var i = 0; i < byteString.length; i++) {
                 ia[i] = byteString.charCodeAt(i);
             }
-            var bb = new Blob([ab], {"type": mimeString});
-            return {blob: bb, u8Arr: ia, type: mimeString};
+            var bb = new Blob([ab], { "type": mimeString });
+            return { blob: bb, u8Arr: ia, type: mimeString };
         }
 
         self.imgCompress = function (uploadFile, option, target) {
@@ -55,18 +68,18 @@
                 },
                 done: function (file, base64) {
                     //压缩成功
-                    deferred.resolve({file: file, base64: base64, success: true, isSupport: true, target: target});
+                    deferred.resolve({ file: file, base64: base64, success: true, isSupport: true, target: target });
                 },
                 fail: function (file) {
                     //压缩失败
-                    deferred.reject({file: file, success: false, isSupport: true, target: target});
+                    deferred.reject({ file: file, success: false, isSupport: true, target: target });
                 },
                 complete: function (file) {
                     //console.log('单张: 压缩完成...');
                 },
                 notSupport: function (file) {
                     //alert('浏览器不支持！');
-                    deferred.reject({file: file, success: false, isSupport: false, target: target});
+                    deferred.reject({ file: file, success: false, isSupport: false, target: target });
                 }
             };
             if (!!option) {
@@ -147,27 +160,45 @@
                             deferreds.push($q.resolve());
                         }
                     });
-                } else {
+                } else if (v.base64url.match(/^data:image\/(jpeg|png);base64,/)) {
                     var t = dataURItoBlob(v.base64url);
-                    if (v.base64url.match(/^data:image/) && !!_imgInfo) {
-                        deferreds.push($q.defer());
-                        self.imgCompress(
-                            new File([t.u8Arr], v.filePath, {"type": t.type}),
-                            imgInfo,
-                            deferreds.length - 1
-                        ).then(function (result) {
-                            fd.append(v.name, dataURItoBlob(result.base64).blob, result.file.name);
-                            deferreds[result.target].resolve();
-                        }, function (result) {
-                            fd.append(v.name, t.blob, v.filePath);
-                            deferreds[result.target].resolve();
-                        });
-                    } else {
-                        fd.append(v.name, t.blob, v.filePath);
-                        deferreds.push($q.resolve());
-                    }
+                    appendBase64ToFormData(deferreds, v, t, !!_imgInfo);
+                } else {
+                    var defer = $q.defer();
+                    deferreds.push(defer);
+                    var img = new Image();
+                    img.onload = function () {
+                        var t = dataURItoBlob(getBase64Image(img));
+                        appendBase64ToFormData(deferreds, v, t, !!_imgInfo)
+                            .then(function () {
+                                deferreds.push(defer.resolve());
+                            });
+                    };
+                    img.crossOrigin = 'anonymous';
+                    img.src = v.base64url;
                 }
             });
+
+            function appendBase64ToFormData(deferreds, file, blob, isCompress) {
+                if (isCompress) {
+                    deferreds.push($q.defer());
+                    self.imgCompress(
+                        new File([blob.u8Arr], file.filePath, { "type": blob.type }),
+                        imgInfo,
+                        deferreds.length - 1
+                    ).then(function (result) {
+                        fd.append(file.name, dataURItoBlob(result.base64).blob, result.file.name);
+                        deferreds[result.target].resolve();
+                    }, function (result) {
+                        fd.append(file.name, blob.blob, file.filePath);
+                        deferreds[result.target].resolve();
+                    });
+                } else {
+                    fd.append(file.name, blob.blob, file.filePath);
+                    deferreds.push({ promise: $q.resolve() });
+                }
+                return deferreds[deferreds.length - 1].promise;
+            }
 
             angular.forEach(deferreds, function (v) {
                 if (!!v.promise) {
@@ -182,7 +213,7 @@
                     method: 'POST',
                     url: apiUrl,
                     data: fd,
-                    headers: {'Content-Type': undefined}
+                    headers: { 'Content-Type': undefined }
                 }).then(function (result) {
                     deferred.resolve(result);
                 }, function (result) {
@@ -193,5 +224,5 @@
             return deferred.promise;
         };
     }
-
+    
 })();
