@@ -23,7 +23,7 @@
         }
 
         function getErrors(form) {
-            if (form.$valid)return [];
+            if (form.$valid) return [];
             var error = [];
             getErrorMsg(form.$error, error);
             return error;
@@ -36,7 +36,15 @@
                     getErrorMsg(error[k], arr);
                 } else {
                     for (var key in error[k].$error) {
-                        arr.push((error[k].errorMsg[key + 'Error'] || ( error[k].$name + '验证未通过')));
+                        if (!!error[k].errorMsg) {
+                            arr.push(
+                                (error[k].errorMsg[key + 'Error'] || (error[k].$name + '验证未通过'))
+                            );
+                        } else {
+                            arr.push(
+                                (error[k].$name + '验证未通过')
+                            );
+                        }
                     }
                 }
             }
