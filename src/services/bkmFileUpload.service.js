@@ -165,7 +165,7 @@
                             deferreds.push($q.resolve());
                         }
                     });
-                } else if (v.base64url.match(/^data:image\/(jpg|jpeg|png);base64,/)) {
+                } else if (v.base64url.match(/^data:image\/(jgp|jpg|jpeg|png);base64,/)) {
                     alert('111111111');
                     var t = dataURItoBlob(v.base64url);
                     appendBase64ToFormData(deferreds, v, t, !!_imgInfo);
