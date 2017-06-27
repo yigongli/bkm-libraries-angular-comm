@@ -168,6 +168,10 @@
                 } else if (v.base64url.match(/^data:image\/(jpg|jpeg|png);base64,/)) {
                     var t = dataURItoBlob(v.base64url);
                     appendBase64ToFormData(deferreds, v, t, !!_imgInfo);
+                } else if (isIos() && isWeixin) {
+                    var localData = "data:image/jpeg;base64," + v.base64url;
+                    var t = dataURItoBlob(localData);
+                    appendBase64ToFormData(deferreds, v, t, !!_imgInfo);
                 } else if (isWeixin && !!window.wx && !!wx.getLocalImgData) {
                     var defer = $q.defer();
                     deferreds.push(defer);
@@ -187,6 +191,11 @@
                 }
             });
 
+            function isIos() {
+                var u = navigator.userAgent;
+                //var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+                return !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+            }
             function appendBase64ToFormData(deferredArr, file, blob, isCompress) {
                 if (isCompress) {
                     deferredArr.push($q.defer());
@@ -207,7 +216,7 @@
                 }
                 return deferredArr[deferredArr.length - 1].promise;
             }
-            
+
             angular.forEach(deferreds, function (v) {
                 if (!!v.promise) {
                     promises.push(v.promise);
