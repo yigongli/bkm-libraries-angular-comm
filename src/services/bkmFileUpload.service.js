@@ -166,13 +166,18 @@
                         }
                     });
                 } else if (v.base64url.match(/^data:image\/(jpg|jpeg|png);base64,/)) {
+                    alert('111111111');
                     var t = dataURItoBlob(v.base64url);
                     appendBase64ToFormData(deferreds, v, t, !!_imgInfo);
                 } else if (isIos() && isWeixin) {
+                    alert('2222222');
+                    alert(v.base64url);
                     var localData = "data:image/jpeg;base64," + v.base64url;
                     var t = dataURItoBlob(localData);
                     appendBase64ToFormData(deferreds, v, t, !!_imgInfo);
                 } else if (isWeixin && !!window.wx && !!wx.getLocalImgData) {
+                    alert('33333333');
+                    alert(v.base64url);
                     var defer = $q.defer();
                     deferreds.push(defer);
                     wx.getLocalImgData({
