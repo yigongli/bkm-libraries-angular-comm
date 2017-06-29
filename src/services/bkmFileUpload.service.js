@@ -226,9 +226,9 @@
                     url: apiUrl,
                     data: fd,
                     headers: { 'Content-Type': undefined },
-                    // transformRequest: function (data, headers) {
-                    //     return data;
-                    // }
+                    transformRequest: function (data, headers) {
+                        return data;
+                    }
                 }).then(function (result) {
                     deferred.resolve(result);
                 }, function (result) {
