@@ -47,21 +47,7 @@
             }
         }
 
-        /**
-         * 将 data:image;base64 转 Blob 对象
-         */
-        function dataURItoBlob(dataURI) {
-            var byteString = atob(dataURI.split(',')[1]);
-            var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-            var ab = new ArrayBuffer(byteString.length);
-            var ia = new Uint8Array(ab);
-            for (var i = 0; i < byteString.length; i++) {
-                ia[i] = byteString.charCodeAt(i);
-            }
-            var bb = new Blob([ab], { "type": mimeString });
-            return { blob: bb, u8Arr: ia, type: mimeString };
-        }
-
+        // 图片压缩处理
         self.imgCompress = function (uploadFile, option, target) {
             var deferred = $q.defer();
             var opt = {
@@ -94,12 +80,14 @@
             return deferred.promise;
         }
 
+        // 图片上传
         self.upload = function (files, imgInfo, isWeixin) {
             var _files = [],
                 _imgInfo,
                 deferreds = [],
                 promises = [],
-                fd = new FormData(),
+                // android 4.4 兼容，不能用 FormData，自己实现了FormDataShim
+                fd = needsFormDataShim ? new FormDataShim() : new FormData(),
                 deferred = $q.defer();
 
             if (angular.isArray(files)) {
@@ -133,7 +121,7 @@
                             imgInfo,
                             deferreds.length - 1
                         ).then(function (result) {
-                            fd.append(f.name, dataURItoBlob(result.base64).blob, result.file.name);
+                            fd.append(f.name, dataURLtoBlob(result.base64).blob, result.file.name);
                             deferreds[result.target].resolve();
                         }, function (result) {
                             fd.append(f.name, f);
@@ -154,7 +142,7 @@
                                 imgInfo,
                                 deferreds.length - 1
                             ).then(function (result) {
-                                fd.append(f.name, dataURItoBlob(result.base64).blob, result.file.name);
+                                fd.append(f.name, dataURLtoBlob(result.base64).blob, result.file.name);
                                 deferreds[result.target].resolve();
                             }, function (result) {
                                 fd.append(f.name, f);
@@ -166,11 +154,11 @@
                         }
                     });
                 } else if (v.base64url.match(/^data:image\/(jgp|jpg|jpeg|png);base64,/)) {
-                    var t = dataURItoBlob(v.base64url);
+                    var t = dataURLtoBlob(v.base64url);
                     appendBase64ToFormData(deferreds, v, t, !!_imgInfo);
                 } else if (isIos() && isWeixin) {
                     var localData = "data:image/jpeg;base64," + v.base64url;
-                    var t = dataURItoBlob(localData);
+                    var t = dataURLtoBlob(localData);
                     appendBase64ToFormData(deferreds, v, t, !!_imgInfo);
                 } else if (isWeixin && !!window.wx && !!wx.getLocalImgData) {
                     var defer = $q.defer();
@@ -181,7 +169,7 @@
                         success: function (res) {
                             // localData是图片的base64数据，可以用img标签显示
                             var localData = "data:image/jpeg;base64," + res.localData;
-                            var t = dataURItoBlob(localData);
+                            var t = dataURLtoBlob(localData);
                             appendBase64ToFormData(deferreds, v, t, !!_imgInfo)
                                 .then(function () {
                                     deferreds.push(defer.resolve());
@@ -196,22 +184,29 @@
                 //var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
                 return !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
             }
+
             function appendBase64ToFormData(deferredArr, file, blob, isCompress) {
                 if (isCompress) {
-                    deferredArr.push($q.defer());
-                    self.imgCompress(
-                        new File([blob.u8Arr], file.filePath, { "type": blob.type }),
-                        imgInfo,
-                        deferredArr.length - 1
-                    ).then(function (result) {
-                        fd.append(file.name, dataURItoBlob(result.base64).blob, result.file.name);
-                        deferredArr[result.target].resolve();
-                    }, function (result) {
-                        fd.append(file.name, blob.blob, file.filePath);
-                        deferredArr[result.target].resolve();
-                    });
+                    var deferred = $q.defer();
+                    deferredArr.push(deferred);
+                    try {
+                        self.imgCompress(
+                            new File([blob.u8Arr], file.filePath, { "type": blob.type }),
+                            imgInfo,
+                            deferredArr.length - 1
+                        ).then(function (result) {
+                            fd.append(file.name, dataURLtoBlob(result.base64), result.file.name);
+                            deferredArr[result.target].resolve();
+                        }, function (result) {
+                            fd.append(file.name, blob, file.filePath);
+                            deferredArr[result.target].resolve();
+                        });
+                    } catch (e) {
+                        fd.append(file.name, blob, file.filePath);
+                        deferred.resolve();
+                    }
                 } else {
-                    fd.append(file.name, blob.blob, file.filePath);
+                    fd.append(file.name, blob, file.filePath);
                     deferredArr.push({ promise: $q.resolve() });
                 }
                 return deferredArr[deferredArr.length - 1].promise;
@@ -230,16 +225,123 @@
                     method: 'POST',
                     url: apiUrl,
                     data: fd,
-                    headers: { 'Content-Type': undefined }
+                    headers: { 'Content-Type': undefined },
+                    transformRequest: function (data, headers) {
+                        return data;
+                    }
                 }).then(function (result) {
                     deferred.resolve(result);
                 }, function (result) {
                     deferred.reject(result);
                 });
             });
-
             return deferred.promise;
         };
-    }
 
+        function newBlob(data, datatype) {
+            var out;
+            try {
+                out = new Blob([data], { type: datatype });
+            }
+            catch (e) {
+                window.BlobBuilder = window.BlobBuilder ||
+                    window.WebKitBlobBuilder ||
+                    window.MozBlobBuilder ||
+                    window.MSBlobBuilder;
+
+                if (e.name == 'TypeError' && window.BlobBuilder) {
+                    var bb = new BlobBuilder();
+                    bb.append(data.buffer);
+                    out = bb.getBlob(datatype);
+                }
+                else if (e.name == "InvalidStateError") {
+                    out = new Blob([data], { type: datatype });
+                }
+                else {
+                }
+            }
+            return out;
+        }
+
+        // 判断是否需要blobbuilder
+        var needsFormDataShim =
+            (function () {
+                var bCheck = ~navigator.userAgent.indexOf('Android')
+                    && ~navigator.vendor.indexOf('Google')
+                    && !~navigator.userAgent.indexOf('Chrome');
+                // android 4.4 兼容
+                return bCheck && navigator.userAgent.match(/AppleWebKit\/(\d+)/).pop() <= 534;
+            })(),
+            blobConstruct =
+                !!(function () {
+                    try { return new Blob(); } catch (e) { }
+                })(),
+            XBlob =
+                blobConstruct ? window.Blob : function (parts, opts) {
+                    var bb = new (window.BlobBuilder || window.WebKitBlobBuilder || window.MSBlobBuilder);
+                    parts.forEach(function (p) {
+                        bb.append(p);
+                    });
+
+                    return bb.getBlob(opts ? opts.type : undefined);
+                };
+
+        
+        function FormDataShim() {
+            // Store a reference to this
+            var o = this,
+                parts = [],// Data to be sent
+                boundary = Array(5).join('-') + (+new Date() * (1e16 * Math.random())).toString(32),
+                oldSend = XMLHttpRequest.prototype.send;
+
+            this.append = function (name, value, filename) {
+                parts.push('--' + boundary + '\r\nContent-Disposition: form-data; name="' + name + '"');
+
+                if (value instanceof Blob) {
+                    parts.push('; filename="' + (filename || 'blob') + '"\r\nContent-Type: ' + value.type + '\r\n\r\n');
+                    parts.push(value);
+                } else {
+                    parts.push('\r\n\r\n' + value);
+                }
+                parts.push('\r\n');
+            };
+
+            // Override XHR send()
+            XMLHttpRequest.prototype.send = function (val) {
+                var fr,
+                    data,
+                    oXHR = this;
+
+                if (val === o) {
+                    //注意不能漏最后的\r\n ,否则有可能服务器解析不到参数.
+                    parts.push('--' + boundary + '--\r\n');
+                    data = new XBlob(parts);
+                    fr = new FileReader();
+                    fr.onload = function () { oldSend.call(oXHR, fr.result); };
+                    fr.onerror = function (err) { throw err; };
+                    fr.readAsArrayBuffer(data);
+
+                    this.setRequestHeader('Content-Type', 'multipart/form-data; boundary=' + boundary);
+                    XMLHttpRequest.prototype.send = oldSend;
+                }
+                else {
+                    oldSend.call(this, val);
+                }
+            };
+        }
+
+        //把图片转成formdata 可以使用的数据...
+        //这里要把\s替换掉..要不然atob的时候会出错....
+        function dataURLtoBlob(data) {
+            var tmp = data.split(','),
+                mimeString = data.split(',')[0].split(':')[1].split(';')[0];
+            tmp[1] = tmp[1].replace(/\s/g, '');
+            var binary = atob(tmp[1]),
+                array = [];
+            for (var i = 0; i < binary.length; i++) {
+                array.push(binary.charCodeAt(i));
+            }
+            return new newBlob(new Uint8Array(array), mimeString);
+        }
+    }
 })();
