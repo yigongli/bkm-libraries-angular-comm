@@ -40,7 +40,7 @@
                 var ctx = canvas.getContext("2d");
                 ctx.drawImage(img, 0, 0, img.width, img.height);
                 var dataURL = canvas.toDataURL("image/png");
-                return dataURL; // return dataURL.replace("data:image/png;base64,", ""); 
+                return dataURL; // return dataURL.replace("data:image/png;base64,", "");
             } catch (e) {
                 console.log(JSON.stringify(e));
                 return null;
@@ -59,18 +59,18 @@
                 },
                 done: function (file, base64) {
                     //压缩成功
-                    deferred.resolve({ file: file, base64: base64, success: true, isSupport: true, target: target });
+                    deferred.resolve({file: file, base64: base64, success: true, isSupport: true, target: target});
                 },
                 fail: function (file) {
                     //压缩失败
-                    deferred.reject({ file: file, success: false, isSupport: true, target: target });
+                    deferred.reject({file: file, success: false, isSupport: true, target: target});
                 },
                 complete: function (file) {
                     //console.log('单张: 压缩完成...');
                 },
                 notSupport: function (file) {
                     //alert('浏览器不支持！');
-                    deferred.reject({ file: file, success: false, isSupport: false, target: target });
+                    deferred.reject({file: file, success: false, isSupport: false, target: target});
                 }
             };
             if (!!option) {
@@ -86,9 +86,11 @@
                 _imgInfo,
                 deferreds = [],
                 promises = [],
-                // android 4.4 兼容，不能用 FormData，自己实现了FormDataShim
+            // android 4.4 兼容，不能用 FormData，自己实现了FormDataShim
                 fd = needsFormDataShim ? new FormDataShim() : new FormData(),
-                deferred = $q.defer();
+                deferred = $q.defer(),
+            // maxLength 最大上传值,单位 KB
+                maxLength = 20480;
 
             if (angular.isArray(files)) {
                 _files = files;
@@ -108,6 +110,47 @@
                     maxHeight: 1000,
                     quality: 70
                 };
+            }
+
+            if (angular.isArray(_imgInfo.type)) {
+                // 验证文件上传的类型,根据文件扩展名验证,如果没有配置该项设置,默认为上传图片
+                var i = 0,
+                    len = _files.length;
+                for (i; i < len; i++) {
+                    if(!validMaxLength(_files[i])){
+                        return $q.reject({message: _files[i].name +  ' 超过最大上传值 ' + maxLength});
+                    }
+                    if (_files[i].constructor.name.toLowerCase() == "file" &&
+                        _imgInfo.type.indexOf(_files[i].name.split('.').pop().toLowerCase()) < 0) {
+                        return $q.reject({message: '只能上传 ' + _imgInfo.type.join(',') + ' 类型的文件'});
+                    }
+                }
+            } else {
+                var i = 0,
+                    len = _files.length,
+                    types = ['jpg', 'jpeg', 'png'];
+                for (i; i < len; i++) {
+                    if(!validMaxLength(_files[i])){
+                        return $q.reject({message: _files[i].name +  ' 超过最大上传值 ' + maxLength});
+                    }
+                    if (_files[i].constructor.name.toLowerCase() == "file" &&
+                        types.indexOf(_files[i].name.split('.').pop().toLowerCase()) < 0) {
+                        return $q.reject({message: '只能上传 ' + types.join(',') + ' 类型的文件'});
+                    }
+                }
+            }
+
+            /**
+             * 验证文件是否超出最大上传值
+             * @param file
+             */
+            function validMaxLength(file) {
+                // 最大上传 20 MB
+                if (angular.isNumber(_imgInfo.maxLengh)) {
+                    maxLength = _imgInfo.maxLengh;
+                }
+
+                return (file.constructor.name.toLowerCase() == 'file' && (file.size / 1024  ) < maxLength);
             }
 
             angular.forEach(_files, function (v, i) {
@@ -191,7 +234,7 @@
                     deferredArr.push(deferred);
                     try {
                         self.imgCompress(
-                            new File([blob.u8Arr], file.filePath, { "type": blob.type }),
+                            new File([blob.u8Arr], file.filePath, {"type": blob.type}),
                             imgInfo,
                             deferredArr.length - 1
                         ).then(function (result) {
@@ -207,7 +250,7 @@
                     }
                 } else {
                     fd.append(file.name, blob, file.filePath);
-                    deferredArr.push({ promise: $q.resolve() });
+                    deferredArr.push({promise: $q.resolve()});
                 }
                 return deferredArr[deferredArr.length - 1].promise;
             }
@@ -225,7 +268,7 @@
                     method: 'POST',
                     url: apiUrl,
                     data: fd,
-                    headers: { 'Content-Type': undefined },
+                    headers: {'Content-Type': undefined},
                     transformRequest: function (data, headers) {
                         return data;
                     }
@@ -241,7 +284,7 @@
         function newBlob(data, datatype) {
             var out;
             try {
-                out = new Blob([data], { type: datatype });
+                out = new Blob([data], {type: datatype});
             }
             catch (e) {
                 window.BlobBuilder = window.BlobBuilder ||
@@ -255,7 +298,7 @@
                     out = bb.getBlob(datatype);
                 }
                 else if (e.name == "InvalidStateError") {
-                    out = new Blob([data], { type: datatype });
+                    out = new Blob([data], {type: datatype});
                 }
                 else {
                 }
@@ -265,16 +308,19 @@
 
         // 判断是否需要blobbuilder
         var needsFormDataShim =
-            (function () {
-                var bCheck = ~navigator.userAgent.indexOf('Android')
-                    && ~navigator.vendor.indexOf('Google')
-                    && !~navigator.userAgent.indexOf('Chrome');
-                // android 4.4 兼容
-                return bCheck && navigator.userAgent.match(/AppleWebKit\/(\d+)/).pop() <= 534;
-            })(),
+                (function () {
+                    var bCheck = ~navigator.userAgent.indexOf('Android')
+                        && ~navigator.vendor.indexOf('Google')
+                        && !~navigator.userAgent.indexOf('Chrome');
+                    // android 4.4 兼容
+                    return bCheck && navigator.userAgent.match(/AppleWebKit\/(\d+)/).pop() <= 534;
+                })(),
             blobConstruct =
                 !!(function () {
-                    try { return new Blob(); } catch (e) { }
+                    try {
+                        return new Blob();
+                    } catch (e) {
+                    }
                 })(),
             XBlob =
                 blobConstruct ? window.Blob : function (parts, opts) {
@@ -286,7 +332,7 @@
                     return bb.getBlob(opts ? opts.type : undefined);
                 };
 
-        
+
         function FormDataShim() {
             // Store a reference to this
             var o = this,
@@ -317,8 +363,12 @@
                     parts.push('--' + boundary + '--\r\n');
                     data = new XBlob(parts);
                     fr = new FileReader();
-                    fr.onload = function () { oldSend.call(oXHR, fr.result); };
-                    fr.onerror = function (err) { throw err; };
+                    fr.onload = function () {
+                        oldSend.call(oXHR, fr.result);
+                    };
+                    fr.onerror = function (err) {
+                        throw err;
+                    };
                     fr.readAsArrayBuffer(data);
 
                     this.setRequestHeader('Content-Type', 'multipart/form-data; boundary=' + boundary);
