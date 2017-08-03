@@ -231,40 +231,5 @@
         });
     }
 
-    init({
-        DrivingLicense: "DrivingLicense",
-        Bank: "Bank",
-        Unit: "Unit",
-        GoodsCategory: "GoodsCategory",
-        VehicleType: "VehicleType",
-        OperationModel: "OperationModel",
-        DispatchCancelReason: "DispatchCancelReason",
-        OrderStatus: "OrderStatus",
-        DrivingCertificate: "DrivingCertificate",
-        ExpiredType: "ExpiredType",
-        VehicleStatus: "VehicleStatus",
-        DispatchStatus: "DispatchStatus",
-        ShipType: "ShipType",
-        VehicleDocument: "VehicleDocument",
-        GoodsStatus: "GoodsStatus",
-        SettlementWay: "SettlementWay",
-        CompanyDocument: "CompanyDocument",
-        TransDocType: "TransDocType",
-        AgentType: "AgentType",
-        ApproveStatus: "ApproveStatus",
-        VehicleContractType: 'VehicleContractType',
-        DriveModel: 'DriveModel',
-        FuelType: 'FuelType',
-        CertificateType: 'CertificateType',
-        Gender: 'Gender',
-        AuditType: 'AuditType',
-        DrivingLicenseType: 'DrivingLicenseType',
-        ManageStatus: 'ManageStatus',
-        NotificationState: 'NotificationState',
-        AddressType: 'AddressType',
-        ContractType: 'ContractType',
-        ContractStatus: 'ContractStatus',
-        TagType:'TagType'
-    });
 
 })();
