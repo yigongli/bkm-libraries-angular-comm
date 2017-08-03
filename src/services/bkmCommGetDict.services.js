@@ -2,6 +2,15 @@
     'use strict';
 
     var myModule = angular.module('bkm.library.angular.comm', ['abp'])
+        .provider('dictionary',['$provide','$filterProvider',function ($provide,$filterProvider) {
+            this.initial= function (constantVal) {
+                //创建常量
+                init(constantVal,$provide,$filterProvider);
+            };
+            this.$get = function () {
+                return '';
+            };
+        }])
         .factory('bkm.library.angular.comm.httpInterceptor', ['$q', '$injector', '$filter', httpInterceptor])
         .service('bkmCommGetDict', ['abp.services.app.sysDictionary', 'dictionaryConst', '$q', bkmCommGetDict])
         .filter('dateDiff', ['$filter',dateDiffFilter]);
@@ -180,31 +189,31 @@
     }
 
     function compare(prop) {
-            return function (obj1, obj2) {
-                var val1 = obj1[prop];
-                var val2 = obj2[prop];
-                if (!isNaN(Number(val1)) && !isNaN(Number(val2))) {
-                    val1 = Number(val1);
-                    val2 = Number(val2);
-                }
-                if (val1 < val2) {
-                    return -1;
-                } else if (val1 > val2) {
-                    return 1;
-                } else {
-                    return 0;
-                }
+        return function (obj1, obj2) {
+            var val1 = obj1[prop];
+            var val2 = obj2[prop];
+            if (!isNaN(Number(val1)) && !isNaN(Number(val2))) {
+                val1 = Number(val1);
+                val2 = Number(val2);
+            }
+            if (val1 < val2) {
+                return -1;
+            } else if (val1 > val2) {
+                return 1;
+            } else {
+                return 0;
             }
         }
+    }
 
-    function init(constantVal) {
+    function init(constantVal,$provide,$filterProvider) {
 
         //创建常量
-        myModule.constant("dictionaryConst", constantVal);
+        $provide.constant("dictionaryConst", constantVal);
 
         //根据常量创建 filter
         angular.forEach (constantVal, function declareFilterFn(i, key) {
-            myModule.filter(key, ['bkmCommGetDict', '$filter', function (s, f) {
+            $filterProvider.register(key, ['bkmCommGetDict', '$filter', function (s, f) {
                 /**
                  * @description
                  *
@@ -221,7 +230,7 @@
                     if (angular.isArray(dicts) && !!dicts.length) {
                         var filtered = dicts.filter(function (item) {
                             return item.key == input;
-                        });  
+                        });
                         return !!isObj ? (filtered.length == 0 ? '未知' : filtered[0]):
                             (filtered.length == 0 ? '未知' : filtered[0].name);
                     }
@@ -230,6 +239,5 @@
             }]);
         });
     }
-
 
 })();
