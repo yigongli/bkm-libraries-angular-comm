@@ -170,7 +170,7 @@ var bkm = bkm || {};
     bkm.util.isObject = function (value) {
         return value instanceof Object && value.constructor == Object;
     };
-    
+
     /*
      * 限制文本框只能输入整数
      */
@@ -500,9 +500,9 @@ var bkm = bkm || {};
     /*
     *  格式化字符串首字母大写
     */
-    bkm.util.firstCap = function (str) {
+    bkm.util.firstCap = function (str, isLowerCase) {
         if (!str) return str;
-        str = str.toString().toLowerCase();
+        str = isLowerCase ? str.toString().toLowerCase() : str;
         str = str.replace(/\b\w+\b/g, function (word) {
             return word.substring(0, 1).toUpperCase() + word.substring(1);
         });
@@ -549,7 +549,7 @@ var bkm = bkm || {};
         var reg = new RegExp(strReg, "i");
         for (var x in input) {
             if (x.match(reg)) {
-                var x1=x.toString().toLowerCase();
+                var x1 = x.toString().toLowerCase();
                 result[x1.match(reg)[2]][x1.match(/id|name$/i)] = input[x];
             }
         }
@@ -557,7 +557,7 @@ var bkm = bkm || {};
         return result;
     };
 
-  
+
 
     /* 
      * 将输入对象的日期字符串处理为日期对象并返回到输出对象模型中
@@ -573,7 +573,7 @@ var bkm = bkm || {};
             return;
         }
 
-        for (var i = 0; i < rtnArr.length-1; i++) {
+        for (var i = 0; i < rtnArr.length - 1; i++) {
             if (!inObj[rtnArr[i]]) return;
             inObj = inObj[rtnArr[i]];
             outObj = outObj[rtnArr[i]] || {};
@@ -581,7 +581,7 @@ var bkm = bkm || {};
         if (!!inObj[rtnArr[i]]) {
             outObj[rtnArr[i]] = new Date(inObj[rtnArr[i]]);
         }
-        
+
     };
 
 
@@ -650,7 +650,7 @@ var bkm = bkm || {};
         return quarterStartMonth;
     }
     // 获取今天
-    bkm.date.today = function (input, isBegin,isCurrent) {
+    bkm.date.today = function (input, isBegin, isCurrent) {
         var offset = input || 0;
         var todayDate = new Date(
             nowYear,
@@ -661,7 +661,7 @@ var bkm = bkm || {};
             isBegin ? 0 : 59,
             isBegin ? 0 : 999
             );
-        return isCurrent?now:todayDate;
+        return isCurrent ? now : todayDate;
     };
     //获得本周的开始日期 
     bkm.date.getWeekStartDate = function () {
