@@ -1,7 +1,7 @@
 /**
  * Created by gurihui on 2017/3/9.
  */
-(function () {
+(function() {
     'use strict';
 
     angular.module('bkm.library.angular.comm')
@@ -48,29 +48,29 @@
         }
 
         // 图片压缩处理
-        self.imgCompress = function (uploadFile, option, target) {
+        self.imgCompress = function(uploadFile, option, target) {
             var deferred = $q.defer();
             var opt = {
-                before: function (file) {
+                before: function(file) {
                     //开始压缩
                     if (!file.type.match(/^image/)) {
                         return false;
                     }
                 },
-                done: function (file, base64) {
+                done: function(file, base64) {
                     //压缩成功
-                    deferred.resolve({file: file, base64: base64, success: true, isSupport: true, target: target});
+                    deferred.resolve({ file: file, base64: base64, success: true, isSupport: true, target: target });
                 },
-                fail: function (file) {
+                fail: function(file) {
                     //压缩失败
-                    deferred.reject({file: file, success: false, isSupport: true, target: target});
+                    deferred.reject({ file: file, success: false, isSupport: true, target: target });
                 },
-                complete: function (file) {
+                complete: function(file) {
                     //console.log('单张: 压缩完成...');
                 },
-                notSupport: function (file) {
+                notSupport: function(file) {
                     //alert('浏览器不支持！');
-                    deferred.reject({file: file, success: false, isSupport: false, target: target});
+                    deferred.reject({ file: file, success: false, isSupport: false, target: target });
                 }
             };
             if (!!option) {
@@ -81,15 +81,15 @@
         }
 
         // 图片上传
-        self.upload = function (files, imgInfo, isWeixin) {
+        self.upload = function(files, imgInfo, isWeixin) {
             var _files = [],
                 _imgInfo,
                 deferreds = [],
                 promises = [],
-            // android 4.4 兼容，不能用 FormData，自己实现了FormDataShim
+                // android 4.4 兼容，不能用 FormData，自己实现了FormDataShim
                 fd = needsFormDataShim ? new FormDataShim() : new FormData(),
                 deferred = $q.defer(),
-            // maxLength 最大上传值,单位 KB
+                // maxLength 最大上传值,单位 KB
                 maxLength = 20480;
 
             if (angular.isArray(files)) {
@@ -117,12 +117,12 @@
                 var i = 0,
                     len = _files.length;
                 for (i; i < len; i++) {
-                    if(!validMaxLength(_files[i])){
-                        return $q.reject({message: _files[i].name +  ' 超过最大上传值 ' + maxLength});
+                    if (!validMaxLength(_files[i])) {
+                        return $q.reject({ message: _files[i].name + ' 超过最大上传值 ' + maxLength });
                     }
                     if (_files[i].constructor.name.toLowerCase() == "file" &&
                         _imgInfo.type.indexOf(_files[i].name.split('.').pop().toLowerCase()) < 0) {
-                        return $q.reject({message: '只能上传 ' + _imgInfo.type.join(',') + ' 类型的文件'});
+                        return $q.reject({ message: '只能上传 ' + _imgInfo.type.join(',') + ' 类型的文件' });
                     }
                 }
             } else {
@@ -130,12 +130,13 @@
                     len = _files.length,
                     types = ['jpg', 'jpeg', 'png'];
                 for (i; i < len; i++) {
-                    if(!validMaxLength(_files[i])){
-                        return $q.reject({message: _files[i].name +  ' 超过最大上传值 ' + maxLength});
-                    }
+                    // 因为上传的图片都会先进压缩再上传，因此这里不验证【超过最大上传值】
+                    // if (!validMaxLength(_files[i])) {
+                    //     return $q.reject({ message: _files[i].name + ' 超过最大上传值 ' + maxLength });
+                    // }
                     if (_files[i].constructor.name.toLowerCase() == "file" &&
                         types.indexOf(_files[i].name.split('.').pop().toLowerCase()) < 0) {
-                        return $q.reject({message: '只能上传 ' + types.join(',') + ' 类型的文件'});
+                        return $q.reject({ message: '只能上传 ' + types.join(',') + ' 类型的文件' });
                     }
                 }
             }
@@ -150,10 +151,10 @@
                     maxLength = _imgInfo.maxLengh;
                 }
 
-                return (file.constructor.name.toLowerCase() == 'file' && (file.size / 1024  ) < maxLength);
+                return (file.constructor.name.toLowerCase() == 'file' && (file.size / 1024) < maxLength);
             }
 
-            angular.forEach(_files, function (v, i) {
+            angular.forEach(_files, function(v, i) {
                 if (v.constructor.name.toLowerCase() == "file") {
                     var f = v;
                     if (f.type.match(/^image/) && !!_imgInfo) {
@@ -163,10 +164,10 @@
                             f,
                             imgInfo,
                             deferreds.length - 1
-                        ).then(function (result) {
+                        ).then(function(result) {
                             fd.append(f.name, dataURLtoBlob(result.base64).blob, result.file.name);
                             deferreds[result.target].resolve();
-                        }, function (result) {
+                        }, function(result) {
                             fd.append(f.name, f);
                             deferreds[result.target].resolve();
                         });
@@ -175,7 +176,7 @@
                         deferreds.push($q.resolve());
                     }
                 } else if (angular.isElement(v)) {
-                    angular.forEach(v.files, function (f, fi) {
+                    angular.forEach(v.files, function(f, fi) {
                         var name = angular.element(v).attr("id") || "file";
                         if (f.type.match(/^image/) && !!_imgInfo) {
                             deferreds.push($q.defer());
@@ -184,10 +185,10 @@
                                 f,
                                 imgInfo,
                                 deferreds.length - 1
-                            ).then(function (result) {
+                            ).then(function(result) {
                                 fd.append(f.name, dataURLtoBlob(result.base64).blob, result.file.name);
                                 deferreds[result.target].resolve();
-                            }, function (result) {
+                            }, function(result) {
                                 fd.append(f.name, f);
                                 deferreds[result.target].resolve();
                             });
@@ -209,12 +210,12 @@
                     wx.getLocalImgData({
                         // 图片的localID
                         localId: v.base64url,
-                        success: function (res) {
+                        success: function(res) {
                             // localData是图片的base64数据，可以用img标签显示
                             var localData = "data:image/jpeg;base64," + res.localData;
                             var t = dataURLtoBlob(localData);
                             appendBase64ToFormData(deferreds, v, t, !!_imgInfo)
-                                .then(function () {
+                                .then(function() {
                                     deferreds.push(defer.resolve());
                                 });
                         }
@@ -234,13 +235,13 @@
                     deferredArr.push(deferred);
                     try {
                         self.imgCompress(
-                            new File([blob.u8Arr], file.filePath, {"type": blob.type}),
+                            new File([blob.u8Arr], file.filePath, { "type": blob.type }),
                             imgInfo,
                             deferredArr.length - 1
-                        ).then(function (result) {
+                        ).then(function(result) {
                             fd.append(file.name, dataURLtoBlob(result.base64), result.file.name);
                             deferredArr[result.target].resolve();
-                        }, function (result) {
+                        }, function(result) {
                             fd.append(file.name, blob, file.filePath);
                             deferredArr[result.target].resolve();
                         });
@@ -250,12 +251,12 @@
                     }
                 } else {
                     fd.append(file.name, blob, file.filePath);
-                    deferredArr.push({promise: $q.resolve()});
+                    deferredArr.push({ promise: $q.resolve() });
                 }
                 return deferredArr[deferredArr.length - 1].promise;
             }
 
-            angular.forEach(deferreds, function (v) {
+            angular.forEach(deferreds, function(v) {
                 if (!!v.promise) {
                     promises.push(v.promise);
                 } else {
@@ -263,18 +264,18 @@
                 }
             });
 
-            $q.all(promises).then(function () {
+            $q.all(promises).then(function() {
                 $http({
                     method: 'POST',
                     url: apiUrl,
                     data: fd,
-                    headers: {'Content-Type': undefined},
-                    transformRequest: function (data, headers) {
+                    headers: { 'Content-Type': undefined },
+                    transformRequest: function(data, headers) {
                         return data;
                     }
-                }).then(function (result) {
+                }).then(function(result) {
                     deferred.resolve(result);
-                }, function (result) {
+                }, function(result) {
                     deferred.reject(result);
                 });
             });
@@ -284,9 +285,8 @@
         function newBlob(data, datatype) {
             var out;
             try {
-                out = new Blob([data], {type: datatype});
-            }
-            catch (e) {
+                out = new Blob([data], { type: datatype });
+            } catch (e) {
                 window.BlobBuilder = window.BlobBuilder ||
                     window.WebKitBlobBuilder ||
                     window.MozBlobBuilder ||
@@ -296,51 +296,46 @@
                     var bb = new BlobBuilder();
                     bb.append(data.buffer);
                     out = bb.getBlob(datatype);
-                }
-                else if (e.name == "InvalidStateError") {
-                    out = new Blob([data], {type: datatype});
-                }
-                else {
-                }
+                } else if (e.name == "InvalidStateError") {
+                    out = new Blob([data], { type: datatype });
+                } else {}
             }
             return out;
         }
 
         // 判断是否需要blobbuilder
         var needsFormDataShim =
-                (function () {
-                    var bCheck = ~navigator.userAgent.indexOf('Android')
-                        && ~navigator.vendor.indexOf('Google')
-                        && !~navigator.userAgent.indexOf('Chrome');
-                    // android 4.4 兼容
-                    return bCheck && navigator.userAgent.match(/AppleWebKit\/(\d+)/).pop() <= 534;
-                })(),
-            blobConstruct =
-                !!(function () {
-                    try {
-                        return new Blob();
-                    } catch (e) {
-                    }
-                })(),
+            (function() {
+                var bCheck = ~navigator.userAgent.indexOf('Android') &&
+                    ~navigator.vendor.indexOf('Google') &&
+                    !~navigator.userAgent.indexOf('Chrome');
+                // android 4.4 兼容
+                return bCheck && navigator.userAgent.match(/AppleWebKit\/(\d+)/).pop() <= 534;
+            })(),
+            blobConstruct = !!(function() {
+                try {
+                    return new Blob();
+                } catch (e) {}
+            })(),
             XBlob =
-                blobConstruct ? window.Blob : function (parts, opts) {
-                    var bb = new (window.BlobBuilder || window.WebKitBlobBuilder || window.MSBlobBuilder);
-                    parts.forEach(function (p) {
-                        bb.append(p);
-                    });
+            blobConstruct ? window.Blob : function(parts, opts) {
+                var bb = new(window.BlobBuilder || window.WebKitBlobBuilder || window.MSBlobBuilder);
+                parts.forEach(function(p) {
+                    bb.append(p);
+                });
 
-                    return bb.getBlob(opts ? opts.type : undefined);
-                };
+                return bb.getBlob(opts ? opts.type : undefined);
+            };
 
 
         function FormDataShim() {
             // Store a reference to this
             var o = this,
-                parts = [],// Data to be sent
+                parts = [], // Data to be sent
                 boundary = Array(5).join('-') + (+new Date() * (1e16 * Math.random())).toString(32),
                 oldSend = XMLHttpRequest.prototype.send;
 
-            this.append = function (name, value, filename) {
+            this.append = function(name, value, filename) {
                 parts.push('--' + boundary + '\r\nContent-Disposition: form-data; name="' + name + '"');
 
                 if (value instanceof Blob) {
@@ -353,7 +348,7 @@
             };
 
             // Override XHR send()
-            XMLHttpRequest.prototype.send = function (val) {
+            XMLHttpRequest.prototype.send = function(val) {
                 var fr,
                     data,
                     oXHR = this;
@@ -363,18 +358,17 @@
                     parts.push('--' + boundary + '--\r\n');
                     data = new XBlob(parts);
                     fr = new FileReader();
-                    fr.onload = function () {
+                    fr.onload = function() {
                         oldSend.call(oXHR, fr.result);
                     };
-                    fr.onerror = function (err) {
+                    fr.onerror = function(err) {
                         throw err;
                     };
                     fr.readAsArrayBuffer(data);
 
                     this.setRequestHeader('Content-Type', 'multipart/form-data; boundary=' + boundary);
                     XMLHttpRequest.prototype.send = oldSend;
-                }
-                else {
+                } else {
                     oldSend.call(this, val);
                 }
             };
