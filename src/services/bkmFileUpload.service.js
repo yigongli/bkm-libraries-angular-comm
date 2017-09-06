@@ -165,7 +165,7 @@
                             imgInfo,
                             deferreds.length - 1
                         ).then(function(result) {
-                            fd.append(f.name, dataURLtoBlob(result.base64).blob, result.file.name);
+                            fd.append(f.name, dataURLtoBlob(result.base64), result.file.name);
                             deferreds[result.target].resolve();
                         }, function(result) {
                             fd.append(f.name, f);
@@ -186,7 +186,7 @@
                                 imgInfo,
                                 deferreds.length - 1
                             ).then(function(result) {
-                                fd.append(f.name, dataURLtoBlob(result.base64).blob, result.file.name);
+                                fd.append(f.name, dataURLtoBlob(result.base64), result.file.name);
                                 deferreds[result.target].resolve();
                             }, function(result) {
                                 fd.append(f.name, f);
