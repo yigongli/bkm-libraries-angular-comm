@@ -161,7 +161,7 @@
                     if (self.dictionary[dictConst[keyName]] && !!self.dictionary[dictConst[keyName]].length) {
                         deferred.resolve(self.dictionary[dictConst[keyName]]);
                     } else {
-                        abpDict.getAll({ 'type': dictConst[keyName], maxResultCount: '500' }).then(function (result) {
+                        abpDict.getAll({ 'type': dictConst[keyName], maxResultCount: '500', sorting: 'index ASC' }).then(function (result) {
                             if (!angular.isArray(self.dictionary[dictConst[keyName]])) {
                                 self.dictionary[dictConst[keyName]] = [];
                             }
