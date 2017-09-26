@@ -1,20 +1,21 @@
 /**
  * Created by gurihui on 2017/2/10.
  */
-(function () {
+(function() {
     'use strict';
 
     angular.module('bkm.library.angular.comm')
-        .directive('bkmInput', ['$q', '$parse',inputvalidator]);
-    function inputvalidator($q, $parse) {
+        .directive('bkmInput', ['$q', '$parse', 'bkm.input.pattern.valid', inputvalidator]);
+
+    function inputvalidator($q, $parse, validCst) {
         return {
             restrict: 'EA',
             require: 'ngModel',
-            link: function (scope, elem, attr, ngModel) {
+            link: function(scope, elem, attr, ngModel) {
 
                 ngModel.errorMsg = {};
 
-                if (!!!ngModel)return;
+                if (!!!ngModel) return;
 
                 function rendAttr() {
                     setErrorMsg('required');
@@ -31,8 +32,9 @@
                         ngModel.$validators.tel = function telValid(modelValue, viewValue) {
                             var value = modelValue || viewValue;
                             // 如果值为空则不验证
-                            if (!!!value)return true;
-                            return /^1[0-9]{10}$/.test(value);
+                            if (!!!value) return true;
+                            return new RegExp(validCst.phoneNumber, 'g').test(value);
+                            //return /^1[0-9]{10}$/.test(value);
                         };
                     } else if (attr['type'] === 'email') {
                         setErrorMsg('email');
@@ -71,10 +73,10 @@
 
                     //对输入的内容比较
                     if (!!attr.compare) {
-                        ngModel.$validators.compare = function (modelValue, viewValue) {
+                        ngModel.$validators.compare = function(modelValue, viewValue) {
                             var value = modelValue || viewValue;
                             // 如果值为空则不验证
-                            if (!!!value)return true;
+                            if (!!!value) return true;
 
                             var compareVal = $parse(attr.compare)(scope);
                             if (!!!compareVal) return true;
