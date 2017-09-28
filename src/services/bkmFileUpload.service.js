@@ -90,7 +90,7 @@
                 fd = needsFormDataShim ? new FormDataShim() : new FormData(),
                 deferred = $q.defer(),
                 // maxLength 最大上传值,单位 KB
-                maxLength = 20480;
+                maxLength = 2048;
 
             if (angular.isArray(files)) {
                 _files = files;
@@ -105,39 +105,19 @@
 
             if (_imgInfo === true) {
                 _imgInfo = {
-                    //maxSize: 200,
                     maxWidth: 800,
                     maxHeight: 1000,
                     quality: 70
                 };
             }
 
-            if (!!_imgInfo && angular.isArray(_imgInfo.type)) {
-                // 验证文件上传的类型,根据文件扩展名验证,如果没有配置该项设置,默认为上传图片
-                var i = 0,
-                    len = _files.length;
-                for (i; i < len; i++) {
-                    if (!validMaxLength(_files[i])) {
-                        return $q.reject({ message: _files[i].name + ' 超过最大上传值 ' + maxLength });
-                    }
-                    if (_files[i].constructor.name.toLowerCase() == "file" &&
-                        _imgInfo.type.indexOf(_files[i].name.split('.').pop().toLowerCase()) < 0) {
-                        return $q.reject({ message: '只能上传 ' + _imgInfo.type.join(',') + ' 类型的文件' });
-                    }
+            var types = !!_imgInfo && angular.isArray(_imgInfo.type) ? _imgInfo.type : ['jpg', 'jpeg', 'png'];
+            for (var i = 0; i < _files.length; i++) {
+                if (!validMaxLength(_files[i])) {
+                    return $q.reject({ message: _files[i].name + ' 超过最大上传值 ' + maxLength });
                 }
-            } else {
-                var i = 0,
-                    len = _files.length,
-                    types = ['jpg', 'jpeg', 'png'];
-                for (i; i < len; i++) {
-                    // 因为上传的图片都会先进压缩再上传，因此这里不验证【超过最大上传值】
-                    // if (!validMaxLength(_files[i])) {
-                    //     return $q.reject({ message: _files[i].name + ' 超过最大上传值 ' + maxLength });
-                    // }
-                    if (_files[i].constructor.name.toLowerCase() == "file" &&
-                        types.indexOf(_files[i].name.split('.').pop().toLowerCase()) < 0) {
-                        return $q.reject({ message: '只能上传 ' + types.join(',') + ' 类型的文件' });
-                    }
+                if (types.indexOf(_files[i].filePath.split('.').pop().toLowerCase()) < 0) {
+                    return $q.reject({ message: '只能上传 ' + types.join(',') + ' 类型的文件' });
                 }
             }
 
@@ -150,8 +130,7 @@
                 if (angular.isNumber(_imgInfo.maxLengh)) {
                     maxLength = _imgInfo.maxLengh;
                 }
-
-                return (file.constructor.name.toLowerCase() == 'file' && (file.size / 1024) < maxLength);
+                return ((file.size / 1024) < maxLength);
             }
 
             angular.forEach(_files, function (v, i) {
