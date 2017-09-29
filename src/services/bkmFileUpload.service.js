@@ -83,7 +83,7 @@
         // 图片上传
         self.upload = function (files, imgInfo, isWeixin) {
             var _files = [],
-                _imgInfo,
+                _imgInfo = imgInfo,
                 deferreds = [],
                 promises = [],
                 // android 4.4 兼容，不能用 FormData，自己实现了FormDataShim
@@ -98,39 +98,30 @@
                 _files.push(files);
             }
 
-            //imgInfo:如果为true则按默认规则处理,如果没有或false则不处理
-            if (!!imgInfo) {
-                _imgInfo = imgInfo;
-            }
-
             if (_imgInfo === true) {
                 _imgInfo = {
+                    maxLength: maxLength,
                     maxWidth: 800,
                     maxHeight: 1000,
                     quality: 70
                 };
             }
 
-            var types = !!_imgInfo && angular.isArray(_imgInfo.type) ? _imgInfo.type : ['jpg', 'jpeg', 'png'];
-            for (var i = 0; i < _files.length; i++) {
-                if (!validMaxLength(_files[i])) {
-                    return $q.reject({ message: _files[i].name + ' 超过最大上传值 ' + maxLength });
-                }
-                if (types.indexOf(_files[i].filePath.split('.').pop().toLowerCase()) < 0) {
-                    return $q.reject({ message: '只能上传 ' + types.join(',') + ' 类型的文件' });
-                }
+            if (_imgInfo && angular.isNumber(_imgInfo.maxLengh)) {
+                maxLength = _imgInfo.maxLengh;
             }
 
-            /**
-             * 验证文件是否超出最大上传值
-             * @param file
-             */
-            function validMaxLength(file) {
-                // 最大上传 20 MB
-                if (angular.isNumber(_imgInfo.maxLengh)) {
-                    maxLength = _imgInfo.maxLengh;
+            //判断文件大小和类型
+            var types = _imgInfo && angular.isArray(_imgInfo.type) ? _imgInfo.type : ['jpg', 'jpeg', 'png'];
+            for (var i = 0; i < _files.length; i++) {
+                var fileName = _files[i].filePath || _files[i].name || 'unknow';
+                var fileSize = _files[i].size || 2048;
+                if ((fileSize / 1024) > maxLength) {
+                    return $q.reject({ statusText: fileName + ' 超过文件:  ' + maxLength + "K 大小限制!" });
                 }
-                return ((file.size / 1024) < maxLength);
+                if (types.indexOf(fileName.split('.').pop().toLowerCase()) < 0) {
+                    return $q.reject({ statusText: '只能上传 ' + types.join(',') + ' 类型的文件' });
+                }
             }
 
             angular.forEach(_files, function (v, i) {
