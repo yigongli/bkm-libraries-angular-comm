@@ -128,9 +128,10 @@
                 // 在文件上传时，将与文件相关的其他信息添加到 formData 中
                 if (!!v.sendFormData && angular.isObject(v.sendFormData)) {
                     for (var key in v.sendFormData) {
-                        fd.append(key, v.sendFormData[ii]);
+                        fd.append(key, v.sendFormData[key]);
                     }
                 }
+
                 if (v.constructor.name.toLowerCase() == "file") {
                     var f = v;
                     if (f.type.match(/^image/) && !!_imgInfo) {
