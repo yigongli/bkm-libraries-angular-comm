@@ -126,9 +126,9 @@
 
             angular.forEach(_files, function(v, i) {
                 // 在文件上传时，将与文件相关的其他信息添加到 formData 中
-                if (!!v.sendData && angular.isObject(v.sendFormData)) {
-                    for (var key in v.sendData) {
-                        fd.append(key, v.sendData[ii]);
+                if (!!v.sendFormData && angular.isObject(v.sendFormData)) {
+                    for (var key in v.sendFormData) {
+                        fd.append(key, v.sendFormData[ii]);
                     }
                 }
                 if (v.constructor.name.toLowerCase() == "file") {
