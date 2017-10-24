@@ -83,7 +83,7 @@
         // 图片上传
         self.upload = function(files, imgInfo, isWeixin) {
             var _files = [],
-                _imgInfo = imgInfo,
+                _imgInfo,
                 deferreds = [],
                 promises = [],
                 // android 4.4 兼容，不能用 FormData，自己实现了FormDataShim
@@ -98,13 +98,14 @@
                 _files.push(files);
             }
 
-            if (_imgInfo === true) {
-                _imgInfo = {
-                    maxLength: maxLength,
-                    maxWidth: 800,
-                    maxHeight: 1000,
-                    quality: 70
-                };
+            _imgInfo = {
+                maxLength: maxLength,
+                maxWidth: 800,
+                maxHeight: 1000,
+                quality: 70
+            };
+            if (!!imgInfo && angular.isObject(imgInfo)) {
+                angular.extend(_imgInfo, imgInfo);
             }
 
             if (_imgInfo && angular.isNumber(_imgInfo.maxLengh)) {
@@ -113,14 +114,16 @@
 
             //判断文件大小和类型
             var types = _imgInfo && angular.isArray(_imgInfo.type) ? _imgInfo.type : ['jpg', 'jpeg', 'png'];
-            for (var i = 0; i < _files.length; i++) {
-                var fileName = _files[i].filePath || _files[i].name || 'unknow';
-                var fileSize = _files[i].size || 2048;
-                if ((fileSize / 1024) > maxLength) {
-                    return $q.reject({ statusText: fileName + ' 超过文件:  ' + maxLength + "K 大小限制!" });
-                }
-                if (types.indexOf(fileName.split('.').pop().toLowerCase()) < 0) {
-                    return $q.reject({ statusText: '只能上传 ' + types.join(',') + ' 类型的文件' });
+            if (types.length) {
+                for (var i = 0; i < _files.length; i++) {
+                    var fileName = _files[i].filePath || _files[i].name || 'unknow';
+                    var fileSize = _files[i].size || 2048;
+                    if ((fileSize / 1024) > maxLength) {
+                        return $q.reject({ message: fileName + ' 超过文件:  ' + maxLength + "K 大小限制!" });
+                    }
+                    if (types.indexOf(fileName.split('.').pop().toLowerCase()) < 0) {
+                        return $q.reject({ message: '只能上传 ' + types.join(',') + ' 类型的文件' });
+                    }
                 }
             }
 
