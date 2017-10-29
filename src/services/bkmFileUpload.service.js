@@ -13,23 +13,6 @@
             apiUrl = "/web/api/file/upload";
 
         /**
-         * @Description 文件上传
-         * @param
-         * files
-         *      数组对象，可以是 <input type="file" />数组
-         *      也可以是 {name:'表单提交时的自定义名称',base64url:'',filePath:'文件在客户端的路径'}
-         * @param
-         * imgInfo:(可选，如果为true则按默认规则处理,如果没有或false则不处理)
-         *      图片处理参数
-         *      {
-         *          maxSize:200(单位kb),
-         *          maxWidth:800(单位px),
-         *          maxHeigth:1000(单位px)
-         *      }
-         *      图片截剪为正比压缩
-         */
-
-        /**
          * 将 Image 对象转 base64 编码
          */
         function getBase64Image(img) {
@@ -80,7 +63,47 @@
             return deferred.promise;
         };
 
-        // 图片上传
+        /**
+         * @Description 文件上传
+         * @param
+         * files
+         *      数组对象，可以是 <input type="file" />数组
+         *      也可以是 {name:'表单提交时的自定义名称',base64url:'',filePath:'文件在客户端的路径'}
+         *      如果 files 参数是一个 Object 对象，并且包含 sendFormData 对象，在上传文件文件时，还有附加的信息随文件上传一起提交
+         *      files 参数结构如下：
+         *      files:{
+         *      |    sendFormData:{
+         *      |    |    // key 表示与服务端约定的键名称，
+         *      |    |    key:[
+         *      |    |    |   |   {
+         *      |    |    |   |   |   // key 表示与服务端约定的键名称, fileName 表示要上传文件的原始名称。
+         *      |    |    |   |   |   key:fileName,
+         *      |    |    |   |   |   // key 表示与服务端约定的键名称, value 表示与 fileName(文件的原始名称)对应的附加信息
+         *      |    |    |   |   |   key:value, 
+         *      |    |    |   |   |   // 表示其他更多与 与 fileName(文件的原始名称)对应的附加信息
+         *      |    |    |   |   |   ...
+         *      |    |    |   |   }, 
+         *      |    |    |   |   // 表示其他更多要上传文件的附加信息
+         *      |    |    |   |   ...
+         *      |    |    |   ]
+         *      |    |    // key 表示与服务端约定的键名称, value 所有要上传文件共有的附加信息
+         *      |    |    key:value,
+         *      |    |    // 表示更多其他【所有要上传文件】的附加信息
+         *      |    |    ...
+         *      |    }
+         *      |    // 要上传的 File 对象
+         *      |    uploadFiles:[]|{}
+         *      }
+         * @param
+         * imgInfo:(可选，如果为true则按默认规则处理,如果没有或false则不处理)
+         *      图片处理参数
+         *      {
+         *          maxSize:200(单位kb),
+         *          maxWidth:800(单位px),
+         *          maxHeigth:1000(单位px)
+         *      }
+         *      图片截剪为正比压缩
+         */
         self.upload = function(files, imgInfo, isWeixin) {
             var _files = [],
                 _imgInfo,
@@ -95,7 +118,25 @@
             if (angular.isArray(files)) {
                 _files = files;
             } else {
-                _files.push(files);
+                // 如果 files 参数是一个 Object 对象，并且包含 sendFormData 对象，
+                // 则要把 sendFormData 对象中内容添加到 formData 中, 随表单一起提交.
+                if (angular.isObject(files) && !!files.sendFormData && angular.isObject(files.sendFormData)) {
+                    // 在文件上传时，将与文件相关的其他信息添加到 formData 中
+                    for (var key in files.sendFormData) {
+                        if (angular.isObject(files.sendFormData[key])) {
+                            fd.append(key, JSON.stringify(files.sendFormData[key]));
+                        } else {
+                            fd.append(key, files.sendFormData[key]);
+                        }
+                    }
+                    if (angular.isArray(files.uploadFiles)) {
+                        _files = files.uploadFiles;
+                    } else {
+                        _files.push(files.uploadFiles);
+                    }
+                } else {
+                    _files.push(files);
+                }
             }
 
             _imgInfo = {
@@ -128,12 +169,6 @@
             }
 
             angular.forEach(_files, function(v, i) {
-                // 在文件上传时，将与文件相关的其他信息添加到 formData 中
-                if (!!v.sendFormData && angular.isObject(v.sendFormData)) {
-                    for (var key in v.sendFormData) {
-                        fd.append(key, v.sendFormData[key]);
-                    }
-                }
 
                 if (v.constructor.name.toLowerCase() == "file") {
                     var f = v;
