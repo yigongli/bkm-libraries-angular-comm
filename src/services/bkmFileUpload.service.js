@@ -113,7 +113,7 @@
                 fd = needsFormDataShim ? new FormDataShim() : new FormData(),
                 deferred = $q.defer(),
                 // maxLength 最大上传值,单位 KB
-                maxLength = 2048;
+                maxLength = 1024 * 10;
 
             if (angular.isArray(files)) {
                 _files = files;
@@ -158,8 +158,8 @@
             if (types.length) {
                 for (var i = 0; i < _files.length; i++) {
                     var fileName = _files[i].filePath || _files[i].name || 'unknow';
-                    var fileSize = _files[i].size || 2048;
-                    if ((fileSize / 1024) > maxLength) {
+                    var fileSize = _files[i].size;
+                    if (angular.isNumber(fileSize) && (fileSize / 1024) > maxLength) {
                         return $q.reject({ message: fileName + ' 超过文件:  ' + maxLength + "K 大小限制!" });
                     }
                     if (types.indexOf(fileName.split('.').pop().toLowerCase()) < 0) {
