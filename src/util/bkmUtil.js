@@ -160,9 +160,14 @@
                 }
             },
             set: function(newValue) {
-                if (inputModel[dataProp] == newValue / base) return;
-                inputModel[dataProp] = newValue / base;
-                inputModel[dispProp] = Math.round(inputModel[dataProp] * base * base) / base;
+                if (inputModel[dataProp] == (newValue == null ? null : newValue / base)) return;
+                if (newValue == null) {
+                    inputModel[dispProp] = inputModel[dataProp] = null;
+                } else {
+                    inputModel[dataProp] = newValue / base;
+                    inputModel[dispProp] = Math.round(inputModel[dataProp] * base * base) / base;
+                }
+
             },
             enumerable: true,
             configurable: true
