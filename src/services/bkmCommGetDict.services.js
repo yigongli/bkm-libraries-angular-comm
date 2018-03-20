@@ -1,35 +1,35 @@
-﻿(function () {
+﻿(function() {
     'use strict';
 
     var myModule = angular.module('bkm.library.angular.comm', ['abp'])
-        .provider('dictionary',['$provide','$filterProvider',function ($provide,$filterProvider) {
-            this.initial= function (constantVal) {
+        .provider('dictionary', ['$provide', '$filterProvider', function($provide, $filterProvider) {
+            this.initial = function(constantVal) {
                 //创建常量
-                init(constantVal,$provide,$filterProvider);
+                init(constantVal, $provide, $filterProvider);
             };
-            this.$get = function () {
+            this.$get = function() {
                 return '';
             };
         }])
         .factory('bkm.library.angular.comm.httpInterceptor', ['$q', '$injector', '$filter', httpInterceptor])
         .service('bkmCommGetDict', ['abp.services.app.sysDictionary', 'dictionaryConst', '$q', bkmCommGetDict])
-        .filter('dateDiff', ['$filter',dateDiffFilter]);
+        .filter('dateDiff', ['$filter', dateDiffFilter]);
 
     //http 请求拦截器
     function httpInterceptor($q, $injector, $filter) {
         return {
-            request: function (config) {
+            request: function(config) {
                 sendDictionaryMD5Request(config);
                 return config;
             },
-            requestError: function (config) {
+            requestError: function(config) {
                 return $q.reject(config);
             },
-            response: function (response) {
+            response: function(response) {
                 setDictionary(response);
                 return response || $q.when(response);
             },
-            responseError: function (response) {
+            responseError: function(response) {
                 return $q.reject(response);
             }
         };
@@ -48,7 +48,9 @@
             }
             var param = angular.fromJson(config.data || config.params);
             if (!!param && angular.isArray(param.dictionaryTypes) && !!param.dictionaryTypes.length) {
-                var dctionaryService = $injector.get('bkmCommGetDict'), key = '', arr, tArr = [];
+                var dctionaryService = $injector.get('bkmCommGetDict'),
+                    key = '',
+                    arr, tArr = [];
                 //, tStr = '';
                 for (var i in param.dictionaryTypes) {
                     key = param.dictionaryTypes[i];
@@ -82,7 +84,7 @@
                 for (var i in param.dictionaryTypes) {
                     var key = param.dictionaryTypes[i];
                     if (angular.isFunction(dctionaryService['set' + key])) {
-                        dctionaryService['set' + key]($filter('filter')(response.data.dictionaries, {type: key},true));
+                        dctionaryService['set' + key]($filter('filter')(response.data.dictionaries, { type: key }, true));
                     }
                 }
             }
@@ -93,8 +95,8 @@
      * 时间比较过滤器
      */
     function dateDiffFilter($filter) {
-        return function (input) {
-            if (angular.isUndefined(input))return input;
+        return function(input) {
+            if (angular.isUndefined(input)) return input;
             //从 'bkmCommGetDict' 服务中获取 dictionary 配置
             var result = "";
             var minute = 1000 * 60;
@@ -118,17 +120,13 @@
             }
             if (monthC >= 1) {
                 result = "" + parseInt(monthC) + "月前";
-            }
-            else if (weekC >= 1) {
+            } else if (weekC >= 1) {
                 result = "" + parseInt(weekC) + "周前";
-            }
-            else if (dayC >= 1) {
+            } else if (dayC >= 1) {
                 result = "" + parseInt(dayC) + "天前";
-            }
-            else if (hourC >= 1) {
+            } else if (hourC >= 1) {
                 result = "" + parseInt(hourC) + "小时前";
-            }
-            else if (minC >= 1) {
+            } else if (minC >= 1) {
                 result = "" + parseInt(minC) + "分钟前";
             } else
                 result = "刚刚";
@@ -142,7 +140,7 @@
         self.dictionary = {};
         for (var i in dictConst) {
             (function declareServiceFn(keyName) {
-                self[keyName] = function () {
+                self[keyName] = function() {
 
                     if (!angular.isArray(self.dictionary[dictConst[keyName]])) {
                         self.dictionary[dictConst[keyName]] = [];
@@ -155,27 +153,27 @@
                     return dictConst[keyName];
                 };
 
-                self[keyName + 'Defer'] = function () {
+                self[keyName + 'Defer'] = function() {
                     var deferred = $q.defer();
 
                     if (self.dictionary[dictConst[keyName]] && !!self.dictionary[dictConst[keyName]].length) {
                         deferred.resolve(self.dictionary[dictConst[keyName]]);
                     } else {
-                        abpDict.getAll({ 'type': dictConst[keyName], maxResultCount: '500', sorting: 'index ASC' }).then(function (result) {
+                        abpDict.getAll({ 'type': dictConst[keyName], maxResultCount: '500', sorting: 'index ASC' }).then(function(result) {
                             if (!angular.isArray(self.dictionary[dictConst[keyName]])) {
                                 self.dictionary[dictConst[keyName]] = [];
                             }
                             self.dictionary[dictConst[keyName]].splice(0, self.dictionary[dictConst[keyName]].length);
                             Array.prototype.push.apply(self.dictionary[dictConst[keyName]], result.data.items);
                             deferred.resolve(self.dictionary[dictConst[keyName]]);
-                        }, function (result) {
+                        }, function(result) {
                             deferred.reject(result.data);
                         });
                     }
                     return deferred.promise;
                 };
 
-                self['set' + keyName] = function (items) {
+                self['set' + keyName] = function(items) {
                     items.sort(compare('index'));
                     if (!angular.isArray(self.dictionary[dictConst[keyName]])) {
                         self.dictionary[dictConst[keyName]] = items;
@@ -189,7 +187,7 @@
     }
 
     function compare(prop) {
-        return function (obj1, obj2) {
+        return function(obj1, obj2) {
             var val1 = obj1[prop];
             var val2 = obj2[prop];
             if (!isNaN(Number(val1)) && !isNaN(Number(val2))) {
@@ -206,14 +204,14 @@
         }
     }
 
-    function init(constantVal,$provide,$filterProvider) {
+    function init(constantVal, $provide, $filterProvider) {
 
         //创建常量
         $provide.constant("dictionaryConst", constantVal);
 
         //根据常量创建 filter
-        angular.forEach (constantVal, function declareFilterFn(i, key) {
-            $filterProvider.register(key, ['bkmCommGetDict', '$filter', function (s, f) {
+        angular.forEach(constantVal, function declareFilterFn(i, key) {
+            $filterProvider.register(key, ['bkmCommGetDict', '$filter', function(s, f) {
                 /**
                  * @description
                  *
@@ -223,15 +221,16 @@
                  *   error from returned function, for cases when a particular type of error is useful.
                  * @returns {string} 返回替换后的值
                  */
-                return function (input,isObj) {
-                    if (angular.isUndefined(input))return input;
+                return function(input, isObj, fieldName) {
+                    fieldName = fieldName || 'key';
+                    if (angular.isUndefined(input)) return input;
                     //从 'bkmCommGetDict' 服务中获取 dictionary 配置
                     var dicts = s.dictionary[key];
                     if (angular.isArray(dicts) && !!dicts.length) {
-                        var filtered = dicts.filter(function (item) {
-                            return item.key == input;
+                        var filtered = dicts.filter(function(item) {
+                            return item[fieldName] == input;
                         });
-                        return !!isObj ? (filtered.length == 0 ? '未知' : filtered[0]):
+                        return !!isObj ? (filtered.length == 0 ? '未知' : filtered[0]) :
                             (filtered.length == 0 ? '未知' : filtered[0].name);
                     }
                     return input;
