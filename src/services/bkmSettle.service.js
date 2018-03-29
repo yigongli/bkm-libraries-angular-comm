@@ -33,6 +33,8 @@
             v.noDownTaxedFreightPrice = v.isDownIncludeTax ? v.freightPrice * (1 - v.downTaxRate) : v.freightPrice;
             //下游原始运费金额：结算数量 * 运费单价
             v.freightAmount = v.downstreamFinalWeight * v.freightPrice;
+            //下游含税运费金额：结算数量 * 含税运费单价
+            v.taxedFreightAmount = v.downstreamFinalWeight * v.downTaxedFreightPrice;
             //下游裸运费金额：结算数量 * 裸运费单价
             v.noTaxedFreightAmount = v.downstreamFinalWeight * v.noDownTaxedFreightPrice;
             //未含税结算金额:  抹零取整（裸运费金额 - 亏吨扣款 + + 运费增减 ），去掉个位（包含）数后的零头
