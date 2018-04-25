@@ -26,6 +26,8 @@
             v.downstreamLossAmount = v.downstreamLossAmount > 0 ? v.downstreamLossAmount : 0;
             //下游结算数量: 判断下游结算数量策略
             v.downstreamFinalWeight = !v.downFinalWeightPolicy ? v.loaded : (v.downFinalWeightPolicy == 1 ? v.receipt : Math.min(v.loaded, v.receipt));
+            //下游结算数量增减
+            v.downstreamFinalWeight = v.downstreamFinalWeight + (v.downFinalWeightAdjust || 0);
             //下游含税运价
             v.downTaxRate = v.downTaxRate || 0;
             v.downTaxedFreightPrice = v.isDownIncludeTax ? v.freightPrice : (v.freightPrice / (1 - v.downTaxRate));
