@@ -229,7 +229,7 @@
                             // localData是图片的base64数据，可以用img标签显示
                             var localData = "data:image/jpeg;base64," + res.localData;
                             var t = dataURLtoBlob(localData);
-                            appendBase64ToFormData(deferreds, v, t, !!_imgInfo)
+                            appendBase64ToFormData(deferreds, v, t, false)
                                 .then(function() {
                                     deferreds.push(defer.resolve());
                                 });
