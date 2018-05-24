@@ -606,6 +606,19 @@
 
     };
 
+    /* 
+     * 将输入的数字类型的值做四舍五入处理
+     */
+    bkm.util.round = function (numValue, n) {
+        if (isNaN(numValue)) {
+            return numValue;
+        }
+        var power = n != null && !isNaN(n) ? n : 2;
+        var val = Math.pow(10, power);
+        var result = Math.round(numValue * val) / val;
+        return result;
+    };
+
 
 
     return bkm.util;
