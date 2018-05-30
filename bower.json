@@ -19,19 +19,20 @@
   },
   "main": [
     "./src/services/bkmCommGetDict.services.js",
-    "./src/services/bkmInput.directive.js",
     "./src/services/bkmFormValidator.service.js",
     "./src/services/bkmSettle.service.js",
     "./src/services/md5.min.js",
     "./src/services/bkmFileUpload.service.js",
     "./src/directives/bkmFormValidIcon.js",
     "./src/directives/bkmFormValidIcon.css",
+    "./src/directives/bkmInput.directive.js",
     "./src/fileUpload/html5ImgCompress.min.js",
     "./src/fileUpload/0.chunk.min.js",
     "./src/fileUpload/1.chunk.min.js",
     "./src/fileUpload/2.chunk.min.js",
     "./src/util/bkmUtil.js",
-    "./src/constants/bkm.constant.js"
+    "./src/constants/bkm.constant.js",
+    "./src/filter/bkm.comm.filter.js",
   ],
   "devDependencies": {
   },
