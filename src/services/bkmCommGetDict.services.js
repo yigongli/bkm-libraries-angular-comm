@@ -14,9 +14,44 @@
         .factory('bkm.library.angular.comm.httpInterceptor', ['$q', '$injector', '$filter', httpInterceptor])
         .service('bkmCommGetDict', ['abp.services.app.sysDictionary', 'dictionaryConst', '$q', bkmCommGetDict])
         .service('bkm.comm.map', bkmFrontendDictDef);
-    
+
     //前端字典数据的本地定义
     var maps = {
+        'HasDataError': [{
+            key: false,
+            name: '数据无误'
+        }, {
+            key: true,
+            name: '数据有误'
+        }],
+        'DriverType': [{
+            key: false,
+            name: '司机'
+        }, {
+            key: true,
+            name: '车主'
+        }],
+        'TrueFalse': [{
+            key: false,
+            name: "否"
+        }, {
+            key: true,
+            name: "是"
+        }],
+        'ActiveStatus': [{
+            key: false,
+            name: "已禁用"
+        }, {
+            key: true,
+            name: "已启用"
+        }],
+        'LoginStatus': [{
+            key: false,
+            name: "失败"
+        }, {
+            key: true,
+            name: "成功"
+        }],
         'AddressType': [{
             key: 0,
             name: '装货地',
@@ -27,27 +62,325 @@
             value: 'UNLOADED'
         }],
         'AuthStatus': [{
-                key: 0,
-                name: '未认证',
-                value: 'UNCHECKED'
-            },
-            {
-                key: 1,
-                name: '认证中',
-                value: 'CHECKING'
-            },
-            {
-                key: 2,
-                name: '认证通过',
-                value: 'PASSED'
-            },
-            {
-                key: 3,
-                name: '认证失败',
-                value: 'REJECTED'
-            }
-        ]
+            key: 0,
+            name: '未认证',
+            value: 'UNCHECKED'
+        }, {
+            key: 1,
+            name: '认证中',
+            value: 'CHECKING'
+        }, {
+            key: 2,
+            name: '认证通过',
+            value: 'PASSED'
+        }, {
+            key: 3,
+            name: '认证失败',
+            value: 'REJECTED'
+        }],
+        'AuthStatusPart': [{
+            key: 2,
+            name: '认证通过'
+        }, {
+            key: 3,
+            name: '认证失败'
+        }],
+        'ValidStatus': [{
+            key: 0,
+            name: "已失效"
+        }, {
+            key: 1,
+            name: "已生效"
+        }, {
+            key: 2,
+            name: "待生效"
+        }],
+        'TimeType': [{
+            key: "creation",
+            name: "创建"
+        }, {
+            key: "receipt",
+            name: "签收"
+        }, {
+            key: "loaded",
+            name: "矿发"
+        }, {
+            key: "dispatchNo",
+            name: "派单"
+        }, {
+            key: "finish",
+            name: "完成"
+        }],
+        'LoanTimeType': [{
+            key: "value",
+            name: "起息日期"
+        }, {
+            key: "expire",
+            name: "到期日期"
+        }],
+        'ExchangesTimeType': [{
+            key: 0,
+            name: "上传时间"
+        }, {
+            key: 1,
+            name: "创建时间"
+        }],
+        'TenantScope': [{
+            key: 1,
+            name: "自有货源"
+        }, {
+            key: 2,
+            name: "第三方货源"
+        }],
+        'ServiceChargeUnit': [{
+            key: 0,
+            name: "元/吨"
+        }, {
+            key: 1,
+            name: "元/车"
+        }],
+        'SettleType': [{
+            key: 0,
+            name: '按结算批次'
+        }, {
+            key: 1,
+            name: '按单车'
+        }],
+        'FinalWeightPolicy': [{
+            key: 0,
+            name: '按矿发'
+        }, {
+            key: 1,
+            name: '按签收'
+        }, {
+            key: 2,
+            name: '取最小'
+        }],
+        'SettledStatus': [{
+            key: 1,
+            name: "上游已结算"
+        }, {
+            key: 2,
+            name: "上游未结算"
+        }, {
+            key: 3,
+            name: "下游已结算"
+        }, {
+            key: 4,
+            name: "下游未结算"
+        }],
+        'PaymentBillType': [{
+            key: 0,
+            name: "下游资金流水"
+        }, {
+            key: 1,
+            name: "上游资金流水"
+        }],
+        'TransDocConfirmStatus': [{
+            key: 1,
+            name: "发货已确认"
+        }, {
+            key: 2,
+            name: "签收已确认"
+        }, {
+            key: 3,
+            name: "发货签收已确认"
+        }, {
+            key: 4,
+            name: "发货签收未确认"
+        }, {
+            key: 5,
+            name: "发货已确认签收未确认"
+        }, {
+            key: 6,
+            name: "发货未确认签收已确认"
+        }],
+        'SettleReportType': [{
+            key: 0,
+            name: '上游结算单'
+        }, {
+            key: 1,
+            name: '下游结算单'
+        }],
+        'ReceivableStatus': [{
+            key: 0,
+            name: '待收款'
+        }, {
+            key: 1,
+            name: '已收款'
+        }],
+        'PayableStatus': [{
+            key: 0,
+            name: '待付款'
+        }, {
+            key: 1,
+            name: '已付款'
+        }],
+        'SeqType': [{
+            key: 0,
+            name: '收款'
+        }, {
+            key: 1,
+            name: '付款'
+        }],
+        'AgentMode': [{
+            key: 0,
+            name: '企业'
+        }, {
+            key: 1,
+            name: '个人'
+        }],
+        'MatchStatus': [{
+            key: 0,
+            name: '匹配失败'
+        }, {
+            key: 1,
+            name: '匹配成功'
+        }],
+        'HasOrNot': [{
+            key: 0,
+            name: '无'
+        }, {
+            key: 1,
+            name: '有'
+        }],
+        'LoanProductType': [{
+            key: 0,
+            name: '晋金贷7天期'
+        }, {
+            key: 1,
+            name: '晋金贷30天期'
+        }],
+        'LoanContractStatus': [{
+            key: 1,
+            name: '正常'
+        }, {
+            key: 2,
+            name: '逾期'
+        }, {
+            key: 3,
+            name: '结清'
+        }, {
+            key: 4,
+            name: '作废'
+        }, {
+            key: 5,
+            name: '延期'
+        }],
+        'RepaymentStatus': [{
+            key: 0,
+            name: '未申请'
+        }, {
+            key: 1,
+            name: '申请中'
+        }, {
+            key: 2,
+            name: '还贷成功'
+        }, {
+            key: 3,
+            name: '还贷失败'
+        }],
+        'AccountStatus': [{
+            key: 0,
+            name: '正常'
+        }, {
+            key: 1,
+            name: '冻结'
+        }, {
+            key: 2,
+            name: '作废'
+        }, {
+            key: 3,
+            name: '认证中'
+        }, {
+            key: 4,
+            name: '认证失败'
+        }],
+        'AccountCategory': [{
+            key: 0,
+            value: 'BA',
+            name: '银行卡账户'
+        }, {
+            key: 1,
+            value: 'LS',
+            name: '运费账户'
+        }, {
+            key: 2,
+            value: 'CA',
+            name: '现金账户'
+        }, {
+            key: 3,
+            value: 'LO',
+            name: '贷款账户'
+        }],
+        'LoanAccountType': [{
+            key: 0,
+            name: '贷款总户'
+        }, {
+            key: '1',
+            name: '晋金贷户'
+        }],
+        'RoleType': [{
+            key: 'driver',
+            name: '司机车主'
+        }, {
+            key: 'agent',
+            name: '经纪人'
+        }, {
+            key: 'trader',
+            name: '货主'
+        }],
+        'HaveOrNot': [{
+            key: false,
+            name: "无"
+        }, {
+            key: true,
+            name: "有"
+        }],
+        'StarLevel': [{
+            key: 0,
+            name: "一星"
+        }, {
+            key: 1,
+            name: "二星"
+        }, {
+            key: 2,
+            name: "三星"
+        }, {
+            key: 3,
+            name: "四星"
+        }],
+        'UploadStatus': [{
+            key: 1,
+            name: "上传成功"
+        }, {
+            key: 2,
+            name: "上传失败"
+        }, {
+            key: 0,
+            name: "未上传"
+        }],
+        'CheckStatus': [{
+            key: 0,
+            name: "未审核"
+        }, {
+            key: 2,
+            name: "审核成功"
+        }, {
+            key: 3,
+            name: "审核失败"
+        }],
+        'InterfaceType': [{
+            key: 0,
+            name: '部委接口',
+            value: 'EXCHANGES_LOGINK'
+        }, {
+            key: 1,
+            name: '物润接口',
+            value: 'EXCHANGES_SHIP56'
+        }]
     };
+
     function bkmFrontendDictDef() {
         var self = this;
         //循环定义常量对象和字典对象

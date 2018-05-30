@@ -25,7 +25,7 @@
         return function(input, typeName, isRtnObj) {
             if (!typeName || input == null) return input;
             var rtnObj = map.DICT[typeName].filter(function(item) {
-                return (item.key === input || item.code === input);
+                return (item.key === input || item.value === input);
             });
             if (rtnObj.length == 0) return input;
             return isRtnObj ? rtnObj[0] : rtnObj[0].name;
