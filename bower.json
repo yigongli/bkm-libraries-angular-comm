@@ -32,7 +32,7 @@
     "./src/fileUpload/2.chunk.min.js",
     "./src/util/bkmUtil.js",
     "./src/constants/bkm.constant.js",
-    "./src/filter/bkm.comm.filter.js",
+    "./src/filter/bkm.comm.filter.js"
   ],
   "devDependencies": {
   },
