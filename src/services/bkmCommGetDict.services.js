@@ -85,6 +85,23 @@
             key: 3,
             name: '认证失败'
         }],
+        'ApproveStatus': [{
+            key: 0,
+            name: '待审核',
+            value: 'UNCHECK'
+        }, {
+            key: 1,
+            name: '审核中',
+            value: 'CHECKING'
+        }, {
+            key: 2,
+            name: '审核通过',
+            value: 'PASSED'
+        }, {
+            key: 3,
+            name: '已拒绝',
+            value: 'REJECTED'
+        }],
         'ValidStatus': [{
             key: 0,
             name: "已失效"
@@ -378,6 +395,28 @@
             key: 1,
             name: '物润接口',
             value: 'EXCHANGES_SHIP56'
+        }],
+        'AppPlatforms': [{
+            key: 0,
+            appId: 'wx321b67d70c162e92',
+            pkgName: 'com.yigonglitech.logis.agentTest',
+            isSpecialTenant: false,
+            value: 'DEVTEST',
+            name: '亿公里互联网承运测试平台'
+        }, {
+            key: 1,
+            appId: 'wx6f8a21d50e88e173',
+            isSpecialTenant: false,
+            pkgName: 'com.yigonglitech.logis.agent',
+            value: 'YGL',
+            name: '亿公里互联网承运'
+        }, {
+            key: 2,
+            appId: 'wxe38c2290668d07fc',
+            pkgName: 'com.yunqi.clientandroid',
+            isSpecialTenant: true,
+            value: 'SXYQ',
+            name: '公路物流服务平台'
         }]
     };
 

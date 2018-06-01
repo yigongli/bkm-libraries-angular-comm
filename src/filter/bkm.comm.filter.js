@@ -22,8 +22,8 @@
 
     //字典数据的过滤器
     function EnumType(map) {
-        return function(input, typeName, isRtnObj) {
-            if (!typeName || input == null) return input;
+        return function(input, typeName, isRtnObj, isRtnUnknow) {
+            if (!angular.isString(typeName) || input == null) return isRtnUnknow === true ? "未知" : input;
             var rtnObj = map.DICT[typeName].filter(function(item) {
                 return (item.key === input || item.value === input);
             });
