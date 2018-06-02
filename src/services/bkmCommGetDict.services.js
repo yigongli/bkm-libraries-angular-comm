@@ -421,17 +421,37 @@
     };
 
     function bkmFrontendDictDef() {
-        var self = this;
-        //循环定义常量对象和字典对象
-        self.DICT = {};
-        self.CST = {};
+        var self  =  this;
+     
+        Object.defineProperty(self, 'DICT', {
+            enumerable: true,
+            configurable: false,
+            get: function(){
+                return (new Proxy(maps, {
+                    get: function(obj, prop){
+                        if(prop in obj){
+                            return obj[prop].slice();
+                        }else{
+                            console.log(bkm.util.format('The property {0}  is not existed!!', prop));
+                        }
+                    },
+                    set: function(obj, prop, value){
+                        console.log(bkm.util.format('You can not set the readonly object property {0} value!', prop));
+                    }
+                }));
+            },
+            set: function(newValue){
+                console.log(bkm.util.format('You can not set the readonly object property DICT value to : {0}!', newValue));
+            }
+        });
+        //循环定义只读的常量对象和字典对象
+        Object.defineProperty(self, 'CST', {
+            enumerable: true,
+            configurable: false,
+            writable: false,
+            value: {}
+        });
         for (var x in maps) {
-            Object.defineProperty(self.DICT, x, {
-                enumerable: true,
-                configurable: false,
-                writable: false,
-                value: maps[x]
-            });
             maps[x].forEach(function (item) {
                 if (item.value != null) {
                     var cstKey = x + '_' + item.value;
