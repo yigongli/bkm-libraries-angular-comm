@@ -377,16 +377,6 @@
             key: 0,
             name: "未上传"
         }],
-        'CheckStatus': [{
-            key: 0,
-            name: "未审核"
-        }, {
-            key: 2,
-            name: "审核成功"
-        }, {
-            key: 3,
-            name: "审核失败"
-        }],
         'InterfaceType': [{
             key: 0,
             name: '部委接口',
@@ -421,26 +411,28 @@
     };
 
     function bkmFrontendDictDef() {
-        var self  =  this;
-     
+        var self = this;
+
+        var mapsProxy = new Proxy(maps, {
+            get: function (obj, prop) {
+                if (prop in obj) {
+                    return obj[prop].slice();
+                } else {
+                    console.log(bkm.util.format('The property {0}  is not existed!!', prop));
+                }
+            },
+            set: function (obj, prop, value) {
+                console.log(bkm.util.format('You can not set the readonly object property {0} value!', prop));
+            }
+        });
+
         Object.defineProperty(self, 'DICT', {
             enumerable: true,
             configurable: false,
-            get: function(){
-                return (new Proxy(maps, {
-                    get: function(obj, prop){
-                        if(prop in obj){
-                            return obj[prop].slice();
-                        }else{
-                            console.log(bkm.util.format('The property {0}  is not existed!!', prop));
-                        }
-                    },
-                    set: function(obj, prop, value){
-                        console.log(bkm.util.format('You can not set the readonly object property {0} value!', prop));
-                    }
-                }));
+            get: function () {
+                return mapsProxy;
             },
-            set: function(newValue){
+            set: function (newValue) {
                 console.log(bkm.util.format('You can not set the readonly object property DICT value to : {0}!', newValue));
             }
         });
