@@ -6,6 +6,15 @@ var bkm = bkm || {};
 
 (function() {
     'use strict';
+
+    //对象常量定义，建议只能定义最多一层子对象，访问时按照bkm.CST.parent_child_property访问，如bkm.CST.VAL_ID_CODE
+    var commConstants = {
+        VAL: {//for validation
+            ID_CODE: "^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}([0-9]|X)$",
+            VEHICLE_NO: "^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$",
+            PHONE_NO: "^1\\d{10}$"
+        }
+    };
     
     //前端字典数据的本地定义
     var dictionaries = {
@@ -418,6 +427,8 @@ var bkm = bkm || {};
         }
     });
 
+
+    //Define bkm.DICT and bkm.CST readonly property
     Object.defineProperty(bkm, 'DICT', {
         enumerable: true,
         configurable: false,
@@ -428,14 +439,14 @@ var bkm = bkm || {};
             console.log(bkm.util.format('You can not set the readonly object property map value to : {0}!', newValue));
         }
     });
-
-     //循环定义只读的常量对象和字典对象
     Object.defineProperty(bkm, 'CST', {
         enumerable: true,
         configurable: false,
         writable: false,
         value: {}
     });
+
+    //循环字典数据定义只读的常量对象   
     for (var x in dictionaries) {
         dictionaries[x].forEach(function (item) {
             if (item.value != null) {
@@ -457,16 +468,26 @@ var bkm = bkm || {};
         });
     }
 
-})();
+    //迭代常量对象数据，定义只读的常量对象
+    (function iterObjKeys(obj, props) {
+        if (typeof obj != 'object') return null;
+        props = props || [];
+        for (var i in obj) {
+            if (typeof (obj[i]) == 'object') {
+                props.push(i);
+                iterObjKeys(obj[i], props);
+                props.pop(i);
+            } else {
+                var cstKey = props.length > 0 ? (props.join('_') + '_' + i) : i;
+                Object.defineProperty(bkm.CST, cstKey, {
+                    enumerable: true,
+                    configurable: false,
+                    writable: false,
+                    value: obj[i]
+                });
+            }
+        }
+    })(commConstants);
+    
 
-
-(function() {
-    'use strict';
-
-    angular.module('bkm.library.angular.comm')
-        .constant('bkm.input.pattern.valid', {
-            identityCode: "^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}([0-9]|X)$",
-            plateNumber: "^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$",
-            phoneNumber: "^1\\d{10}$"
-        });
 })();
