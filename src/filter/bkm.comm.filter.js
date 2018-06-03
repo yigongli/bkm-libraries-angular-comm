@@ -5,7 +5,7 @@
         .filter('dateDiff', ['$filter', dateDiffFilter])
         .filter('pathUrl', pathUrl)
         .filter('kbSize', kbSize)
-        .filter('EnumType', ['bkm.comm.map', EnumType])
+        .filter('EnumType', [EnumType])
         .filter('TransType', [TransType]);
 
     function pathUrl() {
@@ -21,12 +21,10 @@
     }
 
     //字典数据的过滤器
-    function EnumType(map) {
+    function EnumType() {
         return function(input, typeName, isRtnObj, isRtnUnknow) {
             if (!angular.isString(typeName) || input == null) return isRtnUnknow === true ? "未知" : input;
-            var rtnObj = map.DICT[typeName].filter(function(item) {
-                return (item.key === input || item.value === input);
-            });
+            var rtnObj = bkm.DICT[typeName].filter(item => (item.key === input || item.value === input));
             if (rtnObj.length == 0) return input;
             return isRtnObj ? rtnObj[0] : rtnObj[0].name;
         };
