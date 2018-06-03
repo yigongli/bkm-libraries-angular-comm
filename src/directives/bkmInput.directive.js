@@ -5,9 +5,9 @@
     'use strict';
 
     angular.module('bkm.library.angular.comm')
-        .directive('bkmInput', ['$q', '$parse', 'bkm.input.pattern.valid', inputvalidator]);
+        .directive('bkmInput', ['$q', '$parse', inputvalidator]);
 
-    function inputvalidator($q, $parse, validCst) {
+    function inputvalidator($q, $parse) {
         return {
             restrict: 'EA',
             require: 'ngModel',
@@ -33,8 +33,7 @@
                             var value = modelValue || viewValue;
                             // 如果值为空则不验证
                             if (!!!value) return true;
-                            return new RegExp(validCst.phoneNumber, 'g').test(value);
-                            //return /^1[0-9]{10}$/.test(value);
+                            return new RegExp(bkm.CST.VAL_PHONE_NO, 'g').test(value);
                         };
                     } else if (attr['type'] === 'email') {
                         setErrorMsg('email');
