@@ -411,6 +411,12 @@ var bkm = bkm || {};
             isSpecialTenant: true,
             value: 'SXYQ',
             name: '公路物流服务平台'
+        }],
+        'TenantLogisProlVers' : [{
+            key: 0,
+            tenantId: 5,
+            logisVer: '1.0.0',
+            value: 'SXYQ_LOGIS_PROTOCOL_100'
         }]
     };
 
