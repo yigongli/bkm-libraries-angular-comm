@@ -243,10 +243,25 @@ var bkm = bkm || {};
         }],
         'AgentMode': [{
             key: 0,
+            value: 'Company',
             name: '企业'
         }, {
             key: 1,
+            value: 'Personal',
             name: '个人'
+        }],
+        'AgentType': [{
+            key: 0,
+            value: 'Own',
+            name: '自有运力'
+        }, {
+            key: 1,
+            value: 'Delegate',
+            name: '委托运力'
+        }, {
+            key: 2,
+            value: 'Customer',
+            name: '客户运力'
         }],
         'MatchStatus': [{
             key: 0,
