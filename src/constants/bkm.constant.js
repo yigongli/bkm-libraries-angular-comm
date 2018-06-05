@@ -341,19 +341,23 @@ var bkm = bkm || {};
         }],
         'AccountCategory': [{
             key: 0,
-            value: 'BA',
+            value: 'BANK',
             name: '银行卡账户'
         }, {
             key: 1,
-            value: 'LS',
-            name: '运费账户'
+            value: 'REV_LOGIS',
+            name: '应收运费账户'
         }, {
             key: 2,
-            value: 'CA',
-            name: '现金账户'
+            value: 'PAY_LOGIS',
+            name: '应付运费账户'
         }, {
             key: 3,
-            value: 'LO',
+            value: 'CASH',
+            name: '现金账户'
+        }, {
+            key: 4,
+            value: 'LOAN',
             name: '贷款账户'
         }],
         'LoanAccountType': [{
