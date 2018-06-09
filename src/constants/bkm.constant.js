@@ -293,7 +293,7 @@ var bkm = bkm || {};
         }],
         'LoanContractStatus': [{
             key: 0,
-            name: '未知'
+            name: '申请中'
         }, {
             key: 1,
             name: '正常'
@@ -309,6 +309,9 @@ var bkm = bkm || {};
         }, {
             key: 5,
             name: '延期'
+        }, {
+            key: 6,
+            name: '申请失败'
         }],
         'RepaymentStatus': [{
             key: 0,
@@ -366,6 +369,37 @@ var bkm = bkm || {};
         }, {
             key: '1',
             name: '晋金贷户'
+        }],
+        'AssetSettleStatus': [{
+            key: 0,
+            value: 'Normal',
+            name: '正常'
+        }, {
+            key: 1,
+            value: 'Frozen',
+            name: '冻结'
+        }],
+        'FrozenType': [{
+            key: 0,
+            value: 'Cash',
+            name: '提现中'
+        }, {
+            key: 1,
+            value: 'Force',
+            name: '强制冻结'
+        }],
+        'AssetValidStatus': [{
+            key: 0,
+            value: 'Valid',
+            name: '有效资产'
+        }, {
+            key: 1,
+            value: 'Cancel',
+            name: '已取消'
+        }, {
+            key: 2,
+            value: 'Cash',
+            name: '已提现'
         }],
         'RoleType': [{
             key: 'driver',
