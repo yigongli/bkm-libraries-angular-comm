@@ -286,31 +286,40 @@ var bkm = bkm || {};
         }],
         'LoanProductType': [{
             key: 0,
-            name: '晋金贷7天期'
+            value: 'JJD_7DAYS',
+            name: '提现宝(晋金贷7天期)'
         }, {
             key: 1,
-            name: '晋金贷30天期'
+            value: 'JJD_30DAYS',
+            name: '云易贷(晋金贷30天期)'
         }],
         'LoanContractStatus': [{
             key: 0,
+            value: 'Applying',
             name: '申请中'
         }, {
             key: 1,
+            value: 'Normal',
             name: '正常'
         }, {
             key: 2,
+            value: 'Overdue',
             name: '逾期'
         }, {
             key: 3,
+            value: 'Settle',
             name: '结清'
         }, {
             key: 4,
+            value: 'Cancel',
             name: '作废'
         }, {
             key: 5,
+            value: 'Delay',
             name: '延期'
         }, {
             key: 6,
+            value: 'Failed',
             name: '申请失败'
         }],
         'RepaymentStatus': [{
@@ -386,7 +395,7 @@ var bkm = bkm || {};
         }, {
             key: 1,
             value: 'Force',
-            name: '强制冻结'
+            name: '冻结'
         }],
         'AssetValidStatus': [{
             key: 0,
