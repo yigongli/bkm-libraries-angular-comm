@@ -212,7 +212,7 @@
                             deferreds.push($q.resolve());
                         }
                     });
-                } else if (v.base64url.match(/^data:image\/(jgp|jpg|jpeg|png);base64,/)) {
+                } else if (!!!isWeixin && v.base64url.match(/^data:image\/(jgp|jpg|jpeg|png);base64,/)) {
                     var t = dataURLtoBlob(v.base64url);
                     appendBase64ToFormData(deferreds, v, t, !!_imgInfo);
                 } else if (isIos() && isWeixin) {
