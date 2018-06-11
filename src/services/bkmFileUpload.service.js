@@ -212,9 +212,13 @@
                             deferreds.push($q.resolve());
                         }
                     });
-                } else if (!!!isWeixin && v.base64url.match(/^data:image\/(jgp|jpg|jpeg|png);base64,/)) {
+                } else if (v.base64url.match(/^data:image\/(jgp|jpg|jpeg|png);base64,/)) {
                     var t = dataURLtoBlob(v.base64url);
-                    appendBase64ToFormData(deferreds, v, t, !!_imgInfo);
+                    var isCompress = !!_imgInfo;
+                    if (!!isWeixin) {
+                        isCompress = false;
+                    }
+                    appendBase64ToFormData(deferreds, v, t, isCompress);
                 } else if (isIos() && isWeixin) {
                     var localData = "data:image/jpeg;base64," + v.base64url;
                     var t = dataURLtoBlob(localData);
