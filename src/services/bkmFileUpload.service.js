@@ -54,7 +54,11 @@
                 notSupport: function(file) {
                     //alert('浏览器不支持！');
                     deferred.reject({ file: file, success: false, isSupport: false, target: target });
-                }
+                },
+                maxLength: 200,
+                maxWidth: 800,
+                maxHeight: 1000,
+                quality: 60
             };
             if (!!option) {
                 angular.extend(opt, option);
