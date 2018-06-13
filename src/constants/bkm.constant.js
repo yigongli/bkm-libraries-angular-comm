@@ -412,6 +412,15 @@ var bkm = bkm || {};
             value: 'Cash',
             name: '已提现'
         }],
+        'BankCardType': [{
+            key: 0,
+            value: 'Debit',
+            name: '储蓄卡'
+        }, {
+            key: 1,
+            value: 'Credit',
+            name: '信用卡'
+        }],
         'RoleType': [{
             key: 'driver',
             name: '司机车主'
