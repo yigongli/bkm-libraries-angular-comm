@@ -31,6 +31,7 @@
     "./src/fileUpload/1.chunk.min.js",
     "./src/fileUpload/2.chunk.min.js",
     "./src/util/bkmUtil.js",
+    "./src/util/bkmBankInfo.js",
     "./src/constants/bkm.constant.js",
     "./src/filter/bkm.comm.filter.js"
   ],
