@@ -374,9 +374,11 @@ var bkm = bkm || {};
         }],
         'LoanAccountType': [{
             key: 0,
+            value: 'GENERAL',
             name: '贷款总户'
         }, {
             key: '1',
+            value: 'JJD',
             name: '晋金贷户'
         }],
         'AssetSettleStatus': [{
