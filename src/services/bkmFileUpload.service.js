@@ -55,10 +55,9 @@
                     //alert('浏览器不支持！');
                     deferred.reject({ file: file, success: false, isSupport: false, target: target });
                 },
-                maxLength: 200,
                 maxWidth: 800,
                 maxHeight: 1000,
-                quality: 60
+                quality: 1
             };
             if (!!option) {
                 angular.extend(opt, option);
@@ -217,15 +216,12 @@
                         }
                     });
                 } else if (v.base64url.match(/^data:image\/(jgp|jpg|jpeg|png);base64,/)) {
-                    var t = dataURLtoBlob(v.base64url);
+                    var t = dataURLtoFile(v.base64url);
                     var isCompress = !!_imgInfo;
-                    if (!!isWeixin) {
-                        isCompress = false;
-                    }
                     appendBase64ToFormData(deferreds, v, t, isCompress);
                 } else if (isIos() && isWeixin) {
                     var localData = "data:image/jpeg;base64," + v.base64url;
-                    var t = dataURLtoBlob(localData);
+                    var t = dataURLtoFile(localData);
                     appendBase64ToFormData(deferreds, v, t, !!_imgInfo);
                 } else if (isWeixin && !!window.wx && !!wx.getLocalImgData) {
                     var defer = $q.defer();
@@ -236,7 +232,7 @@
                         success: function(res) {
                             // localData是图片的base64数据，可以用img标签显示
                             var localData = "data:image/jpeg;base64," + res.localData;
-                            var t = dataURLtoBlob(localData);
+                            var t = dataURLtoFile(localData);
                             appendBase64ToFormData(deferreds, v, t, false)
                                 .then(function() {
                                     deferreds.push(defer.resolve());
@@ -258,11 +254,11 @@
                     deferredArr.push(deferred);
                     try {
                         self.imgCompress(
-                            new File([blob.u8Arr], file.filePath, { "type": blob.type }),
+                            blob.constructor.name === "File" ? blob : new File([blob.u8Arr], file.filePath, { "type": blob.type }),
                             imgInfo,
                             deferredArr.length - 1
                         ).then(function(result) {
-                            fd.append(file.name, dataURLtoBlob(result.base64), result.file.name);
+                            fd.append(file.name, dataURLtoBlob(result.base64), file.filePath);
                             deferredArr[result.target].resolve();
                         }, function(result) {
                             fd.append(file.name, blob, file.filePath);
@@ -409,6 +405,18 @@
                 array.push(binary.charCodeAt(i));
             }
             return new newBlob(new Uint8Array(array), mimeString);
+        }
+
+        function dataURLtoFile(dataurl, filename) {
+            var arr = dataurl.split(','),
+                mime = arr[0].match(/:(.*?);/)[1],
+                bstr = atob(arr[1]),
+                n = bstr.length,
+                u8arr = new Uint8Array(n);
+            while (n--) {
+                u8arr[n] = bstr.charCodeAt(n);
+            }
+            return new File([u8arr], filename, { type: mime });
         }
     }
 })();
