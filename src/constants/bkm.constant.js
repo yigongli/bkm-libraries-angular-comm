@@ -12,7 +12,8 @@ var bkm = bkm || {};
         VAL: {//for validation
             ID_CODE: "^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}([0-9]|X)$",
             VEHICLE_NO: "^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$",
-            PHONE_NO: "^1\\d{10}$"
+            PHONE_NO: "^1\\d{10}$",
+            BANKCARD_NO: "^([1-9]{1})(\\d{14}|\\d{15}|\\d{16}|\\d{17}|\\d{18})$"
         }
     };
     
@@ -550,6 +551,13 @@ var bkm = bkm || {};
                     configurable: false,
                     writable: false,
                     value: item.name
+                });
+                var cstEN = x + '_' + item.value + '_EN';
+                Object.defineProperty(bkm.CST, cstEN, {
+                    enumerable: true,
+                    configurable: false,
+                    writable: false,
+                    value: item.value
                 });
             }
         });

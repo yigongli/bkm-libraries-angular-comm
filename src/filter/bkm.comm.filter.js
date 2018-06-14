@@ -6,6 +6,7 @@
         .filter('pathUrl', pathUrl)
         .filter('kbSize', kbSize)
         .filter('EnumType', [EnumType])
+        .filter('BankName', [BankName])
         .filter('TransType', [TransType]);
 
     function pathUrl() {
@@ -17,6 +18,14 @@
     function kbSize() {
         return function(input) {
             return !isNaN(input) ? parseInt(input / 1024) : input;
+        };
+    }
+
+    //获取银行的名称
+    function BankName(){
+        return function(input){
+            if(input == null){return input;}
+            return bkm.bank.getBankNameByCode(input);
         };
     }
 
