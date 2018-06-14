@@ -377,7 +377,7 @@ var bkm = bkm || {};
             value: 'GENERAL',
             name: '贷款总户'
         }, {
-            key: '1',
+            key: 1,
             value: 'JJD',
             name: '晋金贷户'
         }],
@@ -414,12 +414,20 @@ var bkm = bkm || {};
         }],
         'BankCardType': [{
             key: 0,
-            value: 'Debit',
+            value: 'DC',
             name: '储蓄卡'
         }, {
             key: 1,
-            value: 'Credit',
+            value: 'CC',
             name: '信用卡'
+        }, {
+            key: 2,
+            value: 'SCC',
+            name: '准贷记卡'
+        }, {
+            key: 3,
+            value: 'PC',
+            name: '预付费卡'
         }],
         'RoleType': [{
             key: 'driver',
