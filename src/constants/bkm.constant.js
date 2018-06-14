@@ -476,7 +476,7 @@ var bkm = bkm || {};
             key: 0,
             appId: 'wx321b67d70c162e92',
             pkgName: 'com.yigonglitech.logis.agentTest',
-            isSpecialTenant: false,
+            isSpecialTenant: true,
             value: 'DEVTEST',
             name: '亿公里互联网承运测试平台'
         }, {
