@@ -287,11 +287,11 @@ var bkm = bkm || {};
         }],
         'LoanProductType': [{
             key: 0,
-            value: 'JJD_7DAYS',
+            value: 'JJD_7',
             name: '提现宝(晋金贷7天期)'
         }, {
             key: 1,
-            value: 'JJD_30DAYS',
+            value: 'JJD_30',
             name: '云易贷(晋金贷30天期)'
         }],
         'LoanContractStatus': [{
@@ -454,14 +454,23 @@ var bkm = bkm || {};
             name: "四星"
         }],
         'UploadStatus': [{
+            key: 0,
+            name: "未上传"
+        }, {
             key: 1,
             name: "上传成功"
         }, {
             key: 2,
             name: "上传失败"
-        }, {
+        }],
+        'SendToAgentStatus': [{
             key: 0,
-            name: "未上传"
+            value: 'NotSend',
+            name: "未生成"
+        }, {
+            key: 1,
+            value: 'Sent',
+            name: "已生成"
         }],
         'InterfaceType': [{
             key: 0,
@@ -478,6 +487,8 @@ var bkm = bkm || {};
             pkgName: 'com.yigonglitech.logis.agentTest',
             isSpecialTenant: true,
             value: 'DEVTEST',
+            tenantId: 1,
+            logisProtocolVer: 'SXYQ_LOGIS_PROTOCOL_100.html',
             name: '亿公里互联网承运测试平台'
         }, {
             key: 1,
@@ -485,6 +496,7 @@ var bkm = bkm || {};
             isSpecialTenant: false,
             pkgName: 'com.yigonglitech.logis.agent',
             value: 'YGL',
+            tenantId: 1,
             name: '亿公里互联网承运'
         }, {
             key: 2,
@@ -492,13 +504,9 @@ var bkm = bkm || {};
             pkgName: 'com.yunqi.clientandroid',
             isSpecialTenant: true,
             value: 'SXYQ',
-            name: '公路物流服务平台'
-        }],
-        'TenantLogisProlVers' : [{
-            key: 0,
             tenantId: 5,
-            logisVer: '1.0.0',
-            value: 'SXYQ_LOGIS_PROTOCOL_100'
+            logisProtocolVer: 'SXYQ_LOGIS_PROTOCOL_100.html',
+            name: '公路物流服务平台'
         }]
     };
 
