@@ -391,14 +391,18 @@ var bkm = bkm || {};
             value: 'Frozen',
             name: '冻结'
         }],
-        'FrozenType': [{
+        'AssetSettleFrozenType': [{
             key: 0,
             value: 'Cash',
             name: '提现中'
         }, {
             key: 1,
+            value: 'Loan',
+            name: '贷款冻结'
+        }, {
+            key: 2,
             value: 'Force',
-            name: '冻结'
+            name: '强制冻结'
         }],
         'AssetValidStatus': [{
             key: 0,
