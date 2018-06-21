@@ -9,14 +9,14 @@ var bkm = bkm || {};
 
     //对象常量定义，建议只能定义最多一层子对象，访问时按照bkm.CST.parent_child_property访问，如bkm.CST.VAL_ID_CODE
     var commConstants = {
-        VAL: {//for validation
+        VAL: { //for validation
             ID_CODE: "^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}([0-9]|X)$",
             VEHICLE_NO: "^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$",
             PHONE_NO: "^1\\d{10}$",
             BANKCARD_NO: "^([1-9]{1})(\\d{14}|\\d{15}|\\d{16}|\\d{17}|\\d{18})$"
         }
     };
-    
+
     //前端字典数据的本地定义
     var dictionaries = {
         'HasDataError': [{
@@ -466,6 +466,9 @@ var bkm = bkm || {};
         }, {
             key: 2,
             name: "上传失败"
+        }, {
+            key: 3,
+            name: "验证失败"
         }],
         'SendToAgentStatus': [{
             key: 0,
@@ -515,14 +518,14 @@ var bkm = bkm || {};
     };
 
     var dictionariesProxy = new Proxy(dictionaries, {
-        get: function (obj, prop) {
+        get: function(obj, prop) {
             if (prop in obj) {
                 return obj[prop].slice();
             } else {
                 console.log(bkm.util.format('The property {0}  is not existed!!', prop));
             }
         },
-        set: function (obj, prop, value) {
+        set: function(obj, prop, value) {
             console.log(bkm.util.format('You can not set the readonly object property {0} value!', prop));
         }
     });
@@ -532,10 +535,10 @@ var bkm = bkm || {};
     Object.defineProperty(bkm, 'DICT', {
         enumerable: true,
         configurable: false,
-        get: function () {
+        get: function() {
             return dictionariesProxy;
         },
-        set: function (newValue) {
+        set: function(newValue) {
             console.log(bkm.util.format('You can not set the readonly object property map value to : {0}!', newValue));
         }
     });
@@ -548,7 +551,7 @@ var bkm = bkm || {};
 
     //循环字典数据定义只读的常量对象   
     for (var x in dictionaries) {
-        dictionaries[x].forEach(function (item) {
+        dictionaries[x].forEach(function(item) {
             if (item.value != null) {
                 var cstKey = x + '_' + item.value;
                 Object.defineProperty(bkm.CST, cstKey, {
@@ -580,7 +583,7 @@ var bkm = bkm || {};
         if (typeof obj != 'object') return null;
         props = props || [];
         for (var i in obj) {
-            if (typeof (obj[i]) == 'object') {
+            if (typeof(obj[i]) == 'object') {
                 props.push(i);
                 iterObjKeys(obj[i], props);
                 props.pop(i);
@@ -595,6 +598,6 @@ var bkm = bkm || {};
             }
         }
     })(commConstants);
-    
+
 
 })();
