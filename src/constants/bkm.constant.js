@@ -507,13 +507,22 @@ var bkm = bkm || {};
             name: '亿公里互联网承运'
         }, {
             key: 2,
-            appId: 'wxe38c2290668d07fc',
+            appId: 'wx8e2718e146a283e7',
             pkgName: 'com.yunqi.clientandroid',
             isSpecialTenant: true,
             value: 'SXYQ',
             tenantId: 5,
             logisProtocolVer: 'SXYQ_LOGIS_PROTOCOL_100.html',
             name: '公路物流服务平台'
+        }, {
+            key: 3,
+            appId: 'wx479e484ad5fdb097',
+            pkgName: 'com.yunqi.clientandroid',
+            isSpecialTenant: true,
+            value: 'XYYQ',
+            tenantId: 20,
+            logisProtocolVer: 'SXYQ_LOGIS_PROTOCOL_100.html',
+            name: '大宗物流服务平台'
         }]
     };
 
