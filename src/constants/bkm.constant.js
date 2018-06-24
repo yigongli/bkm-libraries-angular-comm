@@ -372,6 +372,10 @@ var bkm = bkm || {};
             key: 4,
             value: 'LOAN',
             name: '贷款账户'
+        }, {
+            key: 5,
+            value: 'LEND',
+            name: '放贷账户'
         }],
         'AssetSettleStatus': [{
             key: 0,
@@ -426,13 +430,16 @@ var bkm = bkm || {};
             name: '预付费卡'
         }],
         'RoleType': [{
-            key: 'driver',
-            name: '司机车主'
-        }, {
-            key: 'agent',
+            key: 0,
+            value: 'Agent',
             name: '经纪人'
         }, {
-            key: 'trader',
+            key: 1,
+            value: 'Driver',
+            name: '司机车主'
+        }, {
+            key: 2,
+            value: 'Trader',
             name: '货主'
         }],
         'StarLevel': [{

@@ -7,7 +7,8 @@
         .filter('kbSize', kbSize)
         .filter('EnumType', [EnumType])
         .filter('BankName', [BankName])
-        .filter('TransType', [TransType]);
+        .filter('TransType', [TransType])
+        .filter('splitCardNo', splitCardNo);
 
     function pathUrl() {
         return function(input, isSaveAs) {
@@ -26,6 +27,21 @@
         return function(input){
             if(input == null){return input;}
             return bkm.bank.getBankNameByCode(input);
+        };
+    }
+    //卡号隐藏和分组
+    function splitCardNo() {
+        return function (content, isReplaceStar) {
+            if (content == null) { return content; }
+            if (isReplaceStar) {
+                var replacement = '$1';
+                for (var i = 0; i < content.length - 7; i++) {
+                    replacement = replacement + '*';
+                }
+                replacement = replacement + '$2';
+                content = content.replace(/^(\d{4})\d+(\d{3})$/g, replacement);
+            }
+            return content ? content.replace(/\s/g, '').replace(/(\d{4})(?=\d)/g, "$1 ") : content;
         };
     }
 
