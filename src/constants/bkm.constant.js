@@ -373,15 +373,6 @@ var bkm = bkm || {};
             value: 'LOAN',
             name: '贷款账户'
         }],
-        'LoanAccountType': [{
-            key: 0,
-            value: 'GENERAL',
-            name: '贷款总户'
-        }, {
-            key: 1,
-            value: 'JJD',
-            name: '晋金贷户'
-        }],
         'AssetSettleStatus': [{
             key: 0,
             value: 'Normal',
@@ -487,6 +478,23 @@ var bkm = bkm || {};
             key: 1,
             name: '物润接口',
             value: 'EXCHANGES_SHIP56'
+        }],
+        'CompanyType':[{
+            key: 0,
+            value: 'LOGIS',
+            name: '物流公司'
+        }, {
+            key: 1,
+            value: 'TRADER',
+            name: '货主'
+        }, {
+            key: 2,
+            value: 'PURCHASER',
+            name: '收货方'
+        }, {
+            key: 3,
+            value: 'FINANCE',
+            name: '金融公司'
         }],
         'AppPlatforms': [{
             key: 0,
