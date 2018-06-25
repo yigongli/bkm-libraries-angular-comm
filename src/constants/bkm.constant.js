@@ -129,6 +129,9 @@ var bkm = bkm || {};
         }, {
             key: "finish",
             name: "完成"
+        }, {
+            key: "receiptUpload",
+            name: "签收上传"
         }],
         'LoanTimeType': [{
             key: "value",
