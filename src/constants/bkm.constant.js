@@ -274,18 +274,13 @@ var bkm = bkm || {};
             key: 1,
             name: '匹配成功'
         }],
-        'HasOrNot': [{
-            key: 0,
-            name: '无'
-        }, {
-            key: 1,
-            name: '有'
-        }],
         'HaveOrNot': [{
             key: false,
+            value: 'False',
             name: "无"
         }, {
             key: true,
+            value: 'True',
             name: "有"
         }],
         'LoanAccountType': [{
@@ -546,6 +541,23 @@ var bkm = bkm || {};
             tenantId: 20,
             logisProtocolVer: 'SXYQ_LOGIS_PROTOCOL_100.html',
             name: '大宗物流服务平台'
+        }],
+        'VehicleCertType': [{
+            key: 0,
+            value: 'DrivingLicense',
+            name: '司机驾驶证' 
+        },{
+            key: 1,
+            value: 'VehicleLicense',
+            name: '行驶证' 
+        },{
+            key: 2,
+            value: 'OperationLicense',
+            name: '道路运输证' 
+        },{
+            key: 3,
+            value: 'IdentityLicense',
+            name: '司机身份证' 
         }]
     };
 
