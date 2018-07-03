@@ -288,6 +288,11 @@ var bkm = bkm || {};
             key: true,
             name: "有"
         }],
+        'LoanAccountType': [{
+            key: 0,
+            value: 'JJD',
+            name: '晋金小贷'
+        }],
         'LoanProductType': [{
             key: 0,
             value: 'JJD_7',
