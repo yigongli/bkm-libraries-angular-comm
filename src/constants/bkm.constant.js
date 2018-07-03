@@ -297,6 +297,15 @@ var bkm = bkm || {};
             value: 'JJD_30',
             name: '云易贷(晋金贷30天期)'
         }],
+        'CapitalStatus': [{
+            key: 0,
+            value: 'Unprocessed',
+            name: '未处理'
+        },{
+            key: 1,
+            value: 'Processed',
+            name: '已放款'
+        }],
         'LoanContractStatus': [{
             key: 0,
             value: 'Applying',
