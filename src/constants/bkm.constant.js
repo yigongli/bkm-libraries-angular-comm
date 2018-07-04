@@ -567,6 +567,10 @@ var bkm = bkm || {};
             key: 3,
             value: 'IdentityLicense',
             name: '司机身份证' 
+        },{
+            key: 4,
+            value: 'Qualification',
+            name: '从业资格证' 
         }]
     };
 
