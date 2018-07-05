@@ -571,6 +571,19 @@ var bkm = bkm || {};
             key: 4,
             value: 'Qualification',
             name: '从业资格证' 
+        }],
+        'EffectNode': [{
+            key: 0,
+            value: 'Dispatch',
+            name: '派车时间'
+        },{
+            key: 1,
+            value: 'Load',
+            name: '发货时间'
+        },{
+            key: 2,
+            value: 'Arrive',
+            name: '签收时间'
         }]
     };
 
