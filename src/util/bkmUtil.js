@@ -515,8 +515,11 @@
      * 获取URL中的Querystring参数
      */
     bkm.util.params = function(name) {
+    var searchReg =  RegExp(/\?.*/g);
+        var search = window.location.href.match(searchReg);
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-        var r = window.location.search.substr(1).match(reg);
+        if(!search || search.length == 0) return null;
+        var r = search[0].substr(1).match(reg);
         if (r != null) return unescape(r[2]);
         return null;
     };

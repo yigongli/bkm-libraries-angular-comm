@@ -446,15 +446,15 @@ var bkm = bkm || {};
         }],
         'RoleType': [{
             key: 0,
-            value: 'Agent',
+            value: 'agent',
             name: '经纪人'
         }, {
             key: 1,
-            value: 'Driver',
+            value: 'driver',
             name: '司机车主'
         }, {
             key: 2,
-            value: 'Trader',
+            value: 'trader',
             name: '货主'
         }],
         'StarLevel': [{
