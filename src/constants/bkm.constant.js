@@ -338,17 +338,17 @@ var bkm = bkm || {};
             value: 'Failed',
             name: '申请失败'
         }],
-        'RepaymentStatus': [{
+        'RepayStatus': [{
             key: 0,
-            name: '未申请'
-        }, {
-            key: 1,
+            value: 'Applying',
             name: '申请中'
         }, {
-            key: 2,
+            key: 1,
+            value: 'Success',
             name: '还贷成功'
         }, {
-            key: 3,
+            key: 2,
+            value: 'Failure',
             name: '还贷失败'
         }],
         'AccountStatus': [{
