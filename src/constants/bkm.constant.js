@@ -337,6 +337,14 @@ var bkm = bkm || {};
             key: 6,
             value: 'Failed',
             name: '申请失败'
+        }, {
+            key: 7,
+            value: 'Uncheck',
+            name: '待审核'
+        }, {
+            key: 8,
+            value: 'Rejected',
+            name: '已拒绝'
         }],
         'RepayStatus': [{
             key: 0,
