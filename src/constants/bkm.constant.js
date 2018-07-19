@@ -361,18 +361,23 @@ var bkm = bkm || {};
         }],
         'AccountStatus': [{
             key: 0,
+            value: 'Normal',
             name: '正常'
         }, {
             key: 1,
+            value: 'Frozen',
             name: '冻结'
         }, {
             key: 2,
+            value: 'Cancel',
             name: '作废'
         }, {
             key: 3,
+            value: 'Applying',
             name: '认证中'
         }, {
             key: 4,
+            value: 'Failure',
             name: '认证失败'
         }],
         'AccountCategory': [{
