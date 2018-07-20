@@ -137,10 +137,16 @@ var bkm = bkm || {};
             name: "签收上传"
         }],
         'LoanTimeType': [{
-            key: "value",
+            key: 0,
+            value: "creation",
+            name: "创建日期"
+        }, {
+            key: 1,
+            value: "value",
             name: "起息日期"
         }, {
-            key: "expire",
+            key: 2,
+            value: "expire",
             name: "到期日期"
         }],
         'ExchangesTimeType': [{
@@ -358,6 +364,10 @@ var bkm = bkm || {};
             key: 2,
             value: 'Failure',
             name: '还贷失败'
+        }, {
+            key: 3,
+            value: 'Future',
+            name: '未申请'
         }],
         'AccountStatus': [{
             key: 0,
@@ -464,7 +474,7 @@ var bkm = bkm || {};
         }, {
             key: 1,
             value: 'driver',
-            name: '司机车主'
+            name: '车主司机'
         }, {
             key: 2,
             value: 'trader',
@@ -600,6 +610,19 @@ var bkm = bkm || {};
             key: 2,
             value: 'Arrive',
             name: '签收时间'
+        }],
+        'DrawerType': [{
+            key: 0,
+            value: 'LogisCompany',
+            name: '物流公司'
+        }, {
+            key: 1,
+            value: 'Agent',
+            name: '车队'
+        }, {
+            key: 2,
+            value: 'Driver',
+            name: '车主司机'
         }]
     };
 
