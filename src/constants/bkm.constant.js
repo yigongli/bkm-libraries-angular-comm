@@ -352,22 +352,22 @@ var bkm = bkm || {};
             value: 'Rejected',
             name: '已拒绝'
         }],
-        'RepayStatus': [{
+        'RepaymentStatus': [{
             key: 0,
+            value: 'NotApplied',
+            name: '未申请'
+        }, {
+            key: 1,
             value: 'Applying',
             name: '申请中'
         }, {
-            key: 1,
-            value: 'Success',
-            name: '还贷成功'
-        }, {
             key: 2,
-            value: 'Failure',
-            name: '还贷失败'
+            value: 'Success',
+            name: '还款成功'
         }, {
             key: 3,
-            value: 'Future',
-            name: '未申请'
+            value: 'Failed',
+            name: '还款失败'
         }],
         'AccountStatus': [{
             key: 0,
