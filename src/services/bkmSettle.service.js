@@ -35,6 +35,8 @@
             v.downTaxRate = v.downTaxRate || 0;
             v.downTaxedFreightPrice = v.isDownIncludeTax ? v.freightPrice : (v.freightPrice / (1 - v.downTaxRate));
             v.downTaxedFreightPrice = bkm.util.round(v.downTaxedFreightPrice);
+            //用于含税运价分组汇总
+            v. downTaxedFreightPriceGrp = v.downTaxedFreightPrice;
             //下游裸运价
             v.noDownTaxedFreightPrice = v.isDownIncludeTax ? v.freightPrice * (1 - v.downTaxRate) : v.freightPrice;
             v.noDownTaxedFreightPrice = bkm.util.round(v.noDownTaxedFreightPrice);
