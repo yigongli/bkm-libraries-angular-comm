@@ -16,6 +16,9 @@
      * 两个对象判等
      */
     bkm.util.isObjectsEqual = function(a, b) {
+        if (typeof a != 'object' || typeof b != 'object'){
+            return false;
+        }
         var aProps = Object.getOwnPropertyNames(a);
         var bProps = Object.getOwnPropertyNames(b);
         if (aProps.length != bProps.length) {
