@@ -573,7 +573,7 @@ var bkm = bkm || {};
             pkgName: 'com.yunqi.clientandroid',
             isSpecialTenant: true,
             value: 'XYYQ',
-            tenantId: 20,
+            tenantId: 5,
             logisProtocolVer: 'SXYQ_LOGIS_PROTOCOL_100.html',
             name: '大宗物流服务平台'
         }],
