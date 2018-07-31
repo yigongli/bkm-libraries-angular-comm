@@ -541,41 +541,14 @@ var bkm = bkm || {};
             value: 'FINANCE',
             name: '金融公司'
         }],
-        'AppPlatforms': [{
+        'PlatformType': [{
             key: 0,
-            appId: 'wx321b67d70c162e92',
-            pkgName: 'com.yigonglitech.logis.agentTest',
-            isSpecialTenant: true,
-            value: 'DEVTEST',
-            tenantId: 1,
-            logisProtocolVer: 'SXYQ_LOGIS_PROTOCOL_100.html',
-            name: '亿公里互联网承运测试平台'
+            value: 'Private',
+            name: "专用租户平台"
         }, {
             key: 1,
-            appId: 'wx6f8a21d50e88e173',
-            isSpecialTenant: false,
-            pkgName: 'com.yigonglitech.logis.agent',
-            value: 'YGL',
-            tenantId: 1,
-            name: '亿公里互联网承运'
-        }, {
-            key: 2,
-            appId: 'wx8e2718e146a283e7',
-            pkgName: 'com.yunqi.clientandroid',
-            isSpecialTenant: true,
-            value: 'SXYQ',
-            tenantId: 5,
-            logisProtocolVer: 'SXYQ_LOGIS_PROTOCOL_100.html',
-            name: '公路物流服务平台'
-        }, {
-            key: 3,
-            appId: 'wx479e484ad5fdb097',
-            pkgName: 'com.yunqi.clientandroid',
-            isSpecialTenant: true,
-            value: 'XYYQ',
-            tenantId: 5,
-            logisProtocolVer: 'SXYQ_LOGIS_PROTOCOL_100.html',
-            name: '大宗物流服务平台'
+            value: 'Public',
+            name: "亿公里公共平台"
         }],
         'VehicleCertType': [{
             key: 0,
