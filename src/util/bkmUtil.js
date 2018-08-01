@@ -201,14 +201,17 @@
     /*
      * 限制文本框只能输入整数
      */
-    bkm.util.limit = function(input) {
-        if (input instanceof jQuery) {
-            input = input[0];
-        }
-        if (input.value.length == 1) {
-            input.value = input.value.replace(/[^1-9]/g, '');
-        } else {
-            input.value = input.value.replace(/\D/g, '');
+    bkm.util.limit = function(input, limitType) {
+        var type = limitType || "number";
+        if(typeof input == "string"){
+            switch(type){
+                case 'number':
+                    return input.replace(/\D/g, '');
+                default: 
+                    return input;
+            }
+        }else{
+            return input;
         }
     };
 
