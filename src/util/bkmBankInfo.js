@@ -1575,7 +1575,7 @@ var bkm = bkm || {};
 
   bkm.bank.getBankNameByCode = function (cardCode) {
       var found = bankcardList.filter(item => item.bankCode == cardCode);
-      return found[0].bankName;
+      return found.length > 0 ? found[0].bankName : "";
   };
 
   bkm.bank.getBankInfoByNo = function (cardNo) {
