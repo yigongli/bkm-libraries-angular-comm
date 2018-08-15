@@ -596,6 +596,15 @@ var bkm = bkm || {};
             key: 2,
             value: 'Driver',
             name: '车主司机'
+        }],
+        'ServiceChargeType': [{
+            key: 0,
+            value: 'FixedAmount',
+            name: '固定金额'  
+        }, {
+            key: 1,
+            value: 'Rate',
+            name: '按比例'  
         }]
     };
 
