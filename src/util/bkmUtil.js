@@ -623,8 +623,7 @@
             return numValue;
         }
         var power = n != null && !isNaN(n) ? n : 2;
-        var val = Math.pow(10, power);
-        var result = Math.round(numValue * val) / val;
+        var result = Number(Math.round(numValue + 'e' + power) + 'e-' + power);
         return result;
     };
 
