@@ -1,0 +1,22 @@
+{
+  "name": "bkm-libraries-angular-comm",
+  "version": "2.8.6",
+  "description": "bkm common modules",
+  "main": "index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yigongli/bkm-libraries-angular-comm.git"
+  },
+  "author": "Cundong Zhang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yigongli/bkm-libraries-angular-comm/issues"
+  },
+  "homepage": "https://github.com/yigongli/bkm-libraries-angular-comm#readme",
+  "dependencies": {
+    "angular": "^1.4.14"
+  }
+}

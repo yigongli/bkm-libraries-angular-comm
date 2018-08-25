@@ -334,6 +334,21 @@
     };
 
     /*
+     * 对象扩展
+     */
+    bkm.util.extend = function(target, source) {
+        if(!bkm.util.isObject(target) || !bkm.util.isObject(source)){
+            return null;
+        }
+        for (var p in source) {
+            if (source.hasOwnProperty(p)) {
+                target[p] = source[p];
+            }
+        }
+        return target;
+    };
+
+    /*
      * 从对象数组中查找某属性值对应的索引
      */
     bkm.util.indexOf = function(data, key, value) {
@@ -379,38 +394,6 @@
             result = data;
         }
         return result;
-    };
-
-    /*
-     * 全部选中
-     */
-    bkm.util.selectAll = function(data) {
-        var selectedResult = [];
-        angular.forEach(data, function(item) {
-            selectedResult.push(item.key);
-        });
-        return selectedResult;
-    };
-
-    /*
-     * 全部不选中
-     */
-    bkm.util.unSelectAll = function() {
-        return [];
-    };
-
-    /*
-     * 反选
-     */
-    bkm.util.inverseSelect = function(data, selectedResult) {
-        var temp = selectedResult;
-        selectedResult = [];
-        angular.forEach(data, function(item) {
-            if (temp.indexOf(item.key) == -1) {
-                selectedResult.push(item.key);
-            }
-        });
-        return selectedResult;
     };
 
     /*
@@ -546,14 +529,11 @@
      *  省市区地址拆分
      */
     bkm.util.address_out = function(input, type, index) {
-
         var result = {};
-
         if (!input) return;
-
         for (var x in input) {
             if (typeof(input[x]) == 'object') {
-                angular.extend(result, bkm.util.address_out(input[x], type, x));
+                bkm.util.extend(result, bkm.util.address_out(input[x], type, x));
             } else if (index) {
                 if (type) {
                     result[type + bkm.util.firstCap(index) + bkm.util.firstCap(x)] = input[x];
@@ -562,15 +542,12 @@
                 }
             }
         }
-
         return result;
     };
 
     bkm.util.address_in = function(input, type) {
-
         var result = { province: {}, city: {}, district: {} };
         var strReg;
-
         if (!input) return;
         if (!!type) {
             strReg = "(\\b" + type + ")(province|city|district|address)(id|name$)";
@@ -584,7 +561,6 @@
                 result[x1.match(reg)[2]][x1.match(/id|name$/i)] = input[x];
             }
         }
-
         return result;
     };
 
