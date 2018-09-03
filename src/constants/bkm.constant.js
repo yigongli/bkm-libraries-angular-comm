@@ -4,6 +4,11 @@
 
 var bkm = bkm || {};
 
+//For angular dynamically define enum types
+if( typeof module == 'object'){
+    module.exports = bkm;
+}
+
 (function() {
     'use strict';
 
@@ -24,37 +29,47 @@ var bkm = bkm || {};
     var dictionaries = {
         'HasDataError': [{
             key: false,
+            value: 'False',
             name: '数据无误'
         }, {
             key: true,
+            value: 'True',
             name: '数据有误'
         }],
         'DriverType': [{
             key: false,
+            value: 'False',
             name: '司机'
         }, {
             key: true,
+            value: 'True',
             name: '车主'
         }],
         'TrueFalse': [{
             key: false,
+            value: 'False',
             name: "否"
         }, {
             key: true,
+            value: 'True',
             name: "是"
         }],
         'ActiveStatus': [{
             key: false,
+            value: 'False',
             name: "已禁用"
         }, {
             key: true,
+            value: 'True',
             name: "已启用"
         }],
         'LoginStatus': [{
             key: false,
+            value: 'False',
             name: "失败"
         }, {
             key: true,
+            value: 'True',
             name: "成功"
         }],
         'AddressType': [{
@@ -109,31 +124,40 @@ var bkm = bkm || {};
         }],
         'ValidStatus': [{
             key: 0,
-            name: "已失效"
+            name: "已失效",
+            value: 'Invalid'
         }, {
             key: 1,
-            name: "已生效"
+            name: "已生效",
+            value: 'Valid'
         }, {
             key: 2,
-            name: "待生效"
+            name: "待生效",
+            value: 'ToBeValid'
         }],
         'TimeType': [{
-            key: "creation",
-            name: "创建"
-        }, {
-            key: "receipt",
-            name: "签收"
-        }, {
-            key: "loaded",
+            key: 0,
+            value: "loaded",
             name: "矿发"
         }, {
-            key: "dispatchNo",
+            key: 1,
+            value: "receipt",
+            name: "签收"
+        }, {
+            key: 2,
+            value: "creation",
+            name: "创建"
+        }, {
+            key: 3,
+            value: "dispatchNo",
             name: "派单"
         }, {
-            key: "finish",
+            key: 4,
+            value: "finish",
             name: "完成"
         }, {
-            key: "receiptUpload",
+            key: 5,
+            value: "receiptUpload",
             name: "签收上传"
         }],
         'LoanTimeType': [{
@@ -151,107 +175,150 @@ var bkm = bkm || {};
         }],
         'ExchangesTimeType': [{
             key: 0,
+            value: 'Upload',
             name: "上传时间"
         }, {
             key: 1,
+            value: 'Creation',
             name: "创建时间"
         }],
         'TenantScope': [{
+            key: 0,
+            value: 'Unknow',
+            name: "未知货源"
+        }, {
             key: 1,
+            value: 'Self',
             name: "自有货源"
         }, {
             key: 2,
+            value: 'Other',
             name: "第三方货源"
         }],
         'ServiceChargeUnit': [{
             key: 0,
+            value: 'Ton',
             name: "元/吨"
         }, {
             key: 1,
+            value: 'Vehicle',
             name: "元/车"
         }],
         'SettleType': [{
             key: 0,
+            value: 'Batch',
             name: '按结算批次'
         }, {
             key: 1,
+            value: 'Single',
             name: '按单车'
         }],
         'FinalWeightPolicy': [{
             key: 0,
+            value: 'Loaded',
             name: '按矿发'
         }, {
             key: 1,
+            value: 'Reception',
             name: '按签收'
         }, {
             key: 2,
+            value: 'Min',
             name: '取最小'
         }],
         'SettledStatus': [{
+            key: 0,
+            value: 'Unknow',
+            name: "未知"
+        }, {
             key: 1,
+            value: 'UpSettled',
             name: "上游已结算"
         }, {
             key: 2,
+            value: 'UpUnSettled',
             name: "上游未结算"
         }, {
             key: 3,
+            value: 'DownSettled',
             name: "下游已结算"
         }, {
             key: 4,
+            value: 'DownUnSettled',
             name: "下游未结算"
         }],
         'PaymentBillType': [{
             key: 0,
+            value: 'Down',
             name: "下游资金流水"
         }, {
             key: 1,
+            value: 'Up',
             name: "上游资金流水"
         }],
         'TransDocConfirmStatus': [{
+            key: 0,
+            value: 'Unknow',
+            name: "未知"
+        }, {
             key: 1,
+            value: 'LoadConfirm',
             name: "发货已确认"
         }, {
             key: 2,
+            value: 'ReceptConfirm',
             name: "签收已确认"
         }, {
             key: 3,
+            value: 'LoadReceptConfirm',
             name: "发货签收已确认"
         }, {
             key: 4,
+            value: 'LoadReceptUnConfirm',
             name: "发货签收未确认"
         }, {
             key: 5,
+            value: 'LoadConfirmNoRecept',
             name: "发货已确认签收未确认"
         }, {
             key: 6,
+            value: 'ReceptConfirmNoLoad',
             name: "发货未确认签收已确认"
         }],
         'SettleReportType': [{
             key: 0,
+            value: 'Up',
             name: '上游结算单'
         }, {
             key: 1,
+            value: 'Down',
             name: '下游结算单'
         }],
         'ReceivableStatus': [{
             key: 0,
+            value: 'ToBeReceived',
             name: '待收款'
         }, {
             key: 1,
+            value: 'Received',
             name: '已收款'
         }],
         'PayableStatus': [{
             key: 0,
+            value: 'ToBePayed',
             name: '待付款'
         }, {
             key: 1,
+            value: 'Payed',
             name: '已付款'
         }],
         'SeqType': [{
             key: 0,
+            value: 'Receivable',
             name: '收款'
         }, {
             key: 1,
+            value: 'Payable',
             name: '付款'
         }],
         'AgentMode': [{
@@ -278,9 +345,11 @@ var bkm = bkm || {};
         }],
         'MatchStatus': [{
             key: 0,
+            value: 'Failure',
             name: '匹配失败'
         }, {
             key: 1,
+            value: 'Success',
             name: '匹配成功'
         }],
         'HaveOrNot': [{
@@ -469,8 +538,8 @@ var bkm = bkm || {};
         }],
         'RoleType': [{
             key: 0,
-            value: 'placeholder',
-            name: '预留'
+            value: 'Unknow',
+            name: '未知'
         }, {
             key: 1,
             value: 'agent',
@@ -490,28 +559,36 @@ var bkm = bkm || {};
         }],
         'StarLevel': [{
             key: 0,
+            value: 'One',
             name: "一星"
         }, {
             key: 1,
+            value: 'Two',
             name: "二星"
         }, {
             key: 2,
+            value: 'Three',
             name: "三星"
         }, {
             key: 3,
+            value: 'Four',
             name: "四星"
         }],
         'UploadStatus': [{
             key: 0,
+            value: 'NotUpload',
             name: "未上传"
         }, {
             key: 1,
+            value: 'Success',
             name: "上传成功"
         }, {
             key: 2,
+            value: 'UploadFailure',
             name: "上传失败"
         }, {
             key: 3,
+            value: 'ValidFailure',
             name: "验证失败"
         }],
         'SendToAgentStatus': [{
@@ -621,11 +698,11 @@ var bkm = bkm || {};
             if (prop in obj) {
                 return obj[prop].slice();
             } else {
-                console.log(bkm.util.format('The property {0}  is not existed!!', prop));
+                console.log('The property   is not existed:');
             }
         },
         set: function(obj, prop, value) {
-            console.log(bkm.util.format('You can not set the readonly object property {0} value!', prop));
+            console.log('You can not set the readonly object property value:');
         }
     });
 
@@ -638,7 +715,7 @@ var bkm = bkm || {};
             return dictionariesProxy;
         },
         set: function(newValue) {
-            console.log(bkm.util.format('You can not set the readonly object property map value to : {0}!', newValue));
+            console.log('You can not set the readonly object property map value to : ');
         }
     });
     Object.defineProperty(bkm, 'CST', {
