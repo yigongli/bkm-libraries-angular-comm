@@ -63,7 +63,7 @@ if( typeof module == 'object'){
             value: 'True',
             name: "已启用"
         }],
-        'LoginStatus': [{
+        'SuccessStatus': [{
             key: false,
             value: 'False',
             name: "失败"
