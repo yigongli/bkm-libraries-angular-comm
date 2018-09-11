@@ -611,20 +611,28 @@ if( typeof module == 'object'){
         }],
         'CompanyType':[{
             key: 0,
-            value: 'LOGIS',
+            value: 'Logistic',
             name: '物流公司'
         }, {
             key: 1,
-            value: 'TRADER',
+            value: 'Trader',
             name: '货主'
         }, {
             key: 2,
-            value: 'PURCHASER',
+            value: 'Purchaser',
             name: '收货方'
         }, {
             key: 3,
-            value: 'FINANCE',
+            value: 'Supplier',
+            name: '供应商'
+        }, {
+            key: 4,
+            value: 'Finance',
             name: '金融公司'
+        }, {
+            key: 5,
+            value: 'Unknow',
+            name: '未知'
         }],
         'PlatformType': [{
             key: 0,
@@ -690,6 +698,28 @@ if( typeof module == 'object'){
             key: 1,
             value: 'Rate',
             name: '按比例'  
+        }],
+        'PaymentType': [{
+            key: 0,
+            value: 'OfflinePay',
+            name: '线下转账'
+        },{
+            key: 1,
+            value: 'NewPay',
+            name: '新生支付'
+        }],
+        'PaymentStatus': [{
+            key: 0,
+            value: 'Ongoing',
+            name: '付款中'
+        }, {
+            key: 1,
+            value: 'Success',
+            name: '付款成功'
+        }, {
+            key: 2,
+            value: 'Failure',
+            name: '付款失败'
         }]
     };
 
