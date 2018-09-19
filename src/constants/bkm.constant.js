@@ -699,14 +699,14 @@ if( typeof module == 'object'){
             value: 'Rate',
             name: '按比例'  
         }],
-        'PaymentType': [{
+        'BatchPayType': [{
             key: 0,
-            value: 'OfflinePay',
-            name: '线下转账'
+            value: 'BySettle',
+            name: '结算单付款'
         },{
             key: 1,
-            value: 'NewPay',
-            name: '新生支付'
+            value: 'ByDetail',
+            name: '明细付款'
         }],
         'PaymentStatus': [{
             key: 0,
