@@ -372,6 +372,10 @@ if( typeof module == 'object'){
             name: '提现宝(晋金贷7天期)'
         }, {
             key: 1,
+            value: 'JJD_15',
+            name: '提现快(晋金贷15天期)'
+        }, {
+            key: 1,
             value: 'JJD_30',
             name: '云易贷(晋金贷30天期)'
         }],
@@ -720,7 +724,16 @@ if( typeof module == 'object'){
             key: 2,
             value: 'Failure',
             name: '付款失败'
-        }]
+        }],
+        'InvoiceStatus': [{
+            key: 0,
+            value: 'Normal',
+            name: '正常'
+        }, {
+            key: 1,
+            value: 'Cancel',
+            name: '作废'
+        }],
     };
 
     var dictionariesProxy = new Proxy(dictionaries, {
