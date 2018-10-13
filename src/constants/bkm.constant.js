@@ -734,6 +734,23 @@ if( typeof module == 'object'){
             value: 'Cancel',
             name: '作废'
         }],
+        'BankCardVerifyType': [{
+            key: 0,
+            value: 'Unknow',
+            name: '未知'
+        }, {
+            key: 2,
+            value: 'TwoElement',
+            name: '二要素验证'
+        }, {
+            key: 3,
+            value: 'ThreeElement',
+            name: '三要素验证'
+        }, {
+            key: 4,
+            value: 'FourElement',
+            name: '四要素验证'
+        }],
     };
 
     var dictionariesProxy = new Proxy(dictionaries, {
