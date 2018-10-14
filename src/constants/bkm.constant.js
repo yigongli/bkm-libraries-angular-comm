@@ -374,10 +374,6 @@ if( typeof module == 'object'){
             key: 1,
             value: 'JJD_15',
             name: '提现快(晋金贷15天期)'
-        }, {
-            key: 1,
-            value: 'JJD_30',
-            name: '云易贷(晋金贷30天期)'
         }],
         'CapitalStatus': [{
             key: 0,
