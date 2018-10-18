@@ -761,8 +761,8 @@ if( typeof module == 'object'){
             name: '用户充值'
         },{
             key: 3,
-            value: '贷款',
-            name: 'Loan'
+            value: 'Loan',
+            name: '贷款'
         },{
             key: 4,
             value: 'Repayment',
