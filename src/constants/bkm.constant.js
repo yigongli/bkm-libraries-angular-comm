@@ -747,6 +747,35 @@ if( typeof module == 'object'){
             value: 'FourElement',
             name: '四要素验证'
         }],
+        'TradingOrderType': [{
+            key: 0,
+            value: 'Settlement',
+            name: '运费资产生成'
+        }, {
+            key: 1,
+            value: 'BatchPay',
+            name: '单车批量付款'
+        },{
+            key: 2,
+            value: 'Recharge',
+            name: '用户充值'
+        },{
+            key: 3,
+            value: '贷款',
+            name: 'Loan'
+        },{
+            key: 4,
+            value: 'Repayment',
+            name: '还款'
+        },{
+            key: 5,
+            value: 'Cash',
+            name: '提现'
+        },{
+            key: 6,
+            value: 'Advance',
+            name: '预付款'
+        }],
     };
 
     var dictionariesProxy = new Proxy(dictionaries, {
