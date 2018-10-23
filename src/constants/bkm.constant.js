@@ -776,6 +776,19 @@ if( typeof module == 'object'){
             value: 'Advance',
             name: '预付款'
         }],
+        'TransDocType': [{
+            key: 0,
+            value: 'Loading',
+            name: '装货'
+        }, {
+            key: 1,
+            value: 'Receipt',
+            name: '签收'
+        }, {
+            key: 2,
+            value: 'Other',
+            name: '其他'
+        }]
     };
 
     var dictionariesProxy = new Proxy(dictionaries, {
