@@ -788,6 +788,19 @@ if( typeof module == 'object'){
             key: 2,
             value: 'Other',
             name: '其他'
+        }],
+        'PayWay': [{
+            key: 0,
+            value: 'Offline',
+            name: '线下支付'
+        }, {
+            key: 1,
+            value: 'NewPay',
+            name: '新生支付'
+        }, {
+            key: 2,
+            value: 'JJDPay',
+            name: '晋金贷代付'
         }]
     };
 
