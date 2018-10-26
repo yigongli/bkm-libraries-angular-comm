@@ -41,8 +41,9 @@ bkm.settle.downstreamSettlementComputing = function (settleParams) {
     //下游裸运费金额：结算数量 * 裸运费单价
     v.noTaxedFreightAmount = bkm.util.round(v.downstreamFinalWeight * v.noDownTaxedFreightPrice);
     //未含税结算金额:  抹零取整（裸运费金额 - 亏吨扣款 + 运费增减  - 服务费 - 装卸费 )  去掉个位（包含）数后的零头
-    var finalAmount = v.noTaxedFreightAmount - v.downstreamLossAmount + (v.downAmountAdjust || 0) - v.downServiceAmount - v.loadUnloadAmount;
+    var finalAmount = v.noTaxedFreightAmount - v.downstreamLossAmount - v.downServiceAmount - v.loadUnloadAmount;
     v.downNoTaxedFinalAmount = (v.isIgnoreSmall ? parseInt(finalAmount / 10) * 10 : finalAmount);
+    v.downNoTaxedFinalAmount = v.downNoTaxedFinalAmount + (v.downAmountAdjust || 0)
     //下游含税结算金额
     v.downstreamFinalAmount = v.downNoTaxedFinalAmount / (1 - v.downTaxRate);
     v.downstreamFinalAmount = bkm.util.round(v.downstreamFinalAmount);
