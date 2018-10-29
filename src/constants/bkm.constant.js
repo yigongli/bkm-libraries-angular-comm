@@ -801,6 +801,15 @@ if( typeof module == 'object'){
             key: 2,
             value: 'JJDPay',
             name: '晋金贷代付'
+        }],
+        'UpOrDown': [{
+            key: 0,
+            value: 'Up',
+            name: '上游'  
+        }, {
+            key: 1,
+            value: 'Down',
+            name: '下游'  
         }]
     };
 
