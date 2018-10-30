@@ -810,6 +810,15 @@ if( typeof module == 'object'){
             key: 1,
             value: 'Down',
             name: '下游'  
+        }],
+        'TransDocsType': [{
+            key: 0,
+            value: 'Load',
+            name: '矿发'  
+        }, {
+            key: 1,
+            value: 'Receipt',
+            name: '签收'  
         }]
     };
 
