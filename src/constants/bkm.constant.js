@@ -345,12 +345,16 @@ if( typeof module == 'object'){
         }],
         'MatchStatus': [{
             key: 0,
-            value: 'Failure',
-            name: '匹配失败'
+            value: 'Original',
+            name: '派遣单审核'
         }, {
             key: 1,
-            value: 'Success',
-            name: '匹配成功'
+            value: 'Matched',
+            name: '银行卡管理'
+        }, {
+            key: 2,
+            value: 'Empty',
+            name: '未匹配'
         }],
         'HaveOrNot': [{
             key: false,
