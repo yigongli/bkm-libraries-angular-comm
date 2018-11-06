@@ -267,6 +267,44 @@
         return bkm.util.toArray(data).indexOf(elem) > -1;
     };
 
+    
+    /*
+     * 判断对象数组中是否存在指定属性的重复对象, 返回所有发现的重复数据二维结果集
+     */
+    bkm.util.findDuplicatedElements = function (data, prop) {
+        if (typeof data != 'object' || !data.length || !prop) {
+            return [];
+        }
+        //判断是否存在该属性
+        if (!(prop in data[0])) {
+            return [];
+        }
+        var duplicatedObjects = [];
+        var props = data.map(item => item[prop]);
+        props.forEach((item, index) => {
+            var foundIndex = props.indexOf(item, index + 1);
+            if (foundIndex > 0) {
+                try {
+                    var isFound = false;
+                    duplicatedObjects.forEach(elem => {
+                        if (elem[0][prop] == data[index][prop]) {
+                            elem.push(data[foundIndex]);
+                            isFound = true;
+                            throw new Error("End");
+                        }
+                    });
+                    if (!isFound) {
+                        duplicatedObjects.push([data[index], data[foundIndex]]);
+                    }
+                } catch (e) {
+                    if (e.message != 'End') throw e;
+                }
+            }
+        });
+        return duplicatedObjects;
+    };
+
+    
     /*
      * 将指定元素转化为数组
      */
