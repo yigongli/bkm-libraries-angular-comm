@@ -346,11 +346,11 @@ if( typeof module == 'object'){
         'MatchStatus': [{
             key: 0,
             value: 'Original',
-            name: '派遣单审核'
+            name: '人工审核'
         }, {
             key: 1,
             value: 'Matched',
-            name: '银行卡管理'
+            name: '系统匹配'
         }, {
             key: 2,
             value: 'Empty',
