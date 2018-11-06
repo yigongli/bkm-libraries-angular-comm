@@ -287,14 +287,23 @@
                 try {
                     var isFound = false;
                     duplicatedObjects.forEach(elem => {
-                        if (elem[0][prop] == data[index][prop]) {
-                            elem.push(data[foundIndex]);
+                        if (elem[0].data[prop] == data[index][prop]) {
+                            elem.push({
+                                data: data[foundIndex],
+                                pos: foundIndex
+                            });
                             isFound = true;
                             throw new Error("End");
                         }
                     });
                     if (!isFound) {
-                        duplicatedObjects.push([data[index], data[foundIndex]]);
+                        duplicatedObjects.push([{
+                            data: data[index],
+                            pos: index
+                        }, {
+                            data: data[foundIndex],
+                            pos: foundIndex
+                        }]);
                     }
                 } catch (e) {
                     if (e.message != 'End') throw e;
