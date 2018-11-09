@@ -305,11 +305,11 @@ if( typeof module == 'object'){
         }],
         'PayableStatus': [{
             key: 0,
-            value: 'ToBePayed',
+            value: 'Unpaying',
             name: '待付款'
         }, {
             key: 1,
-            value: 'Payed',
+            value: 'Paid',
             name: '已付款'
         }],
         'SeqType': [{
@@ -823,6 +823,27 @@ if( typeof module == 'object'){
             key: 1,
             value: 'Receipt',
             name: '签收'  
+        }],
+        'InvoiceApplyStatus': [{
+            key: 0,
+            value: 'NotApply',
+            name: '未申请'
+        }, {
+            key: 1,
+            value: 'Applying',
+            name: '申请中'
+        }, {
+            key: 2,
+            value: 'Approved',
+            name: '开票中'
+        }, {
+            key: 3,
+            value: 'Invoiced',
+            name: '已开票'
+        }, {
+            key: 4,
+            value: 'Rejected',
+            name: '已拒绝'
         }]
     };
 
