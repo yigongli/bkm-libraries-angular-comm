@@ -172,6 +172,10 @@ if( typeof module == 'object'){
             key: 2,
             value: "expire",
             name: "到期日期"
+        }, {
+            key: 3,
+            value: "repay",
+            name: "还款日期"
         }],
         'ExchangesTimeType': [{
             key: 0,
@@ -824,7 +828,7 @@ if( typeof module == 'object'){
             value: 'Receipt',
             name: '签收'  
         }],
-        'InvoiceApplyStatus': [{
+        'SettleInvoiceStatus': [{
             key: 0,
             value: 'NotApply',
             name: '未申请'
@@ -844,6 +848,27 @@ if( typeof module == 'object'){
             key: 4,
             value: 'Rejected',
             name: '已拒绝'
+        }],
+        'InvoiceApplyStatus': [{
+            key: 0,
+            name: '待审核',
+            value: 'UNCHECK'
+        }, {
+            key: 1,
+            name: '审核中',
+            value: 'CHECKING'
+        }, {
+            key: 2,
+            name: '审核通过',
+            value: 'PASSED'
+        }, {
+            key: 3,
+            name: '已拒绝',
+            value: 'REJECTED'
+        }, {
+            key: 4,
+            name: '已开票',
+            value: 'INVOICED'
         }]
     };
 
