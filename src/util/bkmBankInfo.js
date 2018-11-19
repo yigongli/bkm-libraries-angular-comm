@@ -15,6 +15,7 @@ var bkm = bkm || {};
     bankName: "中国邮政储蓄银行",
     bankCode: "PSBC",
     cnapsCode: "403100000000",
+    "bankNo": "0100",
     patterns: [{
       reg: /^(621096|621098|622150|622151|622181|622188|622199|955100|621095|620062|621285|621798|621799|621797|620529|621622|621599|621674|623218|623219)\d{13}$/g,
       cardType: "DC"
@@ -29,6 +30,7 @@ var bkm = bkm || {};
     bankName: "中国工商银行",
     bankCode: "ICBC",
     cnapsCode: "102100000000",
+    "bankNo": "0102",
     patterns: [{
       reg: /^(620200|620302|620402|620403|620404|620406|620407|620409|620410|620411|620412|620502|620503|620405|620408|620512|620602|620604|620607|620611|620612|620704|620706|620707|620708|620709|620710|620609|620712|620713|620714|620802|620711|620904|620905|621001|620902|621103|621105|621106|621107|621102|621203|621204|621205|621206|621207|621208|621209|621210|621302|621303|621202|621305|621306|621307|621309|621311|621313|621211|621315|621304|621402|621404|621405|621406|621407|621408|621409|621410|621502|621317|621511|621602|621603|621604|621605|621608|621609|621610|621611|621612|621613|621614|621615|621616|621617|621607|621606|621804|621807|621813|621814|621817|621901|621904|621905|621906|621907|621908|621909|621910|621911|621912|621913|621915|622002|621903|622004|622005|622006|622007|622008|622010|622011|622012|621914|622015|622016|622003|622018|622019|622020|622102|622103|622104|622105|622013|622111|622114|622017|622110|622303|622304|622305|622306|622307|622308|622309|622314|622315|622317|622302|622402|622403|622404|622313|622504|622505|622509|622513|622517|622502|622604|622605|622606|622510|622703|622715|622806|622902|622903|622706|623002|623006|623008|623011|623012|622904|623015|623100|623202|623301|623400|623500|623602|623803|623901|623014|624100|624200|624301|624402|623700|624000)\d{12}$/g,
       cardType: "DC"
@@ -64,6 +66,7 @@ var bkm = bkm || {};
     bankName: "中国农业银行",
     bankCode: "ABC",
     cnapsCode: "103100000000",
+    "bankNo": "0103",
     patterns: [{
       reg: /^(623052|622841|622824|622826|622848|620059|621282|622828|622823|621336|621619|622821|622822|622825|622827|622845|622849|623018|623206|621671|622840|622843|622844|622846|622847|620501)\d{13}$/g,
       cardType: "DC"
@@ -84,6 +87,7 @@ var bkm = bkm || {};
     bankName: "中国银行",
     bankCode: "BOC",
     cnapsCode: "104100000000",
+    "bankNo": "0104",
     patterns: [{
       reg: /^(621660|621661|621662|621663|621665|621667|621668|621669|621666|456351|601382|621256|621212|621283|620061|621725|621330|621331|621332|621333|621297|621568|621569|621672|623208|621620|621756|621757|621758|621759|621785|621786|621787|621788|621789|621790|622273|622274|622771|622772|622770|621741|621041)\d{13}$/g,
       cardType: "DC"
@@ -110,6 +114,7 @@ var bkm = bkm || {};
     bankName: "中国建设银行",
     bankCode: "CCB",
     cnapsCode: "105100000000",
+    "bankNo": "0105",
     patterns: [{
       reg: /^(621284|436742|589970|620060|621081|621467|621598|621621|621700|622280|622700|623211|623668)\d{13}$/g,
       cardType: "DC"
@@ -139,6 +144,7 @@ var bkm = bkm || {};
     bankName: "中国交通银行",
     bankCode: "COMM",
     cnapsCode: "301290000000",
+    "bankNo": "0301",
     patterns: [{
       reg: /^(622261|622260|622262|621002|621069|621436|621335)\d{13}$/g,
       cardType: "DC"
@@ -165,6 +171,7 @@ var bkm = bkm || {};
     bankName: "招商银行",
     bankCode: "CMB",
     cnapsCode: "308584000000",
+    "bankNo": "0308",
     patterns: [{
       reg: /^(402658|410062|468203|512425|524011|622580|622588|622598|622609|95555|621286|621483|621485|621486|621299)\d{10}$/g,
       cardType: "DC"
@@ -188,6 +195,7 @@ var bkm = bkm || {};
     bankName: "中国民生银行",
     bankCode: "CMBC",
     cnapsCode: "305100000000",
+    "bankNo": "0305",
     patterns: [{
       reg: /^(622615|622616|622618|622622|622617|622619|415599|421393|421865|427570|427571|472067|472068|622620)\d{10}$/g,
       cardType: "DC"
@@ -202,6 +210,7 @@ var bkm = bkm || {};
     bankName: "中国光大银行",
     bankCode: "CEB",
     cnapsCode: "303100000000",
+    "bankNo": "0303",
     patterns: [{
       reg: /^(303)\d{13}$/g,
       cardType: "DC"
@@ -222,6 +231,7 @@ var bkm = bkm || {};
     bankName: "中信银行",
     bankCode: "CITIC",
     cnapsCode: "302100000000",
+    "bankNo": "0302",
     patterns: [{
       reg: /^(433670|433680|442729|442730|620082|622690|622691|622692|622696|622698|622998|622999|433671|968807|968808|968809|621771|621767|621768|621770|621772|621773|622453|622456)\d{10}$/g,
       cardType: "DC"
@@ -239,6 +249,7 @@ var bkm = bkm || {};
     bankName: "华夏银行",
     bankCode: "HXBANK",
     cnapsCode: "304100000000",
+    "bankNo": "0304",
     patterns: [{
       reg: /^(622630|622631|622632|622633|999999|621222|623020|623021|623022|623023)\d{10}$/g,
       cardType: "DC"
@@ -250,6 +261,7 @@ var bkm = bkm || {};
     bankName: "平安银行",
     bankCode: "SPABANK",
     cnapsCode: "307584000000",
+    "bankNo": "0410",
     patterns: [{
       reg: /^(621626|623058)\d{13}$/g,
       cardType: "DC"
@@ -267,6 +279,7 @@ var bkm = bkm || {};
     bankName: "兴业银行",
     bankCode: "CIB",
     cnapsCode: "309391000000",
+    "bankNo": "0309",
     patterns: [{
       reg: /^(438589)\d{12}$/g,
       cardType: "DC"
@@ -287,6 +300,7 @@ var bkm = bkm || {};
     bankName: "上海银行",
     bankCode: "SHBANK",
     cnapsCode: "313290000000",
+    "bankNo": "0401",
     patterns: [{
       reg: /^(621050|622172|622985|622987|620522|622267|622278|622279|622468|622892|940021)\d{12}$/g,
       cardType: "DC"
@@ -301,6 +315,7 @@ var bkm = bkm || {};
     bankName: "上海浦东发展银行",
     bankCode: "SPDB",
     cnapsCode: "310290000000",
+    "bankNo": "0310",
     patterns: [{
       reg: /^(622516|622517|622518|622521|622522|622523|984301|984303|621352|621793|621795|621796|621351|621390|621792|621791)\d{10}$/g,
       cardType: "DC"
@@ -321,6 +336,7 @@ var bkm = bkm || {};
     bankName: "广发银行",
     bankCode: "GDB",
     cnapsCode: "306581000000",
+    "bankNo": "0306",
     patterns: [{
       reg: /^(622516|622517|622518|622521|622522|622523|984301|984303|621352|621793|621795|621796|621351|621390|621792|621791)\d{10}$/g,
       cardType: "DC"
@@ -341,6 +357,7 @@ var bkm = bkm || {};
     bankName: "渤海银行",
     bankCode: "BOHAIB",
     cnapsCode: "318110000000",
+    "bankNo": "0317",
     patterns: [{
       reg: /^(621268|622684|622884|621453)\d{10}$/g,
       cardType: "DC"
@@ -349,6 +366,7 @@ var bkm = bkm || {};
     bankName: "广州银行",
     bankCode: "GCB",
     cnapsCode: "313581000000",
+    "bankNo": "0413",
     patterns: [{
       reg: /^(603445|622467|940016|621463)\d{13}$/g,
       cardType: "DC"
@@ -357,6 +375,7 @@ var bkm = bkm || {};
     bankName: "金华银行",
     bankCode: "JHBANK",
     cnapsCode: "",
+    "bankNo": "0426",
     patterns: [{
       reg: /^(622449|940051)\d{10}$/g,
       cardType: "DC"
@@ -368,6 +387,7 @@ var bkm = bkm || {};
     bankName: "温州银行",
     bankCode: "WZCB",
     cnapsCode: "313333000000",
+    "bankNo": "0412",
     patterns: [{
       reg: /^(621977)\d{10}$/g,
       cardType: "DC"
@@ -379,6 +399,7 @@ var bkm = bkm || {};
     bankName: "徽商银行",
     bankCode: "HSBANK",
     cnapsCode: "319361000000",
+    "bankNo": "0440",
     patterns: [{
       reg: /^(622877|622879|621775|623203)\d{13}$/g,
       cardType: "DC"
@@ -393,6 +414,7 @@ var bkm = bkm || {};
     bankName: "江苏银行",
     bankCode: "JSBANK",
     cnapsCode: "313301000000",
+    "bankNo": "0508",
     patterns: [{
       reg: /^(621076|622173|622131|621579|622876)\d{13}$/g,
       cardType: "DC"
@@ -407,6 +429,7 @@ var bkm = bkm || {};
     bankName: "南京银行",
     bankCode: "NJCB",
     cnapsCode: "313301000000",
+    "bankNo": "0424",
     patterns: [{
       reg: /^(621777|622305|621259)\d{10}$/g,
       cardType: "DC"
@@ -418,6 +441,7 @@ var bkm = bkm || {};
     bankName: "宁波银行",
     bankCode: "NBBANK",
     cnapsCode: "313332000000",
+    "bankNo": "0408",
     patterns: [{
       reg: /^(621279|622281|622316|940022)\d{10}$/g,
       cardType: "DC"
@@ -432,6 +456,7 @@ var bkm = bkm || {};
     bankName: "北京银行",
     bankCode: "BJBANK",
     cnapsCode: "313100000000",
+    "bankNo": "0403",
     patterns: [{
       reg: /^(623111|421317|422161|602969|422160|621030|621420|621468)\d{10}$/g,
       cardType: "DC"
@@ -443,6 +468,7 @@ var bkm = bkm || {};
     bankName: "北京农村商业银行",
     bankCode: "BJRCB",
     cnapsCode: "402100000000",
+    "bankNo": "1418",
     patterns: [{
       reg: /^(620088|621068|622138|621066|621560)\d{13}$/g,
       cardType: "DC"
@@ -454,6 +480,7 @@ var bkm = bkm || {};
     bankName: "汇丰银行",
     bankCode: "HSBC",
     cnapsCode: "",
+    "bankNo": "0321",
     patterns: [{
       reg: /^(622946)\d{10}$/g,
       cardType: "DC"
@@ -471,6 +498,7 @@ var bkm = bkm || {};
     bankName: "渣打银行",
     bankCode: "SCB",
     cnapsCode: "",
+    "bankNo": "0322",
     patterns: [{
       reg: /^(622948|621740|622942|622994)\d{10}$/g,
       cardType: "DC"
@@ -482,6 +510,7 @@ var bkm = bkm || {};
     bankName: "花旗银行",
     bankCode: "CITI",
     cnapsCode: "",
+    "bankNo": "0319",
     patterns: [{
       reg: /^(621062|621063)\d{10}$/g,
       cardType: "DC"
@@ -493,6 +522,7 @@ var bkm = bkm || {};
     bankName: "东亚银行",
     bankCode: "HKBEA",
     cnapsCode: "502290000000",
+    "bankNo": "0320",
     patterns: [{
       reg: /^(622933|622938|623031|622943|621411)\d{13}$/g,
       cardType: "DC"
@@ -507,6 +537,7 @@ var bkm = bkm || {};
     bankName: "广东华兴银行",
     bankCode: "GHB",
     cnapsCode: "313586000000",
+    "bankNo": "0578",
     patterns: [{
       reg: /^(621469|621625)\d{13}$/g,
       cardType: "DC"
@@ -515,6 +546,7 @@ var bkm = bkm || {};
     bankName: "深圳农村商业银行",
     bankCode: "SRCB",
     cnapsCode: "402584000000",
+    "bankNo": "1404",
     patterns: [{
       reg: /^(622128|622129|623035)\d{10}$/g,
       cardType: "DC"
@@ -523,6 +555,7 @@ var bkm = bkm || {};
     bankName: "广州农村商业银行股份有限公司",
     bankCode: "GZRCU",
     cnapsCode: "",
+    bankCode: "",
     patterns: [{
       reg: /^(909810|940035|621522|622439)\d{12}$/g,
       cardType: "DC"
@@ -531,6 +564,7 @@ var bkm = bkm || {};
     bankName: "东莞农村商业银行",
     bankCode: "DRCBCL",
     cnapsCode: "",
+    "bankNo": "1415",
     patterns: [{
       reg: /^(622328|940062|623038)\d{13}$/g,
       cardType: "DC"
@@ -542,6 +576,7 @@ var bkm = bkm || {};
     bankName: "东莞市商业银行",
     bankCode: "BOD",
     cnapsCode: "",
+    "bankNo": "",
     patterns: [{
       reg: /^(622333|940050)\d{10}$/g,
       cardType: "DC"
@@ -556,6 +591,7 @@ var bkm = bkm || {};
     bankName: "广东省农村信用社联合社",
     bankCode: "GDRCC",
     cnapsCode: "",
+    "bankNo": "1450",
     patterns: [{
       reg: /^(622302)\d{10}$/g,
       cardType: "DC"
@@ -592,6 +628,7 @@ var bkm = bkm || {};
     bankName: "星展银行香港有限公司",
     bankCode: "DBS",
     cnapsCode: "",
+    "bankNo": "2508",
     patterns: [{
       reg: /^(621016|621015)\d{13}$/g,
       cardType: "DC"
@@ -606,6 +643,7 @@ var bkm = bkm || {};
     bankName: "恒丰银行",
     bankCode: "EGBANK",
     cnapsCode: "315456000000",
+    "bankNo": "0311",
     patterns: [{
       reg: /^(623078)\d{13}$/g,
       cardType: "DC"
@@ -617,6 +655,7 @@ var bkm = bkm || {};
     bankName: "天津市商业银行",
     bankCode: "TCCB",
     cnapsCode: "",
+    "bankNo": "0434",
     patterns: [{
       reg: /^(940015|622331)\d{12}$/g,
       cardType: "DC"
@@ -631,6 +670,7 @@ var bkm = bkm || {};
     bankName: "浙商银行",
     bankCode: "CZBANK",
     cnapsCode: "316331000000",
+    "bankNo": "0316",
     patterns: [{
       reg: /^(621019|622309|621019)\d{13}$/g,
       cardType: "DC"
@@ -659,6 +699,7 @@ var bkm = bkm || {};
     bankName: "厦门银行",
     bankCode: "XMBANK",
     cnapsCode: "313393000000",
+    "bankNo": "0402",
     patterns: [{
       reg: /^(622393|940023)\d{10}$/g,
       cardType: "DC"
@@ -673,6 +714,7 @@ var bkm = bkm || {};
     bankName: "福建海峡银行",
     bankCode: "FJHXBC",
     cnapsCode: "313391000000",
+    "bankNo": "0405",
     patterns: [{
       reg: /^(622388)\d{10}$/g,
       cardType: "DC"
@@ -687,6 +729,7 @@ var bkm = bkm || {};
     bankName: "吉林银行",
     bankCode: "JLBANK",
     cnapsCode: "313241000000",
+    "bankNo": "0451",
     patterns: [{
       reg: /^(622865|623131)\d{13}$/g,
       cardType: "DC"
@@ -701,6 +744,7 @@ var bkm = bkm || {};
     bankName: "汉口银行",
     bankCode: "HKB",
     cnapsCode: "",
+    "bankNo": "0507",
     patterns: [{
       reg: /^(990027)\d{12}$/g,
       cardType: "DC"
@@ -712,6 +756,7 @@ var bkm = bkm || {};
     bankName: "盛京银行",
     bankCode: "SJBANK",
     cnapsCode: "",
+    "bankNo": "0417",
     patterns: [{
       reg: /^(566666)\d{12}$/g,
       cardType: "DC"
@@ -729,6 +774,7 @@ var bkm = bkm || {};
     bankName: "大连银行",
     bankCode: "DLB",
     cnapsCode: "313222000000",
+    "bankNo": "0420",
     patterns: [{
       reg: /^(603708)\d{11}$/g,
       cardType: "DC"
@@ -743,6 +789,7 @@ var bkm = bkm || {};
     bankName: "河北银行",
     bankCode: "BHB",
     cnapsCode: "313121000000",
+    "bankNo": "0422",
     patterns: [{
       reg: /^(622498|622499|623000|940046)\d{13}$/g,
       cardType: "DC"
@@ -754,6 +801,7 @@ var bkm = bkm || {};
     bankName: "乌鲁木齐市商业银行",
     bankCode: "URMQCCB",
     cnapsCode: "313881000000",
+    "bankNo": "0427",
     patterns: [{
       reg: /^(621751|622143|940001|621754)\d{13}$/g,
       cardType: "DC"
@@ -765,6 +813,7 @@ var bkm = bkm || {};
     bankName: "绍兴银行",
     bankCode: "SXCB",
     cnapsCode: "",
+    "bankNo": "0428",
     patterns: [{
       reg: /^(622486)\d{10}$/g,
       cardType: "DC"
@@ -779,6 +828,7 @@ var bkm = bkm || {};
     bankName: "成都商业银行",
     bankCode: "CDCB",
     cnapsCode: "313651000000",
+    "bankNo": "0429",
     patterns: [{
       reg: /^(622152|622154|622996|622997|940027|622153|622135|621482|621532)\d{13}$/g,
       cardType: "DC"
@@ -787,6 +837,7 @@ var bkm = bkm || {};
     bankName: "抚顺银行",
     bankCode: "FSCB",
     cnapsCode: "",
+    "bankNo": "0430",
     patterns: [{
       reg: /^(622442)\d{11}$/g,
       cardType: "DC"
@@ -801,6 +852,7 @@ var bkm = bkm || {};
     bankName: "郑州银行",
     bankCode: "ZZBANK",
     cnapsCode: "313491000000",
+    "bankNo": "0435",
     patterns: [{
       reg: /^(622421)\d{13}$/g,
       cardType: "DC"
@@ -815,6 +867,7 @@ var bkm = bkm || {};
     bankName: "宁夏银行",
     bankCode: "NXBANK",
     cnapsCode: "313871000000",
+    "bankNo": "0436",
     patterns: [{
       reg: /^(621529|622429|621417|623089|623200)\d{13}$/g,
       cardType: "DC"
@@ -826,6 +879,7 @@ var bkm = bkm || {};
     bankName: "重庆银行",
     bankCode: "CQBANK",
     cnapsCode: "313653000000",
+    "bankNo": "0441",
     patterns: [{
       reg: /^(9896)\d{12}$/g,
       cardType: "DC"
@@ -837,6 +891,7 @@ var bkm = bkm || {};
     bankName: "哈尔滨银行",
     bankCode: "HRBANK",
     cnapsCode: "313261000000",
+    "bankNo": "0442",
     patterns: [{
       reg: /^(621577|622425)\d{13}$/g,
       cardType: "DC"
@@ -851,6 +906,7 @@ var bkm = bkm || {};
     bankName: "兰州银行",
     bankCode: "LZYH",
     cnapsCode: "313821000000",
+    "bankNo": "0447",
     patterns: [{
       reg: /^(622139|940040|628263)\d{10}$/g,
       cardType: "DC"
@@ -862,6 +918,7 @@ var bkm = bkm || {};
     bankName: "青岛银行",
     bankCode: "QDCCB",
     cnapsCode: "313452000000",
+    "bankNo": "0450",
     patterns: [{
       reg: /^(621252|622146|940061|628239)\d{10}$/g,
       cardType: "DC"
@@ -884,6 +941,7 @@ var bkm = bkm || {};
     bankName: "青海银行",
     bankCode: "BOQH",
     cnapsCode: "",
+    "bankNo": "0458",
     patterns: [{
       reg: /^(622310|940068)\d{11}$/g,
       cardType: "DC"
@@ -898,6 +956,7 @@ var bkm = bkm || {};
     bankName: "台州银行",
     bankCode: "TZCB",
     cnapsCode: "313345000000",
+    "bankNo": "0459",
     patterns: [{
       reg: /^(622427)\d{10}$/g,
       cardType: "DC"
@@ -918,6 +977,7 @@ var bkm = bkm || {};
     bankName: "长沙银行",
     bankCode: "CSCB",
     cnapsCode: "313551000000",
+    "bankNo": "0461",
     patterns: [{
       reg: /^(694301)\d{12}$/g,
       cardType: "DC"
@@ -935,6 +995,7 @@ var bkm = bkm || {};
     bankName: "泉州银行",
     bankCode: "BOQZ",
     cnapsCode: "313397000000",
+    "bankNo": "0464",
     patterns: [{
       reg: /^(683970|940074)\d{12}$/g,
       cardType: "DC"
@@ -952,6 +1013,7 @@ var bkm = bkm || {};
     bankName: "包商银行",
     bankCode: "BSB",
     cnapsCode: "313192000000",
+    "bankNo": "0479",
     patterns: [{
       reg: /^(622336|621760)\d{11}$/g,
       cardType: "DC"
@@ -966,6 +1028,7 @@ var bkm = bkm || {};
     bankName: "龙江银行",
     bankCode: "DAQINGB",
     cnapsCode: "313261000000",
+    "bankNo": "0533",
     patterns: [{
       reg: /^(621037|621097|621588|622977)\d{13}$/g,
       cardType: "DC"
@@ -983,6 +1046,7 @@ var bkm = bkm || {};
     bankName: "上海农商银行",
     bankCode: "SHRCB",
     cnapsCode: "",
+    "bankNo": "1401",
     patterns: [{
       reg: /^(622478|940013|621495)\d{10}$/g,
       cardType: "DC"
@@ -997,6 +1061,7 @@ var bkm = bkm || {};
     bankName: "浙江泰隆商业银行",
     bankCode: "ZJQL",
     cnapsCode: "313345000000",
+    "bankNo": "0473",
     patterns: [{
       reg: /^(622717)\d{10}$/g,
       cardType: "SCC"
@@ -1008,6 +1073,7 @@ var bkm = bkm || {};
     bankName: "内蒙古银行",
     bankCode: "H3CB",
     cnapsCode: "313191000000",
+    "bankNo": "0474",
     patterns: [{
       reg: /^(622147|621633)\d{13}$/g,
       cardType: "DC"
@@ -1019,6 +1085,7 @@ var bkm = bkm || {};
     bankName: "广西北部湾银行",
     bankCode: "BGB",
     cnapsCode: "313611000000",
+    "bankNo": "0478",
     patterns: [{
       reg: /^(623001)\d{10}$/g,
       cardType: "DC"
@@ -1044,6 +1111,7 @@ var bkm = bkm || {};
     bankName: "龙江银行",
     bankCode: "DAQINGB",
     cnapsCode: "313261000000",
+    "bankNo": "0533",
     patterns: [{
       reg: /^(621037|621097|621588|622977)\d{13}$/g,
       cardType: "DC"
@@ -1064,6 +1132,7 @@ var bkm = bkm || {};
     bankName: "成都农村商业银行",
     bankCode: "CDRCB",
     cnapsCode: "",
+    "bankNo": "1422",
     patterns: [{
       reg: /^(623088)\d{13}$/g,
       cardType: "DC"
@@ -1075,6 +1144,7 @@ var bkm = bkm || {};
     bankName: "福建省农村信用社联合社",
     bankCode: "FJNX",
     cnapsCode: "402391000000",
+    "bankNo": "1417",
     patterns: [{
       reg: /^(622127|622184|621701|621251|621589|623036)\d{13}$/g,
       cardType: "DC"
@@ -1086,6 +1156,7 @@ var bkm = bkm || {};
     bankName: "天津农村商业银行",
     bankCode: "TRCB",
     cnapsCode: "317110000000",
+    "bankNo": "1419",
     patterns: [{
       reg: /^(622531|622329)\d{13}$/g,
       cardType: "DC"
@@ -1097,6 +1168,7 @@ var bkm = bkm || {};
     bankName: "江苏省农村信用社联合社",
     bankCode: "JSRCU",
     cnapsCode: "402301000000",
+    "bankNo": "1424",
     patterns: [{
       reg: /^(621578|623066|622452|622324)\d{13}$/g,
       cardType: "DC"
@@ -1116,6 +1188,7 @@ var bkm = bkm || {};
     bankName: "江西省农村信用社联合社",
     bankCode: "JXNCX",
     cnapsCode: "",
+    "bankNo": "6539",
     patterns: [{
       reg: /^(621592)\d{10}$/g,
       cardType: "DC"
@@ -1138,6 +1211,7 @@ var bkm = bkm || {};
     bankName: "华融湘江银行",
     bankCode: "HRXJB",
     cnapsCode: "",
+    "bankNo": "0570",
     patterns: [{
       reg: /^(621366|621388)\d{13}$/g,
       cardType: "DC"
@@ -1149,6 +1223,7 @@ var bkm = bkm || {};
     bankName: "衡水市商业银行",
     bankCode: "HSBK",
     cnapsCode: "",
+    "bankNo": "0561",
     patterns: [{
       reg: /^(621239|623068)\d{13}$/g,
       cardType: "DC"
@@ -1157,6 +1232,7 @@ var bkm = bkm || {};
     bankName: "重庆南川石银村镇银行",
     bankCode: "CQNCSYCZ",
     cnapsCode: "",
+    "bankNo": "8207",
     patterns: [{
       reg: /^(621653004)\d{10}$/g,
       cardType: "DC"
@@ -1165,6 +1241,7 @@ var bkm = bkm || {};
     bankName: "湖南省农村信用社联合社",
     bankCode: "HNRCC",
     cnapsCode: "",
+    "bankNo": "1438",
     patterns: [{
       reg: /^(622169|621519|621539|623090)\d{13}$/g,
       cardType: "DC"
@@ -1173,6 +1250,7 @@ var bkm = bkm || {};
     bankName: "邢台银行",
     bankCode: "XTB",
     cnapsCode: "313131000000",
+    "bankNo": "0554",
     patterns: [{
       reg: /^(621238|620528)\d{13}$/g,
       cardType: "DC"
@@ -1181,6 +1259,7 @@ var bkm = bkm || {};
     bankName: "临汾市尧都区农村信用合作联社",
     bankCode: "LPRDNCXYS",
     cnapsCode: "",
+    "bankNo": "6534",
     patterns: [{
       reg: /^(628382|625158)\d{10}$/g,
       cardType: "CC"
@@ -1189,6 +1268,7 @@ var bkm = bkm || {};
     bankName: "东营银行",
     bankCode: "DYCCB",
     cnapsCode: "313455000000",
+    "bankNo": "0527",
     patterns: [{
       reg: /^(621004)\d{12}$/g,
       cardType: "DC"
@@ -1211,6 +1291,7 @@ var bkm = bkm || {};
     bankName: "德州银行",
     bankCode: "DZBANK",
     cnapsCode: "313468000000",
+    "bankNo": "0515",
     patterns: [{
       reg: /^(622937)\d{13}$/g,
       cardType: "DC"
@@ -1230,6 +1311,7 @@ var bkm = bkm || {};
     bankName: "云南省农村信用社",
     bankCode: "YNRCC",
     cnapsCode: "",
+    "bankNo": "6509",
     patterns: [{
       reg: /^(622469|628307)\d{10}$/g,
       cardType: "CC"
@@ -1238,6 +1320,7 @@ var bkm = bkm || {};
     bankName: "柳州银行",
     bankCode: "LZCCB",
     cnapsCode: "313614000000",
+    "bankNo": "0495",
     patterns: [{
       reg: /^(622292|622291|621412)\d{12}$/g,
       cardType: "DC"
@@ -1271,6 +1354,7 @@ var bkm = bkm || {};
     bankName: "潍坊银行",
     bankCode: "BANKWF",
     cnapsCode: "313458000000",
+    "bankNo": "8004",
     patterns: [{
       reg: /^(622391|940072)\d{10}$/g,
       cardType: "DC"
@@ -1282,6 +1366,7 @@ var bkm = bkm || {};
     bankName: "赣州银行",
     bankCode: "GZB",
     cnapsCode: "313428000000",
+    "bankNo": "0463",
     patterns: [{
       reg: /^(622967|940073)\d{13}$/g,
       cardType: "DC"
@@ -1301,6 +1386,7 @@ var bkm = bkm || {};
     bankName: "南昌银行",
     bankCode: "NCB",
     cnapsCode: "313421000000",
+    "bankNo": "0448",
     patterns: [{
       reg: /^(621269|622275)\d{10}$/g,
       cardType: "DC"
@@ -1315,6 +1401,7 @@ var bkm = bkm || {};
     bankName: "贵阳银行",
     bankCode: "GYCB",
     cnapsCode: "",
+    "bankNo": "0443",
     patterns: [{
       reg: /^(622133|621735)\d{13}$/g,
       cardType: "DC"
@@ -1329,6 +1416,7 @@ var bkm = bkm || {};
     bankName: "锦州银行",
     bankCode: "BOJZ",
     cnapsCode: "313227000000",
+    "bankNo": "0439",
     patterns: [{
       reg: /^(622990|940003)\d{11}$/g,
       cardType: "DC"
@@ -1340,6 +1428,7 @@ var bkm = bkm || {};
     bankName: "齐商银行",
     bankCode: "QSBANK",
     cnapsCode: "313453000000",
+    "bankNo": "0438",
     patterns: [{
       reg: /^(622311|940057)\d{11}$/g,
       cardType: "DC"
@@ -1351,6 +1440,7 @@ var bkm = bkm || {};
     bankName: "珠海华润银行",
     bankCode: "RBOZ",
     cnapsCode: "313585000000",
+    "bankNo": "0437",
     patterns: [{
       reg: /^(622363|940048)\d{13}$/g,
       cardType: "DC"
@@ -1362,6 +1452,7 @@ var bkm = bkm || {};
     bankName: "葫芦岛市商业银行",
     bankCode: "HLDCCB",
     cnapsCode: "",
+    "bankNo": "0433",
     patterns: [{
       reg: /^(622398|940054)\d{10}$/g,
       cardType: "DC"
@@ -1370,6 +1461,7 @@ var bkm = bkm || {};
     bankName: "宜昌市商业银行",
     bankCode: "HBC",
     cnapsCode: "",
+    "bankNo": "0432",
     patterns: [{
       reg: /^(940055)\d{11}$/g,
       cardType: "DC"
@@ -1381,6 +1473,7 @@ var bkm = bkm || {};
     bankName: "杭州商业银行",
     bankCode: "HZCB",
     cnapsCode: "",
+    "bankNo": "0423",
     patterns: [{
       reg: /^(603367|622878)\d{12}$/g,
       cardType: "DC"
@@ -1400,6 +1493,7 @@ var bkm = bkm || {};
     bankName: "辽阳银行",
     bankCode: "LYCB",
     cnapsCode: "",
+    "bankNo": "0419",
     patterns: [{
       reg: /^(622399|940043)\d{11}$/g,
       cardType: "DC"
@@ -1408,6 +1502,7 @@ var bkm = bkm || {};
     bankName: "洛阳银行",
     bankCode: "LYB",
     cnapsCode: "313493000000",
+    "bankNo": "0418",
     patterns: [{
       reg: /^(622420|940041)\d{11}$/g,
       cardType: "DC"
@@ -1416,6 +1511,7 @@ var bkm = bkm || {};
     bankName: "焦作市商业银行",
     bankCode: "JZCBANK",
     cnapsCode: "",
+    "bankNo": "0411",
     patterns: [{
       reg: /^(622338)\d{13}$/g,
       cardType: "DC"
@@ -1427,6 +1523,7 @@ var bkm = bkm || {};
     bankName: "镇江市商业银行",
     bankCode: "ZJCCB",
     cnapsCode: "",
+    "bankNo": "0407",
     patterns: [{
       reg: /^(622394|940025)\d{10}$/g,
       cardType: "DC"
@@ -1484,6 +1581,7 @@ var bkm = bkm || {};
     bankName: "临沂商业银行",
     bankCode: "LSB",
     cnapsCode: "",
+    "bankNo": "8005",
     patterns: [{
       reg: /^(622359|940066)\d{13}$/g,
       cardType: "DC"
@@ -1492,6 +1590,7 @@ var bkm = bkm || {};
     bankName: "烟台商业银行",
     bankCode: "YTCB",
     cnapsCode: "",
+    "bankNo": "8003",
     patterns: [{
       reg: /^(622886)\d{10}$/g,
       cardType: "DC"
@@ -1511,6 +1610,7 @@ var bkm = bkm || {};
     bankName: "BC卡公司",
     bankCode: "BCCC",
     cnapsCode: "",
+    "bankNo": "2663",
     patterns: [{
       reg: /^(620011|620027|620031|620039|620103|620106|620120|620123|620125|620220|620278|620812|621006|621011|621012|621020|621023|621025|621027|621031|620132|621039|621078|621220|621003)\d{10}$/g,
       cardType: "DC"
@@ -1522,6 +1622,7 @@ var bkm = bkm || {};
     bankName: "集友银行",
     bankCode: "CYB",
     cnapsCode: "",
+    "bankNo": "2521",
     patterns: [{
       reg: /^(622355|623042)\d{10}$/g,
       cardType: "DC"
@@ -1556,6 +1657,7 @@ var bkm = bkm || {};
     bankName: "AEON信贷财务亚洲有限公司",
     bankCode: "AEON",
     cnapsCode: "",
+    "bankNo": "2523",
     patterns: [{
       reg: /^(621064|622941|622974)\d{10}$/g,
       cardType: "DC"
@@ -1567,6 +1669,7 @@ var bkm = bkm || {};
     bankName: "澳门BDA",
     bankCode: "MABDA",
     cnapsCode: "",
+    "bankNo": "2786",
     patterns: [{
       reg: /^(621274|621324)\d{13}$/g,
       cardType: "DC"
