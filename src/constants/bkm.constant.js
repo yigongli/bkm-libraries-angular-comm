@@ -809,6 +809,10 @@ if( typeof module == 'object'){
             key: 2,
             value: 'JJDPay',
             name: '晋金贷代付'
+        }, {
+            key: 3,
+            value: 'CiticPay',
+            name: '中信银行'
         }],
         'UpOrDown': [{
             key: 0,
