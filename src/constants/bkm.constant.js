@@ -211,7 +211,7 @@ if( typeof module == 'object'){
         'SettleType': [{
             key: 0,
             value: 'Batch',
-            name: '按结算批次'
+            name: '按批次'
         }, {
             key: 1,
             value: 'Single',
