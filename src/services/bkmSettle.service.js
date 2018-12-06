@@ -23,7 +23,7 @@ bkm.settle.downstreamSettlementComputing = function (settleParams) {
     //下游结算数量增减
     v.downstreamFinalWeight = v.downstreamFinalWeight + (v.downFinalWeightAdjust || 0);
     v.downstreamFinalWeight = bkm.util.round(v.downstreamFinalWeight);
-    //下游服务费(元/车)
+    //下游服务费(元/车)(Ture表示收取服务费，false 表示不收取服务费)
     v.downServiceAmount = v.downIsIncludeServiceCharge ? v.downServiceCharge : 0;
     //下游含税运价
     v.downTaxRate = v.downTaxRate || 0;
@@ -47,6 +47,8 @@ bkm.settle.downstreamSettlementComputing = function (settleParams) {
     //下游含税结算金额
     v.downstreamFinalAmount = v.downNoTaxedFinalAmount / (1 - v.downTaxRate);
     v.downstreamFinalAmount = bkm.util.round(v.downstreamFinalAmount);
+    //下游对账金额: 对账金额把扣减掉的单车服务费还原回来，用于外部客户对账显示(华信客户)
+    v.downExternalFinalAmount = v.downstreamFinalAmount + v.downServiceAmount;
     //下游税费
     v.downTaxedAmount = v.downstreamFinalAmount - v.downNoTaxedFinalAmount;
     return bkm.util.clone(v);
