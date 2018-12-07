@@ -811,7 +811,7 @@ if( typeof module == 'object'){
             name: '晋金贷代付'
         }, {
             key: 3,
-            value: 'CiticPay',
+            value: 'CIBK',
             name: '中信银行'
         }],
         'UpOrDown': [{
