@@ -10,7 +10,7 @@
     /** @ngInject */
     function bkmFileUpload($http, $q) {
         var self = this,
-            apiUrl = "/web/api/file/upload";
+            apiUrl = "/api/file/upload";
 
         /**
          * 将 Image 对象转 base64 编码

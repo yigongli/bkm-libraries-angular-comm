@@ -35,7 +35,7 @@
 
         //判断是否为WebApi请求
         function isApi(url) {
-            var reg = /^\/web\/api\/[\w]{1,}/ig;
+            var reg = /^\/api\/[\w]{1,}/ig;
             reg.lastIndex = 0;
             return reg.test(url);
         }
