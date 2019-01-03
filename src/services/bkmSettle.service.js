@@ -15,9 +15,10 @@ bkm.settle.downstreamSettlementComputing = function (settleParams) {
     v.downLossRangeQuant = v.downLossWay == 1 ? v.downLossRange * v.loaded : v.downLossRange;
     v.downLossRangeQuant = bkm.util.round(v.downLossRangeQuant);
     //下游亏吨扣款: (亏吨数量-免责途损数量) * 货品单价, 如果未设置途损，则不扣款
+    v.losses = bkm.util.round(v.losses);
     v.downstreamLossAmount = (v.losses - (v.downLossWay == 0 ? v.losses : v.downLossRangeQuant)) * (v.goodsUnitPrice || 0);
     v.downstreamLossAmount = v.downstreamLossAmount > 0 ? v.downstreamLossAmount : 0;
-    v.downstreamLossAmount = bkm.util.round(v.downstreamLossAmount);
+    v.downstreamLossAmount = bkm.util.round(v.downstreamLossAmount) || 0;
     //下游结算数量: 判断下游结算数量策略
     v.downstreamFinalWeight = !v.downFinalWeightPolicy ? v.loaded : (v.downFinalWeightPolicy == 1 ? v.receipt : Math.min(v.loaded, v.receipt));
     //下游结算数量增减
