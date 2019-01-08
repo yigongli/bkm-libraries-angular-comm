@@ -491,6 +491,18 @@ if( typeof module == 'object'){
             key: 5,
             value: 'LEND',
             name: '放贷账户'
+        }, {
+            key: 6,
+            value: 'NEW_PAY',
+            name: '新生支付账户'
+        }, {
+            key: 7,
+            value: 'CITIC_PAY',
+            name: '中信支付账户'
+        }, {
+            key: 8,
+            value: 'ADVANCE',
+            name: '运费预付款账户'
         }],
         'AssetSettleStatus': [{
             key: 0,
@@ -564,6 +576,27 @@ if( typeof module == 'object'){
             key: 4,
             value: 'driver',
             name: '司机'
+        }],
+        'WalletCustomerRole': [{
+            key: 0,
+            value: 'Agent',
+            name: '经纪人'
+        }, {
+            key: 1,
+            value: 'Driver',
+            name: '司机'
+        }, {
+            key: 2,
+            value: 'Trader',
+            name: '货主'
+        }, {
+            key: 3,
+            value: 'Tenant',
+            name: '租户'
+        }, {
+            key: 4,
+            value: 'Host',
+            name: '平台'
         }],
         'StarLevel': [{
             key: 0,
