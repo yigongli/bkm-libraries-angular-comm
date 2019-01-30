@@ -906,6 +906,55 @@ if( typeof module == 'object'){
             key: 4,
             name: '已开票',
             value: 'INVOICED'
+        }],
+        'DispatchStatus':[{
+            key: 0,
+            value: 'Uncheck',
+            name: '待审核'
+        }, {
+            key: 1,
+            value: 'Checking',
+            name: '审核中'
+        }, {
+            key: 2,
+            value: 'Dispatched',
+            name: '已派单'
+        }, {
+            key: 3,
+            value: 'Rejected',
+            name: '已拒绝'
+        }, {
+            key: 4,
+            value: 'Accepted',
+            name: '已接单'
+        }, {
+            key: 5,
+            value: 'Printed',
+            name: '已打印'
+        }, {
+            key: 6,
+            value: 'Loaded',
+            name: '已装运'
+        }, {
+            key: 7,
+            value: 'OnWay',
+            name: '在途'
+        }, {
+            key: 8,
+            value: 'Arrived',
+            name: '已签收'
+        }, {
+            key: 9,
+            value: 'Finished',
+            name: '已完成'
+        }, {
+            key: 10,
+            value: 'Canceled',
+            name: '已作废'
+        }, {
+            key: 11,
+            value: 'Unpaid',
+            name: '待支付'
         }]
     };
 
