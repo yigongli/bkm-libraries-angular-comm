@@ -955,6 +955,19 @@ if( typeof module == 'object'){
             key: 11,
             value: 'Unpaid',
             name: '待支付'
+        }],
+        "ExpenseType":[{
+            key: 0,
+            value: 'DispatchPay',
+            name: '运费付款'
+        }, {
+            key: 1,
+            value: 'InvoicePay',
+            name: '开票扣款'
+        }, {
+            key: 2,
+            value: 'Recharge',
+            name: '充值'
         }]
     };
 
