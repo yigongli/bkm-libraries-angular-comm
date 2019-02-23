@@ -956,6 +956,39 @@ if( typeof module == 'object'){
             value: 'Unpaid',
             name: '待支付'
         }],
+        'GoodsStatus':[{
+            key: 0,
+            value: 'Uncheck',
+            name: '待审核'
+        }, {
+            key: 1,
+            value: 'Checking',
+            name: '审核中'
+        }, {
+            key: 2,
+            value: 'Published',
+            name: '已发布'
+        }, {
+            key: 3,
+            value: 'Rejected',
+            name: '已拒绝'
+        }, {
+            key: 4,
+            value: 'Failed',
+            name: '已流标'
+        }, {
+            key: 5,
+            value: 'Finished',
+            name: '已完成'
+        }, {
+            key: 6,
+            value: 'Recycled',
+            name: '已回收'
+        }, {
+            key: 7,
+            value: 'Canceled',
+            name: '已作废'
+        }],
         "ExpenseType":[{
             key: 0,
             value: 'DispatchPay',
