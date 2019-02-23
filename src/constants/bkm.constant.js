@@ -761,6 +761,10 @@ if( typeof module == 'object'){
             key: 2,
             value: 'Failure',
             name: '付款失败'
+        }, {
+            key: 3,
+            value: 'Unpay',
+            name: '未付款'
         }],
         'InvoiceStatus': [{
             key: 0,
