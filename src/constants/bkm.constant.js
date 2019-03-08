@@ -506,7 +506,7 @@ if( typeof module == 'object'){
         }, {
             key: 9,
             value: 'TENANT_REV_LOGIS',
-            name: '运费预付款账户'
+            name: '平台运费收入账户'
         }],
         'AssetSettleStatus': [{
             key: 0,
