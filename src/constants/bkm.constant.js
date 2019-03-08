@@ -503,6 +503,10 @@ if( typeof module == 'object'){
             key: 8,
             value: 'ADVANCE',
             name: '运费预付款账户'
+        }, {
+            key: 9,
+            value: 'TENANT_REV_LOGIS',
+            name: '运费预付款账户'
         }],
         'AssetSettleStatus': [{
             key: 0,
