@@ -5,11 +5,11 @@
 var bkm = bkm || {};
 
 //For angular dynamically define enum types
-if( typeof module == 'object'){
+if (typeof module == 'object') {
     module.exports = bkm;
 }
 
-(function() {
+(function () {
     'use strict';
 
     //对象常量定义，建议只能定义最多一层子对象，访问时按照bkm.CST.parent_child_property访问，如bkm.CST.VAL_ID_CODE
@@ -159,6 +159,10 @@ if( typeof module == 'object'){
             key: 5,
             value: "receiptUpload",
             name: "签收上传"
+        }, {
+            key: 6,
+            value: "payment",
+            name: "付款"
         }],
         'LoanTimeType': [{
             key: 0,
@@ -387,7 +391,7 @@ if( typeof module == 'object'){
             key: 0,
             value: 'Unprocessed',
             name: '未处理'
-        },{
+        }, {
             key: 1,
             value: 'Processed',
             name: '已放款'
@@ -654,7 +658,7 @@ if( typeof module == 'object'){
             name: '物润接口',
             value: 'EXCHANGES_SHIP56'
         }],
-        'CompanyType':[{
+        'CompanyType': [{
             key: 0,
             value: 'Logistic',
             name: '物流公司'
@@ -691,33 +695,33 @@ if( typeof module == 'object'){
         'VehicleCertType': [{
             key: 0,
             value: 'DrivingLicense',
-            name: '司机驾驶证' 
-        },{
+            name: '司机驾驶证'
+        }, {
             key: 1,
             value: 'VehicleLicense',
-            name: '行驶证' 
-        },{
+            name: '行驶证'
+        }, {
             key: 2,
             value: 'OperationLicense',
-            name: '道路运输证' 
-        },{
+            name: '道路运输证'
+        }, {
             key: 3,
             value: 'IdentityLicense',
-            name: '司机身份证' 
-        },{
+            name: '司机身份证'
+        }, {
             key: 4,
             value: 'Qualification',
-            name: '从业资格证' 
+            name: '从业资格证'
         }],
         'EffectNode': [{
             key: 0,
             value: 'Dispatch',
             name: '派车时间'
-        },{
+        }, {
             key: 1,
             value: 'Load',
             name: '发货时间'
-        },{
+        }, {
             key: 2,
             value: 'Arrive',
             name: '签收时间'
@@ -738,17 +742,17 @@ if( typeof module == 'object'){
         'ServiceChargeType': [{
             key: 0,
             value: 'FixedAmount',
-            name: '固定金额'  
+            name: '固定金额'
         }, {
             key: 1,
             value: 'Rate',
-            name: '按比例'  
+            name: '按比例'
         }],
         'BatchPayType': [{
             key: 0,
             value: 'BySettle',
             name: '结算单付款'
-        },{
+        }, {
             key: 1,
             value: 'ByDetail',
             name: '明细付款'
@@ -804,23 +808,23 @@ if( typeof module == 'object'){
             key: 1,
             value: 'BatchPay',
             name: '单车批量付款'
-        },{
+        }, {
             key: 2,
             value: 'Recharge',
             name: '用户充值'
-        },{
+        }, {
             key: 3,
             value: 'Loan',
             name: '贷款'
-        },{
+        }, {
             key: 4,
             value: 'Repayment',
             name: '还款'
-        },{
+        }, {
             key: 5,
             value: 'Cash',
             name: '提现'
-        },{
+        }, {
             key: 6,
             value: 'Advance',
             name: '预付款'
@@ -858,20 +862,20 @@ if( typeof module == 'object'){
         'UpOrDown': [{
             key: 0,
             value: 'Up',
-            name: '上游'  
+            name: '上游'
         }, {
             key: 1,
             value: 'Down',
-            name: '下游'  
+            name: '下游'
         }],
         'TransDocsType': [{
             key: 0,
             value: 'Load',
-            name: '矿发'  
+            name: '矿发'
         }, {
             key: 1,
             value: 'Receipt',
-            name: '签收'  
+            name: '签收'
         }],
         'SettleInvoiceStatus': [{
             key: 0,
@@ -915,7 +919,7 @@ if( typeof module == 'object'){
             name: '已开票',
             value: 'INVOICED'
         }],
-        'DispatchStatus':[{
+        'DispatchStatus': [{
             key: 0,
             value: 'Uncheck',
             name: '待审核'
@@ -964,7 +968,7 @@ if( typeof module == 'object'){
             value: 'Unpaid',
             name: '待支付'
         }],
-        'GoodsStatus':[{
+        'GoodsStatus': [{
             key: 0,
             value: 'Uncheck',
             name: '待审核'
@@ -997,7 +1001,7 @@ if( typeof module == 'object'){
             value: 'Canceled',
             name: '已作废'
         }],
-        "ExpenseType":[{
+        "ExpenseType": [{
             key: 0,
             value: 'DispatchPay',
             name: '运费付款'
@@ -1013,14 +1017,14 @@ if( typeof module == 'object'){
     };
 
     var dictionariesProxy = new Proxy(dictionaries, {
-        get: function(obj, prop) {
+        get: function (obj, prop) {
             if (prop in obj) {
                 return obj[prop].slice();
             } else {
                 console.log('The property   is not existed:');
             }
         },
-        set: function(obj, prop, value) {
+        set: function (obj, prop, value) {
             console.log('You can not set the readonly object property value:');
         }
     });
@@ -1030,10 +1034,10 @@ if( typeof module == 'object'){
     Object.defineProperty(bkm, 'DICT', {
         enumerable: true,
         configurable: false,
-        get: function() {
+        get: function () {
             return dictionariesProxy;
         },
-        set: function(newValue) {
+        set: function (newValue) {
             console.log('You can not set the readonly object property map value to : ');
         }
     });
@@ -1046,7 +1050,7 @@ if( typeof module == 'object'){
 
     //循环字典数据定义只读的常量对象   
     for (var x in dictionaries) {
-        dictionaries[x].forEach(function(item) {
+        dictionaries[x].forEach(function (item) {
             if (item.value != null) {
                 var cstKey = x + '_' + item.value;
                 Object.defineProperty(bkm.CST, cstKey, {
@@ -1078,7 +1082,7 @@ if( typeof module == 'object'){
         if (typeof obj != 'object') return null;
         props = props || [];
         for (var i in obj) {
-            if (typeof(obj[i]) == 'object') {
+            if (typeof (obj[i]) == 'object') {
                 props.push(i);
                 iterObjKeys(obj[i], props);
                 props.pop(i);

@@ -775,6 +775,13 @@
         var quarterStartDate = new Date(nowYear, quarterEndMonth, bkm.date.getMonthDays(quarterEndMonth));
         return bkm.date.format(quarterStartDate);
     }
+    bkm.date.diffDays = function (beginDay, endDay) {
+        if (angular.isDate(beginDay) && angular.isDate(endDay)) {
+            return (endDay.getTime() - beginDay.getTime()) / (1000 * 60 * 60 * 24);
+        } else {
+            return null;
+        }
+    }
 
     return bkm.date;
 })();
