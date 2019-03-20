@@ -1013,6 +1013,27 @@ if (typeof module == 'object') {
             key: 2,
             value: 'Recharge',
             name: '充值'
+        }],
+        "VehicleLevel" :[{
+            key: 0,
+            value: 'L1',
+            name: '一星 *'
+        }, {
+            key: 1,
+            value: 'L2',
+            name: '二星 **'
+        }, {
+            key: 2,
+            value: 'L3',
+            name: '三星 ***'
+        }, {
+            key: 3,
+            value: 'L4',
+            name: '四星 ****'
+        }, {
+            key: 99,
+            value: 'Ln',
+            name: '无星'
         }]
     };
 
