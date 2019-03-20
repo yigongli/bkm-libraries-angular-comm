@@ -606,23 +606,6 @@ if (typeof module == 'object') {
             value: 'Host',
             name: '平台'
         }],
-        'StarLevel': [{
-            key: 0,
-            value: 'One',
-            name: "一星"
-        }, {
-            key: 1,
-            value: 'Two',
-            name: "二星"
-        }, {
-            key: 2,
-            value: 'Three',
-            name: "三星"
-        }, {
-            key: 3,
-            value: 'Four',
-            name: "四星"
-        }],
         'UploadStatus': [{
             key: 0,
             value: 'NotUpload',
