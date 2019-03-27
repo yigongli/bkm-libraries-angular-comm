@@ -650,6 +650,26 @@
         return result;
     };
 
+    /**
+     * 去除字符串空格
+     */
+    bkm.util.trim = function (str, option) {
+        var opt = option || 'both',
+            result = str || '';
+        switch (opt) {
+            case 'all':
+                return result.replace(/\s*/g, "");
+            case 'left':
+                return result.replace(/^\s*/, "");
+            case 'right':
+                return result.replace(/(\s*$)/g, "");
+            case 'both':
+                return result.replace(/^\s*|\s*$/g, "");
+            default:
+                return str;
+        }
+    }
+
 
 
     return bkm.util;
