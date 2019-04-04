@@ -1017,6 +1017,27 @@ if (typeof module == 'object') {
             key: 99,
             value: 'Ln',
             name: '无星'
+        }],
+        "TimeSpan": [{
+            key: 0,
+            value: 'All',
+            name: '全部'
+        }, {
+            key: 1,
+            value: 'Today',
+            name: '今天'
+        }, {
+            key: 2,
+            value: 'Tomorrow',
+            name: '明天'
+        }, {
+            key: 3,
+            value: 'Week',
+            name: '本周'
+        }, {
+            key: 4,
+            value: 'Month',
+            name: '本月'
         }]
     };
 
