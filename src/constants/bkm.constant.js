@@ -951,6 +951,31 @@ if (typeof module == 'object') {
             value: 'Unpaid',
             name: '待支付'
         }],
+        'DispatchLocationStatus': [{
+            key: 0,
+            value: 'Unknow',
+            name: '未定位'
+        }, {
+            key: 1,
+            value: 'Normal',
+            name: '定位正常'
+        }, {
+            key: 2,
+            value: 'LocationNotExist',
+            name: '轨迹不存在'
+        }, {
+            key: 3,
+            value: 'LoadLocationError',
+            name: '装货地定位异常'
+        }, {
+            key: 4,
+            value: 'UnloadLocationError',
+            name: '卸货地定位异常'
+        }, {
+            key: 5,
+            value: 'LoadAndUnloadLocationError',
+            name: '装卸货地定位异常'
+        }],
         'GoodsStatus': [{
             key: 0,
             value: 'Uncheck',
