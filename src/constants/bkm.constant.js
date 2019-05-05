@@ -958,7 +958,7 @@ if (typeof module == 'object') {
         }, {
             key: 1,
             value: 'Normal',
-            name: '定位正常'
+            name: '正常'
         }, {
             key: 2,
             value: 'LocationNotExist',
@@ -966,15 +966,15 @@ if (typeof module == 'object') {
         }, {
             key: 3,
             value: 'LoadLocationError',
-            name: '装货地定位异常'
+            name: '装货地异常'
         }, {
             key: 4,
             value: 'UnloadLocationError',
-            name: '卸货地定位异常'
+            name: '卸货地异常'
         }, {
             key: 5,
             value: 'LoadAndUnloadLocationError',
-            name: '装卸货地定位异常'
+            name: '装卸货地异常'
         }],
         'GoodsStatus': [{
             key: 0,
