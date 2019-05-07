@@ -46,11 +46,13 @@ bkm.settle.downstreamSettlementComputing = function (settleParams) {
     //下游含税结算金额, 抹零取整（含税运费金额) 去掉个位（包含）数后的零头
     v.downstreamFinalAmount = v.downNoTaxedFinalAmount / (1 - v.downTaxRate);
     v.downstreamFinalAmount = bkm.util.round(v.downstreamFinalAmount);
+    //下游税费
+    v.downTaxedAmount = v.downstreamFinalAmount - v.downNoTaxedFinalAmount;
+    // 结算金额抹0
     v.downstreamFinalAmount = (v.isIgnoreSmall ? parseInt(v.downstreamFinalAmount / 10) * 10 : v.downstreamFinalAmount);
     //下游对账金额: 对账金额把扣减掉的单车服务费还原回来，用于外部客户对账显示(华信客户)
     v.downExternalFinalAmount = v.downstreamFinalAmount + v.downServiceAmount;
-    //下游税费
-    v.downTaxedAmount = v.downstreamFinalAmount - v.downNoTaxedFinalAmount;
+    
     return bkm.util.clone(v);
 };
 
