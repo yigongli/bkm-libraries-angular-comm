@@ -1063,6 +1063,23 @@ if (typeof module == 'object') {
             key: 4,
             value: 'Month',
             name: '本月'
+        }],
+        "InvoiceSplitType":[{
+            key: 0,
+            value: 'Default',
+            name: '默认'
+        }, {
+            key: 1,
+            value: 'Province',
+            name: '按省'
+        }, {
+            key: 2,
+            value: 'ProvinceCity',
+            name: '按省市'
+        }, {
+            key: 3,
+            value: 'Route',
+            name: '按线路'
         }]
     };
 
