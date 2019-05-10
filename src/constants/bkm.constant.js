@@ -1067,7 +1067,7 @@ if (typeof module == 'object') {
         "InvoiceSplitType":[{
             key: 0,
             value: 'Default',
-            name: '默认'
+            name: '系统默认'
         }, {
             key: 1,
             value: 'Province',
