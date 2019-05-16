@@ -655,7 +655,7 @@
      */
     bkm.util.trim = function (str, option) {
         var opt = option || 'both',
-            result = str || '';
+            result = angular.isNumber(str) ? str.toString() : str || '';
         switch (opt) {
             case 'all':
                 return result.replace(/\s*/g, "");

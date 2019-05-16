@@ -354,7 +354,7 @@ if (typeof module == 'object') {
         'MatchStatus': [{
             key: 0,
             value: 'Original',
-            name: '人工审核'
+            name: '人工匹配'
         }, {
             key: 1,
             value: 'Matched',
