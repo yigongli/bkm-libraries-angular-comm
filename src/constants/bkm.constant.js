@@ -1080,6 +1080,15 @@ if (typeof module == 'object') {
             key: 3,
             value: 'Route',
             name: '按线路'
+        }],
+        "JointTrans": [{
+            key: 0,
+            value: 'None',
+            name: '无'
+        }, {
+            key: 1,
+            value: 'H2RByContainer',
+            name: '公铁集装箱联运'
         }]
     };
 
