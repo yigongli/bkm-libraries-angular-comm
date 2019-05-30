@@ -1674,6 +1674,15 @@ var bkm = bkm || {};
       reg: /^(621274|621324)\d{13}$/g,
       cardType: "DC"
     }]
+  }, {
+    bankName: "山西省农村信用社联合社",
+    bankCode: "SXRCU",
+    cnapsCode: "",
+    "bankNo": "1455",
+    patterns: [{
+      reg: /^(623051)\d{13}$/g,
+      cardType: "DC"
+    }]
   }];
 
   bkm.bank.getBankNameByCode = function (cardCode) {
