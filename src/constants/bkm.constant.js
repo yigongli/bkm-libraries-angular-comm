@@ -1089,6 +1089,19 @@ if (typeof module == 'object') {
             key: 1,
             value: 'H2RByContainer',
             name: '公铁集装箱联运'
+        }],
+        "LossWay": [{
+            key: 0,
+            value: 'NotSet',
+            name: '未设置'
+        }, {
+            key: 1,
+            value: 'Rate',
+            name: '按比例'
+        }, {
+            key: 2,
+            value: 'Weight',
+            name: '按重量'
         }]
     };
 
