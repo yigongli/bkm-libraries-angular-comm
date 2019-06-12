@@ -663,8 +663,12 @@ if (typeof module == 'object') {
             name: '金融公司'
         }, {
             key: 5,
-            value: 'Unknow',
-            name: '未知'
+            value: 'TaxSubstitute',
+            name: '税务代开公司'
+        }, {
+            key: 6,
+            value: 'TraderLogis',
+            name: '货主物流公司'
         }],
         'PlatformType': [{
             key: 0,
@@ -719,6 +723,10 @@ if (typeof module == 'object') {
             name: '车队'
         }, {
             key: 2,
+            value: 'Substitute',
+            name: '代开机构'
+        }, {
+            key: 3,
             value: 'Driver',
             name: '车主司机'
         }],
