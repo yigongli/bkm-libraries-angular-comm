@@ -810,7 +810,7 @@
 bkm.browser = function() {
     var _browser = {};
     var sUserAgent = navigator.userAgent;
-
+    console.log(sUserAgent);
     var isOpera = sUserAgent.indexOf("Opera") > -1;
     if (isOpera) {
         //首先检测Opera是否进行了伪装
@@ -828,7 +828,11 @@ bkm.browser = function() {
 
     var isChrome = sUserAgent.indexOf("Chrome") > -1;
     if (isChrome) {
-        if (sUserAgent.indexOf("Edge") > -1) {
+        var mimeObj = navigator.mimeTypes['application/x-shockwave-flash'];
+        if ( mimeObj ) {
+            var desp = mimeObj.description || '';
+            _browser.chrome360 = desp.toLowerCase().indexof('adobe') > -1 ;
+        } else if (sUserAgent.indexOf("Edge") > -1) {
             var reEdge = new RegExp("Edge/(\\d+\\.\\d+)");
             reEdge.test(sUserAgent);
             _browser.version = parseFloat(RegExp['$1']);
