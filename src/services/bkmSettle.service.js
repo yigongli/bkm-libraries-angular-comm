@@ -24,7 +24,7 @@ bkm.settle.downstreamSettlementComputing = function (settleParams) {
     //下游结算数量增减
     v.downstreamFinalWeight = v.downstreamFinalWeight + (v.downFinalWeightAdjust || 0);
     v.downstreamFinalWeight = bkm.util.round(v.downstreamFinalWeight);
-    //下游服务费(元/车)(Ture表示收取服务费，false 表示不收取服务费)
+    //下游运输服务费(元/车)(Ture表示收取服务费，false 表示不收取服务费)
     v.downServiceAmount = v.downIsIncludeServiceCharge ? v.downServiceCharge : 0;
     //下游含税运价
     v.downTaxRate = v.downTaxRate || 0;
@@ -32,22 +32,11 @@ bkm.settle.downstreamSettlementComputing = function (settleParams) {
     v.downTaxedFreightPrice = bkm.util.round(v.downTaxedFreightPrice);
     //用于含税运价分组汇总
     v.downTaxedFreightPriceGrp = v.downTaxedFreightPrice;
-    //下游裸运价
-    v.noDownTaxedFreightPrice = v.isDownIncludeTax ? v.freightPrice * (1 - v.downTaxRate) : v.freightPrice;
-    v.noDownTaxedFreightPrice = bkm.util.round(v.noDownTaxedFreightPrice);
-    //下游原始运费金额：结算数量 * 运费单价
-    v.freightAmount = bkm.util.round(v.downstreamFinalWeight * v.freightPrice);
     //下游含税运费金额：结算数量 * 含税运费单价
     v.taxedFreightAmount = bkm.util.round(v.downstreamFinalWeight * v.downTaxedFreightPrice);
-    //下游裸运费金额：结算数量 * 裸运费单价
-    v.noTaxedFreightAmount = bkm.util.round(v.downstreamFinalWeight * v.noDownTaxedFreightPrice);
-    //未含税结算金额:  裸运费金额 - 亏吨扣款 + 运费增减  - 服务费 - 装卸费
-    v.downNoTaxedFinalAmount = v.noTaxedFreightAmount - v.downstreamLossAmount + (v.downAmountAdjust || 0) - v.downServiceAmount - v.loadUnloadAmount;
-    //下游含税结算金额, 抹零取整（含税运费金额) 去掉个位（包含）数后的零头
-    v.downstreamFinalAmount = v.downNoTaxedFinalAmount / (1 - v.downTaxRate);
+    //含税结算金额:  含税运费金额 - 亏吨扣款 + 运费增减  - 服务费 - 装卸费
+    v.downstreamFinalAmount = v.taxedFreightAmount - v.downstreamLossAmount + (v.downAmountAdjust || 0) - v.downServiceAmount - v.loadUnloadAmount;
     v.downstreamFinalAmount = bkm.util.round(v.downstreamFinalAmount);
-    //下游税费
-    v.downTaxedAmount = v.downstreamFinalAmount - v.downNoTaxedFinalAmount;
     // 结算金额抹0
     v.downstreamFinalAmount = (v.isIgnoreSmall ? parseInt(v.downstreamFinalAmount / 10) * 10 : v.downstreamFinalAmount);
     //下游对账金额: 对账金额把扣减掉的单车服务费还原回来，用于外部客户对账显示(华信客户)
