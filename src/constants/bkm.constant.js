@@ -1110,6 +1110,19 @@ if (typeof module == 'object') {
             key: 2,
             value: 'Weight',
             name: '按重量'
+        }],
+        "SettleBillType": [{
+            key: 0,
+            value: "Settlement",
+            name: "结算单"
+        }, {
+            key: 1,
+            value: "Payment",
+            name: "付款单"
+        }, {
+            key: 2,
+            value: "LogisAssistant",
+            name: "物流辅助单"
         }]
     };
 
