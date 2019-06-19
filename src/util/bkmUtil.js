@@ -831,6 +831,7 @@ bkm.browser = function() {
         if ( mimeObj ) {
             var desp = mimeObj.description || '';
             _browser.chrome360 = desp.toLowerCase().indexOf('adobe') > -1 ;
+            _browser.chrome = !_browser.chrome360;
         } else if (sUserAgent.indexOf("Edge") > -1) {
             var reEdge = new RegExp("Edge/(\\d+\\.\\d+)");
             reEdge.test(sUserAgent);
