@@ -1,6 +1,6 @@
 ﻿var bkm = bkm || {};
 
-(function() {
+(function () {
     'use strict';
 
     bkm.util = bkm.util || {};
@@ -9,14 +9,60 @@
     return bkm;
 })();
 
-(function() {
+(function () {
     'use strict';
+
+    /** 
+     *  Define a readonly object from normal input
+     * @param {Object} input - input object
+     * @returns {Object} a new readonly object
+     * 
+    */
+    bkm.util.readonlyObject = function (input) {
+        if (!angular.isObject(input)) {
+            return null;
+        }
+        var objectProxy = new Proxy(input, {
+            get: (obj, prop) => {
+                if (prop in obj) {
+                    return obj[prop];
+                } else {
+                    console.log(bkm.util.format('The property {0}  is not existed!!', prop));
+                }
+            },
+            set: function (obj, prop, value) {
+                console.log(bkm.util.format('You can not set the readonly object property {0} value!', prop));
+            }
+        });
+        return objectProxy;
+    }
+
+    /** 
+     * Define a object property as readonly with input
+     * @param {Object} obj - Input object
+     * @param {string} prop - The object property name
+     * 
+    */
+    bkm.util.readonlyProp = function (obj, prop) {
+        if (!angular.isObject(obj) || obj[prop] === undefined) {
+            return;
+        }
+        var propValue = obj[prop];
+        Object.defineProperty(obj, prop, {
+            enumerable: true,
+            configurable: false,
+            get: () => propValue,
+            set: newValue => console.log(bkm.util.format('You can not set the object readonly property {0} value to {1}!', prop, newValue))
+        });
+    }
+
+
 
     /*
      * 两个对象判等
      */
-    bkm.util.isObjectsEqual = function(a, b) {
-        if (typeof a != 'object' || typeof b != 'object'){
+    bkm.util.isObjectsEqual = function (a, b) {
+        if (typeof a != 'object' || typeof b != 'object') {
             return false;
         }
         var aProps = Object.getOwnPropertyNames(a);
@@ -33,7 +79,7 @@
         return true;
     };
 
-    bkm.util.postMockForm = function(URL, PARAMS) {
+    bkm.util.postMockForm = function (URL, PARAMS) {
         var temp_form = document.createElement("form");
         temp_form.action = URL;
         temp_form.target = "_blank";
@@ -54,7 +100,7 @@
     /*
      * 删除数组中指定元素
      */
-    bkm.util.removeByValue = function(_array, val) {
+    bkm.util.removeByValue = function (_array, val) {
         for (var i = 0; i < _array.length; i++) {
             if (this[i] == val) {
                 _array.splice(i, 1);
@@ -67,7 +113,7 @@
      * 删除对象集合中具有指定特征的对象    
      */
 
-    bkm.util.removeByObjectWithKeys = function(_array, obj) {
+    bkm.util.removeByObjectWithKeys = function (_array, obj) {
         var props = Object.getOwnPropertyNames(obj);
         var propsAmount = props.length;
 
@@ -91,7 +137,7 @@
     /*
      * 删除对象集合中具有指定特征的对象集
      */
-    bkm.util.removeByObjectsWithKeys = function(_array, targetArray) {
+    bkm.util.removeByObjectsWithKeys = function (_array, targetArray) {
         for (var i = targetArray.length - 1; i >= 0; i--) {
             bkm.util.removeByObjectWithKeys(_array, targetArray[i]);
         }
@@ -102,7 +148,7 @@
      * 从对象集合中删除指定对象
      *
      */
-    bkm.util.removeByObject = function(_array, obj) {
+    bkm.util.removeByObject = function (_array, obj) {
         for (var i = 0; i < _array.length; i++) {
             if (bkm.util.isObjectsEqual(_array[i], obj)) {
                 _array.splice(i, 1);
@@ -114,7 +160,7 @@
     /*
      * JS 产生一个新的GUID随机数
      */
-    bkm.util.newGuid = function() {
+    bkm.util.newGuid = function () {
         var guid = "";
         for (var i = 1; i <= 32; i++) {
             var n = Math.floor(Math.random() * 16.0).toString(16);
@@ -128,10 +174,10 @@
     /*
      * 格式化字符串
      */
-    bkm.util.format = function(str, args) {
+    bkm.util.format = function (str, args) {
         var result = str;
         if (arguments.length > 0) {
-            if (arguments.length == 2 && typeof(args) == "object") {
+            if (arguments.length == 2 && typeof (args) == "object") {
                 for (var key in args) {
                     if (args[key] != undefined) {
                         var reg = new RegExp("({" + key + "})", "g");
@@ -151,18 +197,18 @@
         return result;
     };
 
-    bkm.util.objectPercentPropertyDef = function(inputModel, dispProp, dataProp, factor) {
+    bkm.util.objectPercentPropertyDef = function (inputModel, dispProp, dataProp, factor) {
         var base = factor || 100;
         if ((typeof inputModel != 'object') || (typeof dispProp != 'string') || (typeof dataProp != 'string')) return;
         Object.defineProperty(inputModel, dispProp, {
-            get: function() {
+            get: function () {
                 if (inputModel && inputModel[dataProp] != null) {
                     return (Math.round(inputModel[dataProp] * base * base) / base);
                 } else {
                     return null;
                 }
             },
-            set: function(newValue) {
+            set: function (newValue) {
                 if (inputModel[dataProp] == (newValue == null ? null : newValue / base)) return;
                 if (newValue == null) {
                     inputModel[dispProp] = inputModel[dataProp] = null;
@@ -180,37 +226,37 @@
     /*
      * 判断是否为字符串
      */
-    bkm.util.isString = function(value) {
+    bkm.util.isString = function (value) {
         return typeof value === 'string';
     };
 
     /*
      * 判断是否为数组
      */
-    bkm.util.isArray = function(value) {
+    bkm.util.isArray = function (value) {
         return value instanceof Array && value.constructor == Array;
     };
 
     /*
      * 判断是否为对象
      */
-    bkm.util.isObject = function(value) {
+    bkm.util.isObject = function (value) {
         return value instanceof Object && value.constructor == Object;
     };
 
     /*
      * 限制文本框只能输入整数
      */
-    bkm.util.limit = function(input, limitType) {
+    bkm.util.limit = function (input, limitType) {
         var type = limitType || "number";
-        if(typeof input == "string"){
-            switch(type){
+        if (typeof input == "string") {
+            switch (type) {
                 case 'number':
                     return input.replace(/\D/g, '');
-                default: 
+                default:
                     return input;
             }
-        }else{
+        } else {
             return input;
         }
     };
@@ -218,7 +264,7 @@
     /*
      * 检测只能输入小数
      */
-    bkm.util.number = function(input) {
+    bkm.util.number = function (input) {
         if (input instanceof jQuery) {
             input = input[0];
         }
@@ -235,7 +281,7 @@
     /*
      * 从指定的数组集合中找到字符串或数组子集合中是否存在
      */
-    bkm.util.contains = function(data, elems, separator) {
+    bkm.util.contains = function (data, elems, separator) {
         if (!data || !elems) return false;
         var array = bkm.util.toArray(elems, separator);
         for (var i in array) {
@@ -250,7 +296,7 @@
     /*
      * 判断对象数组中是否包含指定属性的对象
      */
-    bkm.util.containsObject = function(data, elem, prop) {
+    bkm.util.containsObject = function (data, elem, prop) {
         if (!data || !data.length || !elem || !elem[prop]) return false;
         for (var index in data) {
             if (data[index][prop] == elem[prop]) {
@@ -263,11 +309,11 @@
     /*
      * 判断对象数组中是否包含指定属性的对象
      */
-    bkm.util.containsElement = function(data, elem) {
+    bkm.util.containsElement = function (data, elem) {
         return bkm.util.toArray(data).indexOf(elem) > -1;
     };
 
-    
+
     /*
      * 判断对象数组中是否存在指定属性的重复对象, 返回所有发现的重复数据二维结果集
      */
@@ -313,11 +359,11 @@
         return duplicatedObjects;
     };
 
-    
+
     /*
      * 将指定元素转化为数组
      */
-    bkm.util.toArray = function(data, separator) {
+    bkm.util.toArray = function (data, separator) {
         var result = [];
         if (typeof data == 'string') {
             separator = separator || ',';
@@ -337,14 +383,14 @@
     /*
      * 判断元素是否存在属性
      */
-    bkm.util.hasAttr = function(elem, attrName) {
+    bkm.util.hasAttr = function (elem, attrName) {
         return typeof elem.attr(attrName) != 'undefined';
     };
 
     /*
      * 判断元素是否存在属性
      */
-    bkm.util.hasAttrs = function(elem, attrNames) {
+    bkm.util.hasAttrs = function (elem, attrNames) {
         var attrs = bkm.util.toArray(attrNames);
         for (var index in attrs) {
             if (bkm.util.hasAttr(elem, attrs[index])) {
@@ -357,7 +403,7 @@
     /*
      * 将字符串转化为bool类型, isIgnoreZero为解决单选框存在有0的选项
      */
-    bkm.util.bool = function(str, isIgnoreZero) {
+    bkm.util.bool = function (str, isIgnoreZero) {
         isIgnoreZero = isIgnoreZero || false;
         if (typeof str === 'boolean') return str;
         str += '';
@@ -371,8 +417,8 @@
     /*
      * 对象复制
      */
-    bkm.util.clone = function(obj) {
-        if (typeof(obj) != 'object') return obj;
+    bkm.util.clone = function (obj) {
+        if (typeof (obj) != 'object') return obj;
         if (obj == null) return obj;
         var newObject = new Object();
         for (var i in obj)
@@ -383,8 +429,8 @@
     /*
      * 对象扩展
      */
-    bkm.util.extend = function(target, source) {
-        if(!bkm.util.isObject(target) || !bkm.util.isObject(source)){
+    bkm.util.extend = function (target, source) {
+        if (!bkm.util.isObject(target) || !bkm.util.isObject(source)) {
             return null;
         }
         for (var p in source) {
@@ -398,7 +444,7 @@
     /*
      * 从对象数组中查找某属性值对应的索引
      */
-    bkm.util.indexOf = function(data, key, value) {
+    bkm.util.indexOf = function (data, key, value) {
         if (!data || !data.length) return -1;
         for (var index in data) {
             if (!data[index][key]) return -1;
@@ -412,7 +458,7 @@
     /*
      * 从指定的数组集合中找到字符串或数组子集合中是否存在
      */
-    bkm.util.contains = function(data, elems, separator) {
+    bkm.util.contains = function (data, elems, separator) {
         if (!data || !elems) return false;
         var array = bkm.util.toArray(elems, separator);
         for (var j in array) {
@@ -426,7 +472,7 @@
     /*
      * 将指定元素转化为数组
      */
-    bkm.util.toArray = function(data, separator) {
+    bkm.util.toArray = function (data, separator) {
         var result = [];
         if (typeof data == 'string') {
             separator = separator || ',';
@@ -448,7 +494,7 @@
      * data 原数据源{key,value,parentkey},
      * result 构建后的新数据源{key:{value,children:[]}}
      */
-    bkm.util.buildCascadeDataSource = function(data, result) {
+    bkm.util.buildCascadeDataSource = function (data, result) {
         for (var index in data) {
             var source = data[index];
             if (source.parentKey == 0) {
@@ -478,7 +524,7 @@
     /*
      * 设置当前的操作项(checkbox)
      */
-    bkm.util.setSelectedItems = function(selected, item, event) {
+    bkm.util.setSelectedItems = function (selected, item, event) {
         var index = selected.indexOf(item.key);
         if (event.target.checked) {
             if (index === -1) {
@@ -494,7 +540,7 @@
     /*
      * 设置默认选中
      */
-    bkm.util.setDefaultSelected = function(items, key) {
+    bkm.util.setDefaultSelected = function (items, key) {
         if (!items || !items.length) return;
         for (var i = 0, len = items.length; i < len; i++) {
             var item = items[i];
@@ -505,7 +551,7 @@
     /*
      * 获取字典项的值
      */
-    bkm.util.getDictName = function(items, key) {
+    bkm.util.getDictName = function (items, key) {
         if (key == undefined) return '';
         if (!items || !items.length) return key;
         for (var i = 0, len = items.length; i < len; i++) {
@@ -519,7 +565,7 @@
     /*
      * 获取字典项的Key
      */
-    bkm.util.getDictKey = function(items, name) {
+    bkm.util.getDictKey = function (items, name) {
         if (name == undefined) return '';
         if (!items || !items.length) return name;
         for (var i = 0, len = items.length; i < len; i++) {
@@ -531,13 +577,13 @@
         return name;
     };
 
-    bkm.util.loadDependencies = function(dependencies) {
+    bkm.util.loadDependencies = function (dependencies) {
         return {
-            resolver: ['$q', '$rootScope', function($q, $rootScope) {
+            resolver: ['$q', '$rootScope', function ($q, $rootScope) {
                 var defered = $q.defer();
 
-                require(dependencies, function() {
-                    $rootScope.$apply(function() {
+                require(dependencies, function () {
+                    $rootScope.$apply(function () {
                         defered.resolve();
                     });
                 });
@@ -550,11 +596,11 @@
     /*
      * 获取URL中的Querystring参数
      */
-    bkm.util.params = function(name) {
-    var searchReg =  RegExp(/\?.*/g);
+    bkm.util.params = function (name) {
+        var searchReg = RegExp(/\?.*/g);
         var search = window.location.href.match(searchReg);
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-        if(!search || search.length == 0) return null;
+        if (!search || search.length == 0) return null;
         var r = search[0].substr(1).match(reg);
         if (r != null) return unescape(r[2]);
         return null;
@@ -563,10 +609,10 @@
     /*
      *  格式化字符串首字母大写
      */
-    bkm.util.firstCap = function(str, isLowerCase) {
+    bkm.util.firstCap = function (str, isLowerCase) {
         if (!str) return str;
         str = isLowerCase ? str.toString().toLowerCase() : str;
-        str = str.replace(/\b\w+\b/g, function(word) {
+        str = str.replace(/\b\w+\b/g, function (word) {
             return word.substring(0, 1).toUpperCase() + word.substring(1);
         });
         return str;
@@ -575,11 +621,11 @@
     /*
      *  省市区地址拆分
      */
-    bkm.util.address_out = function(input, type, index) {
+    bkm.util.address_out = function (input, type, index) {
         var result = {};
         if (!input) return;
         for (var x in input) {
-            if (typeof(input[x]) == 'object') {
+            if (typeof (input[x]) == 'object') {
                 bkm.util.extend(result, bkm.util.address_out(input[x], type, x));
             } else if (index) {
                 if (type) {
@@ -592,7 +638,7 @@
         return result;
     };
 
-    bkm.util.address_in = function(input, type) {
+    bkm.util.address_in = function (input, type) {
         var result = { province: {}, city: {}, district: {} };
         var strReg;
         if (!input) return;
@@ -616,7 +662,7 @@
     /* 
      * 将输入对象的日期字符串处理为日期对象并返回到输出对象模型中
      */
-    bkm.util.converStr2Date = function(outObj, inObj, cascadPropName) {
+    bkm.util.converStr2Date = function (outObj, inObj, cascadPropName) {
 
         if (!outObj || !inObj || (typeof cascadPropName != "string")) return;
 
@@ -675,7 +721,7 @@
     return bkm.util;
 })();
 
-(function() {
+(function () {
     /** * 获取本周、本季度、本月、上月的开端日期、停止日期 */
     //当前日期 
     var now = new Date();
@@ -696,51 +742,51 @@
     var lastYear = lastMonthDate.getYear();
     var lastMonth = lastMonthDate.getMonth();
     //格局化日期：yyyy-MM-dd 
-    bkm.date.format = function(date) {
-            var myyear = date.getFullYear();
-            var mymonth = date.getMonth() + 1;
-            var myweekday = date.getDate();
-            if (mymonth < 10) {
-                mymonth = "0" + mymonth;
-            }
-            if (myweekday < 10) {
-                myweekday = "0" + myweekday;
-            }
-            return (myyear + "-" + mymonth + "-" + myweekday);
+    bkm.date.format = function (date) {
+        var myyear = date.getFullYear();
+        var mymonth = date.getMonth() + 1;
+        var myweekday = date.getDate();
+        if (mymonth < 10) {
+            mymonth = "0" + mymonth;
         }
-        //比较两个时间的大小
-    bkm.date.compare = function(beginTime, endTime) {
+        if (myweekday < 10) {
+            myweekday = "0" + myweekday;
+        }
+        return (myyear + "-" + mymonth + "-" + myweekday);
+    }
+    //比较两个时间的大小
+    bkm.date.compare = function (beginTime, endTime) {
         //将字符串转换为日期
         var begin = new Date(beginTime.replace(/-/g, "/"));
         var end = new Date(endTime.replace(/-/g, "/"));
         return begin <= end;
     };
     //获得某月的天数 
-    bkm.date.getMonthDays = function(month) {
-            var monthStartDate = new Date(nowYear, month, 1);
-            var monthEndDate = new Date(nowYear, month + 1, 1);
-            var days = (monthEndDate - monthStartDate) / (1000 * 60 * 60 * 24);
-            return days;
+    bkm.date.getMonthDays = function (month) {
+        var monthStartDate = new Date(nowYear, month, 1);
+        var monthEndDate = new Date(nowYear, month + 1, 1);
+        var days = (monthEndDate - monthStartDate) / (1000 * 60 * 60 * 24);
+        return days;
+    }
+    //获得本季度的开端月份 
+    bkm.date.getQuarterStartMonth = function () {
+        var quarterStartMonth = 0;
+        if (nowMonth < 3) {
+            quarterStartMonth = 0;
         }
-        //获得本季度的开端月份 
-    bkm.date.getQuarterStartMonth = function() {
-            var quarterStartMonth = 0;
-            if (nowMonth < 3) {
-                quarterStartMonth = 0;
-            }
-            if (2 < nowMonth && nowMonth < 6) {
-                quarterStartMonth = 3;
-            }
-            if (5 < nowMonth && nowMonth < 9) {
-                quarterStartMonth = 6;
-            }
-            if (nowMonth > 8) {
-                quarterStartMonth = 9;
-            }
-            return quarterStartMonth;
+        if (2 < nowMonth && nowMonth < 6) {
+            quarterStartMonth = 3;
         }
-        // 获取今天
-    bkm.date.today = function(input, isBegin, isCurrent) {
+        if (5 < nowMonth && nowMonth < 9) {
+            quarterStartMonth = 6;
+        }
+        if (nowMonth > 8) {
+            quarterStartMonth = 9;
+        }
+        return quarterStartMonth;
+    }
+    // 获取今天
+    bkm.date.today = function (input, isBegin, isCurrent) {
         var offset = input || 0;
         var todayDate = new Date(
             nowYear,
@@ -754,48 +800,48 @@
         return isCurrent ? now : todayDate;
     };
     //获得本周的开始日期 
-    bkm.date.getWeekStartDate = function() {
-            var weekStartDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek);
-            return bkm.date.format(weekStartDate);
-        }
-        //获得本周的停止日期 
-    bkm.date.getWeekEndDate = function() {
-            var weekEndDate = new Date(nowYear, nowMonth, nowDay + (6 - nowDayOfWeek));
-            //return bkm.date.format(weekEndDate);
-            return weekEndDate;
-        }
-        //获得本月的开始日期 
-    bkm.date.getMonthStartDate = function() {
-            var monthStartDate = new Date(nowYear, nowMonth, 1);
-            return bkm.date.format(monthStartDate);
-        }
-        //获得本月的停止日期 
-    bkm.date.getMonthEndDate = function() {
-            var monthEndDate = new Date(nowYear, nowMonth, bkm.date.getMonthDays(nowMonth));
-            return bkm.date.format(monthEndDate);
-        }
-        //获得上月开始日期 
-    bkm.date.getLastMonthStartDate = function() {
-            var lastMonthStartDate = new Date(nowYear, lastMonth, 1);
-            return bkm.date.format(lastMonthStartDate);
-        }
-        //获得上月停止日期 
-    bkm.date.getLastMonthEndDate = function() {
-            var lastMonthEndDate = new Date(nowYear, lastMonth, bkm.date.getMonthDays(lastMonth));
-            return bkm.date.format(lastMonthEndDate);
-        }
-        //获得本季度的开始日期 
-    bkm.date.getQuarterStartDate = function() {
-            var quarterStartDate = new Date(nowYear, getQuarterStartMonth(), 1);
-            return bkm.date.format(quarterStartDate);
-        }
-        //获得本季度的停止日期 
-    bkm.date.getQuarterEndDate = function() {
+    bkm.date.getWeekStartDate = function () {
+        var weekStartDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek);
+        return bkm.date.format(weekStartDate);
+    }
+    //获得本周的停止日期 
+    bkm.date.getWeekEndDate = function () {
+        var weekEndDate = new Date(nowYear, nowMonth, nowDay + (6 - nowDayOfWeek));
+        //return bkm.date.format(weekEndDate);
+        return weekEndDate;
+    }
+    //获得本月的开始日期 
+    bkm.date.getMonthStartDate = function () {
+        var monthStartDate = new Date(nowYear, nowMonth, 1);
+        return bkm.date.format(monthStartDate);
+    }
+    //获得本月的停止日期 
+    bkm.date.getMonthEndDate = function () {
+        var monthEndDate = new Date(nowYear, nowMonth, bkm.date.getMonthDays(nowMonth));
+        return bkm.date.format(monthEndDate);
+    }
+    //获得上月开始日期 
+    bkm.date.getLastMonthStartDate = function () {
+        var lastMonthStartDate = new Date(nowYear, lastMonth, 1);
+        return bkm.date.format(lastMonthStartDate);
+    }
+    //获得上月停止日期 
+    bkm.date.getLastMonthEndDate = function () {
+        var lastMonthEndDate = new Date(nowYear, lastMonth, bkm.date.getMonthDays(lastMonth));
+        return bkm.date.format(lastMonthEndDate);
+    }
+    //获得本季度的开始日期 
+    bkm.date.getQuarterStartDate = function () {
+        var quarterStartDate = new Date(nowYear, getQuarterStartMonth(), 1);
+        return bkm.date.format(quarterStartDate);
+    }
+    //获得本季度的停止日期 
+    bkm.date.getQuarterEndDate = function () {
         var quarterEndMonth = getQuarterStartMonth() + 2;
         var quarterStartDate = new Date(nowYear, quarterEndMonth, bkm.date.getMonthDays(quarterEndMonth));
         return bkm.date.format(quarterStartDate);
     }
-       // 比较时间相差天数
+    // 比较时间相差天数
     bkm.date.diffDays = function (beginDay, endDay) {
         if (angular.isDate(beginDay) && angular.isDate(endDay)) {
             return (endDay.getTime() - beginDay.getTime()) / (1000 * 60 * 60 * 24);
@@ -807,7 +853,7 @@
     return bkm.date;
 })();
 
-bkm.browser = function() {
+bkm.browser = function () {
     var _browser = {};
     var sUserAgent = navigator.userAgent;
     var isOpera = sUserAgent.indexOf("Opera") > -1;
@@ -828,9 +874,9 @@ bkm.browser = function() {
     var isChrome = sUserAgent.indexOf("Chrome") > -1;
     if (isChrome) {
         var mimeObj = navigator.mimeTypes['application/x-shockwave-flash'];
-        if ( mimeObj ) {
+        if (mimeObj) {
             var desp = mimeObj.description || '';
-            _browser.chrome360 = desp.toLowerCase().indexOf('adobe') > -1 ;
+            _browser.chrome360 = desp.toLowerCase().indexOf('adobe') > -1;
             _browser.chrome = !_browser.chrome360;
         } else if (sUserAgent.indexOf("Edge") > -1) {
             var reEdge = new RegExp("Edge/(\\d+\\.\\d+)");
@@ -847,7 +893,7 @@ bkm.browser = function() {
 
     //排除Chrome信息，因为在Chrome的user-agent字符串中会出现Konqueror/Safari的关键字
     var isKHTML = (sUserAgent.indexOf("KHTML") > -1 ||
-            sUserAgent.indexOf("Konqueror") > -1 || sUserAgent
+        sUserAgent.indexOf("Konqueror") > -1 || sUserAgent
             .indexOf("AppleWebKit") > -1) &&
         !isChrome;
 
