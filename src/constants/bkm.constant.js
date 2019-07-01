@@ -669,6 +669,10 @@ if (typeof module == 'object') {
             key: 6,
             value: 'TraderLogis',
             name: '货主物流公司'
+        }, {
+            key: 7,
+            value: 'Branch',
+            name: '分支机构'
         }],
         'PlatformType': [{
             key: 0,
@@ -722,13 +726,13 @@ if (typeof module == 'object') {
             value: 'Agent',
             name: '车队'
         }, {
-            key: 2,
+            key: 5,
             value: 'Substitute',
-            name: '代开机构'
+            name: '税务代开机构'
         }, {
-            key: 3,
-            value: 'Driver',
-            name: '车主司机'
+            key: 7,
+            value: 'Branch',
+            name: '分支机构'
         }],
         'ServiceChargeType': [{
             key: 0,
