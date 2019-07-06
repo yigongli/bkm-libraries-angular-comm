@@ -696,6 +696,18 @@
         return result;
     };
 
+    /* 
+     * 将输入的数字类型的值截取小数位数
+     */
+    bkm.util.decimal = function (numValue, n) {
+        if (isNaN(numValue)) {
+            return numValue;
+        }
+        var power = n != null && !isNaN(n) ? n : 2;
+        var result = Number(Math.floor(numValue + 'e' + power) + 'e-' + power);
+        return result;
+    };
+
     /**
      * 去除字符串空格
      */
