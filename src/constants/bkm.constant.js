@@ -1127,6 +1127,28 @@ if (typeof module == 'object') {
             key: 2,
             value: "LogisAssistant",
             name: "物流辅助单"
+        }],
+        "TradingOrderStatus": [{
+            key: 0,
+            value: "Processing",
+            name: "处理中"
+        }, {
+            key: 1,
+            value: "Success",
+            name: "成功"
+        }, {
+            key: 2,
+            value: "Failed",
+            name: "失败"
+        },{
+            key: 3,
+            value: "Unprocessed",
+            name: "未处理"
+        }],
+        "DQKpiType" : [{
+            key: 0,
+            value: 'DriverVehicleStar',
+            name: '车辆星级'
         }]
     };
 
