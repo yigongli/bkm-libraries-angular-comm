@@ -970,23 +970,23 @@ if (typeof module == 'object') {
         }, {
             key: 1,
             value: 'Normal',
-            name: '正常'
+            name: '定位匹配'
         }, {
             key: 2,
             value: 'LocationNotExist',
-            name: '轨迹不存在'
+            name: '无数据'
         }, {
             key: 3,
             value: 'LoadLocationError',
-            name: '装货地异常'
+            name: '卸货地匹配'
         }, {
             key: 4,
             value: 'UnloadLocationError',
-            name: '卸货地异常'
+            name: '装货地匹配'
         }, {
             key: 5,
             value: 'LoadAndUnloadLocationError',
-            name: '装卸货地异常'
+            name: '轨迹存在'
         }],
         'GoodsStatus': [{
             key: 0,
