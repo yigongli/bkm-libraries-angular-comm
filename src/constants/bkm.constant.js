@@ -1150,6 +1150,10 @@ if (typeof module == 'object') {
             key: 0,
             value: 'DriverVehicleStar',
             name: '车辆星级'
+        },{
+            key: 2,
+            value: 'SelfService',
+            name: '自助货主'
         }]
     };
 
