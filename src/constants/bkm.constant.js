@@ -17,7 +17,7 @@ if (typeof module == 'object') {
         VAL: { //for validation
             ID_CODE: "^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}([0-9]|X|x)$",
             VEHICLE_NO: "^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$",
-            VEHICLE_FARM_NO:"^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼]\\d{7}$",
+            VEHICLE_FARM_NO: "^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼]\\d{7}$",
             PHONE_NO: "^1\\d{10}$",
             BANKCARD_NO: "^([1-9]{1})(\\d{14}|\\d{15}|\\d{16}|\\d{17}|\\d{18})$"
         },
@@ -1035,7 +1035,7 @@ if (typeof module == 'object') {
             value: 'Recharge',
             name: '充值'
         }],
-        "VehicleLevel" :[{
+        "VehicleLevel": [{
             key: 0,
             value: 'L1',
             name: '一星 *'
@@ -1077,7 +1077,7 @@ if (typeof module == 'object') {
             value: 'Month',
             name: '本月'
         }],
-        "InvoiceSplitType":[{
+        "InvoiceSplitType": [{
             key: 0,
             value: 'Default',
             name: '系统默认'
@@ -1141,19 +1141,28 @@ if (typeof module == 'object') {
             key: 2,
             value: "Failed",
             name: "失败"
-        },{
+        }, {
             key: 3,
             value: "Unprocessed",
             name: "未处理"
         }],
-        "DQKpiType" : [{
+        "DQKpiType": [{
             key: 0,
             value: 'DriverVehicleStar',
             name: '车辆星级'
-        },{
+        }, {
             key: 2,
             value: 'SelfService',
             name: '自助货主'
+        }],
+        "FinalAmountSettlePolicy": [{
+            key: 0,
+            value: 'ByDivision',
+            name: '除法计算'
+        }, {
+            key: 1,
+            value: 'ByMulitiplication',
+            name: '乘法计算'
         }]
     };
 
