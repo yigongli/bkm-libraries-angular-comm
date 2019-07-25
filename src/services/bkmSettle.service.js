@@ -28,7 +28,7 @@ bkm.settle.downstreamSettlementComputing = function (settleParams) {
     v.downServiceAmount = v.downIsIncludeServiceCharge ? v.downServiceCharge : 0;
     //下游含税运价
     v.downTaxRate = v.downTaxRate || 0;
-    v.downTaxedFreightPrice = v.isDownIncludeTax ? v.freightPrice : (v.freightPrice / (1 - v.downTaxRate));
+    v.downTaxedFreightPrice = v.isDownIncludeTax ? v.freightPrice :  ( v.finalAmountSettlePolicy == bkm.CST.FinalAmountSettlePolicy_ByDivision ? (v.freightPrice / (1 - v.downTaxRate)) : (v.freightPrice * (1 + v.downTaxRate)));
     v.downTaxedFreightPrice = bkm.util.round(v.downTaxedFreightPrice);
     //用于含税运价分组汇总
     v.downTaxedFreightPriceGrp = v.downTaxedFreightPrice;
