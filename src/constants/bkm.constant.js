@@ -1163,6 +1163,15 @@ if (typeof module == 'object') {
             key: 1,
             value: 'ByMulitiplication',
             name: '乘法计算'
+        }],
+        "SettleRateType": [{
+            key: 0,
+            value: 'TaxRate',
+            name: '销项费率'
+        }, {
+            key: 1,
+            value: 'SettleAmountRate',
+            name: '结算金额费率'
         }]
     };
 
