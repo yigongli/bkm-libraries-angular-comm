@@ -242,19 +242,11 @@ if (typeof module == 'object') {
         }, {
             key: 1,
             value: 'UpSettled',
-            name: "上游已结算"
+            name: "货主已结算"
         }, {
             key: 2,
             value: 'UpUnSettled',
-            name: "上游未结算"
-        }, {
-            key: 3,
-            value: 'DownSettled',
-            name: "下游已结算"
-        }, {
-            key: 4,
-            value: 'DownUnSettled',
-            name: "下游未结算"
+            name: "货主未结算"
         }],
         'PaymentBillType': [{
             key: 0,
