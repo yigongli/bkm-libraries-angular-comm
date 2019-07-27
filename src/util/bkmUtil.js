@@ -415,18 +415,6 @@
     };
 
     /*
-     * 对象复制
-     */
-    bkm.util.clone = function (obj) {
-        if (typeof (obj) != 'object') return obj;
-        if (obj == null) return obj;
-        var newObject = new Object();
-        for (var i in obj)
-            newObject[i] = bkm.util.clone(obj[i]);
-        return newObject;
-    };
-
-    /*
      * 对象扩展
      */
     bkm.util.extend = function (target, source) {

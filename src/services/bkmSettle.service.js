@@ -42,7 +42,7 @@ bkm.settle.downstreamSettlementComputing = function (settleParams) {
     //下游对账金额: 对账金额把扣减掉的单车服务费还原回来，用于外部客户对账显示(华信客户)
     v.downExternalFinalAmount = v.downstreamFinalAmount + v.downServiceAmount;
     
-    return bkm.util.clone(v);
+    return angular.copy(v);
 };
 
 
