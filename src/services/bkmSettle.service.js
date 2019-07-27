@@ -5,10 +5,10 @@
 var bkm = bkm || {};
 bkm.settle = bkm.settle || {};
 bkm.settle.downstreamSettlementComputing = function (settleParams) {
-    if (!bkm.util.isObject(settleParams)) {
+    if (!angular.isObject(settleParams)) {
         return null;
     }
-    var v = bkm.util.extend({}, settleParams);
+    var v = angular.extend({}, settleParams);
     v.loadUnloadAmount = (v.loadingPrice || 0) + (v.unloadingPrice || 0);
     v.downLossWay = (v.downLossWay == null) ? v.lossWay : v.downLossWay;
     //下游免责途损数量: 按比例时，转换为每车的免责数量
@@ -41,8 +41,7 @@ bkm.settle.downstreamSettlementComputing = function (settleParams) {
     v.downstreamFinalAmount = (v.isIgnoreSmall ? parseInt(v.downstreamFinalAmount / 10) * 10 : v.downstreamFinalAmount);
     //下游对账金额: 对账金额把扣减掉的单车服务费还原回来，用于外部客户对账显示(华信客户)
     v.downExternalFinalAmount = v.downstreamFinalAmount + v.downServiceAmount;
-    
-    return angular.copy(v);
+    return v;
 };
 
 
