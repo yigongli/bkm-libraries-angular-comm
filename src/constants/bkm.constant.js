@@ -1164,6 +1164,15 @@ if (typeof module == 'object') {
             key: 1,
             value: 'SettleAmountRate',
             name: '结算金额费率'
+        }],
+        "SettleAttachesType": [{
+            key: 0,
+            value: 'LogisContract',
+            name: '运输合同'
+        }, {
+            key: 1,
+            value: 'Other',
+            name: '其他'
         }]
     };
 
