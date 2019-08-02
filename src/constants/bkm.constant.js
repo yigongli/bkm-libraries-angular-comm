@@ -23,6 +23,12 @@ if (typeof module == 'object') {
         },
         MSG: {
             NetErr: "对不起，网络请求错误，请稍后重试！"
+        },
+        FEATURE:{
+            DispatchImport:"DispatchImport",
+            Location:"Location",
+            Payment:"Payment",
+            Finance:"Finance",
         }
     };
 
