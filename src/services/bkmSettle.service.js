@@ -28,7 +28,7 @@ bkm.settle.downstreamSettlementComputing = function (settleParams) {
     v.downServiceAmount = v.downIsIncludeServiceCharge ? v.downServiceCharge : 0;
     //下游含税运价
     v.downTaxRate = v.downTaxRate || 0;
-    v.downTaxedFreightPrice = v.isDownIncludeTax ? v.freightPrice :  ( v.finalAmountSettlePolicy == bkm.CST.FinalAmountSettlePolicy_ByDivision ? (v.freightPrice / (1 - v.downTaxRate)) : (v.freightPrice * (1 + v.downTaxRate)));
+    v.downTaxedFreightPrice = v.isDownIncludeTax ? v.freightPrice : (v.finalAmountSettlePolicy == bkm.CST.FinalAmountSettlePolicy_ByDivision ? (v.freightPrice / (1 - v.downTaxRate)) : (v.freightPrice * (1 + v.downTaxRate)));
     v.downTaxedFreightPrice = bkm.util.round(v.downTaxedFreightPrice);
     //用于含税运价分组汇总
     v.downTaxedFreightPriceGrp = v.downTaxedFreightPrice;
@@ -36,6 +36,7 @@ bkm.settle.downstreamSettlementComputing = function (settleParams) {
     v.taxedFreightAmount = bkm.util.round(v.downstreamFinalWeight * v.downTaxedFreightPrice);
     //含税结算金额:  含税运费金额 - 亏吨扣款 + 运费增减  - 服务费 - 装卸费
     v.downstreamFinalAmount = v.taxedFreightAmount - v.downstreamLossAmount + (v.downAmountAdjust || 0) - v.downServiceAmount - v.loadUnloadAmount;
+    v.downstreamFinalAmount = v.downstreamFinalAmount > 0 ? v.downstreamFinalAmount : 0;
     v.downstreamFinalAmount = bkm.util.round(v.downstreamFinalAmount);
     // 结算金额抹0
     v.downstreamFinalAmount = (v.isIgnoreSmall ? parseInt(v.downstreamFinalAmount / 10) * 10 : v.downstreamFinalAmount);
