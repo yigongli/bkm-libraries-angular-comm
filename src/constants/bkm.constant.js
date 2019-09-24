@@ -1179,6 +1179,23 @@ if (typeof module == 'object') {
             key: 1,
             value: 'Other',
             name: '其他'
+        }],
+        "Unit" : [{
+            key: 0,
+            value: 'Ton',
+            name: '吨'
+        }, {
+            key: 1,
+            value: 'Kg',
+            name: '千克'
+        }, {
+            key: 2,
+            value: 'Stere',
+            name: '立方米'
+        }, {
+            key: 3,
+            value: 'Car',
+            name: '车'
         }]
     };
 
