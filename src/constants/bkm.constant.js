@@ -448,6 +448,10 @@ if (typeof module == 'object') {
             key: 3,
             value: 'Failed',
             name: '还款失败'
+        }, {
+            key: 4,
+            value: 'Cash',
+            name: '提现中'
         }],
         'AccountStatus': [{
             key: 0,
