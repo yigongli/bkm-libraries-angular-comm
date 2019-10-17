@@ -485,7 +485,7 @@ if (typeof module == 'object') {
         }, {
             key: 3,
             value: 'CASH',
-            name: '现金账户'
+            name: '充值账户'
         }, {
             key: 4,
             value: 'LOAN',
