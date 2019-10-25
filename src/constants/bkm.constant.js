@@ -13,7 +13,7 @@ if (typeof module == 'object') {
     'use strict';
 
     //对象常量定义，建议只能定义最多一层子对象，访问时按照bkm.CST.parent_child_property访问，如bkm.CST.VAL_ID_CODE
-    var commConstants = {
+    bkm.commConstants = {
         VAL: { //for validation
             ID_CODE: "^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}([0-9]|X|x)$",
             VEHICLE_NO: "^(([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z](([0-9]{5}[DF])|([DF]([A-HJ-NP-Z0-9])[0-9]{4})))|([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z][A-HJ-NP-Z0-9]{4}[A-HJ-NP-Z0-9挂学警港澳使领]))$",
@@ -1283,7 +1283,7 @@ if (typeof module == 'object') {
                 });
             }
         }
-    })(commConstants);
+    })(bkm.commConstants);
 
 
 })();
