@@ -771,6 +771,10 @@ if (typeof module == 'object') {
             key: 4,
             value: 'Cash',
             name: '提现中'
+        }, {
+            key: 5,
+            value: 'CashFailed',
+            name: '提现失败'
         }],
         'InvoiceStatus': [{
             key: 0,
