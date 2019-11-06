@@ -29,6 +29,7 @@ if (typeof module == 'object') {
             Location:"Location",
             Payment:"Payment",
             Finance:"Finance",
+            InvoiceOnline:"InvoiceOnline"
         }
     };
 
