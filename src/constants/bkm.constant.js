@@ -807,6 +807,15 @@ if (typeof module == 'object') {
             value: 'Printed',
             name: '已打印'
         }],
+        'InvoicePrintType': [{
+            key: 0,
+            value: 'Invoice',
+            name: 'Invoice'
+        }, {
+            key: 1,
+            value: 'Detail',
+            name: '清单'
+        }],
         'BankCardVerifyType': [{
             key: 0,
             value: 'Unknow',
