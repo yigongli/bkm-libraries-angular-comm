@@ -810,7 +810,7 @@ if (typeof module == 'object') {
         'InvoicePrintType': [{
             key: 0,
             value: 'Invoice',
-            name: 'Invoice'
+            name: '发票'
         }, {
             key: 1,
             value: 'Detail',
