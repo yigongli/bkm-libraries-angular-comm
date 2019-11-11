@@ -785,6 +785,27 @@ if (typeof module == 'object') {
             key: 1,
             value: 'Cancel',
             name: '作废'
+        }, {
+            key: 2,
+            value: 'Redl',
+            name: '红冲'
+        }, {
+            key: 3,
+            value: 'Opening',
+            name: '开票中'
+        }, {
+            key: 4,
+            value: 'Failed',
+            name: '失败'
+        }],
+        'InvoicePrintStatus': [{
+            key: 0,
+            value: 'UnPrint',
+            name: '未打印'
+        }, {
+            key: 1,
+            value: 'Printed',
+            name: '已打印'
         }],
         'BankCardVerifyType': [{
             key: 0,
