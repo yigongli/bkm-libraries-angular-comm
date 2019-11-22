@@ -797,6 +797,10 @@ if (typeof module == 'object') {
             key: 4,
             value: 'Failed',
             name: '失败'
+        }, {
+            key: 5,
+            value: 'NotOpen',
+            name: '未开票'
         }],
         'InvoicePrintStatus': [{
             key: 0,
@@ -951,6 +955,10 @@ if (typeof module == 'object') {
             key: 4,
             name: '已开票',
             value: 'INVOICED'
+        }, {
+            key: 5,
+            name: '已生成',
+            value: 'Created'
         }],
         'DispatchStatus': [{
             key: 0,
