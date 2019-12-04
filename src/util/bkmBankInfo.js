@@ -10,6 +10,15 @@ var bkm = bkm || {};
   'use strict';
 
   var bankcardList = [{
+    bankName: "网商银行",
+    bankCode: "MYBANK",
+    cnapsCode: "323331000001",
+    "bankNo": "32333",
+    patterns: [{
+        reg: /^(888888)\d{10}$/g,
+          cardType: "DC"
+        }]
+    },{
       bankName: "中国邮政储蓄银行",
       bankCode: "PSBC",
       cnapsCode: "403451000018",
