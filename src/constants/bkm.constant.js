@@ -511,6 +511,10 @@ if (typeof module == 'object') {
             key: 9,
             value: 'TENANT_REV_LOGIS',
             name: '平台运费收入账户'
+        }, {
+            key: 15,
+            value: 'GrossProfit',
+            name: '利润户'
         }],
         'AssetSettleStatus': [{
             key: 0,
