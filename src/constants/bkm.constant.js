@@ -512,6 +512,10 @@ if (typeof module == 'object') {
             value: 'TENANT_REV_LOGIS',
             name: '平台运费收入账户'
         }, {
+            key: 11,
+            value: 'BORROW',
+            name: '往来户'
+        }, {
             key: 15,
             value: 'GrossProfit',
             name: '利润户'
