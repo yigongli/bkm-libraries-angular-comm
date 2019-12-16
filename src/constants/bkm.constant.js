@@ -1289,6 +1289,19 @@ if (typeof module == 'object') {
             key: 4,
             value: 'Operation',
             name: '运营服务'
+        }],
+        "TicketPriority": [{
+            key: 0,
+            value: 'Urgent',
+            name: '紧急'
+        }, {
+            key: 1,
+            value: 'Important',
+            name: '重要'
+        }, {
+            key: 2,
+            value: 'Normal',
+            name: '一般'
         }]
     };
 
