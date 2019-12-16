@@ -24,12 +24,12 @@ if (typeof module == 'object') {
         MSG: {
             NetErr: "对不起，网络请求错误，请稍后重试！"
         },
-        FEATURE:{
-            DispatchImport:"DispatchImport",
-            Location:"Location",
-            Payment:"Payment",
-            Finance:"Finance",
-            InvoiceOnline:"InvoiceOnline"
+        FEATURE: {
+            DispatchImport: "DispatchImport",
+            Location: "Location",
+            Payment: "Payment",
+            Finance: "Finance",
+            InvoiceOnline: "InvoiceOnline"
         }
     };
 
@@ -1227,7 +1227,7 @@ if (typeof module == 'object') {
             value: 'Other',
             name: '其他'
         }],
-        "Unit" : [{
+        "Unit": [{
             key: 0,
             value: 'Ton',
             name: '吨'
@@ -1243,6 +1243,44 @@ if (typeof module == 'object') {
             key: 3,
             value: 'Car',
             name: '车'
+        }],
+        "ComplaintStatus": [{
+            key: 0,
+            value: 'ToBeAssign',
+            name: '待分配'
+        }, {
+            key: 1,
+            value: 'InProcess',
+            name: '处理中'
+        }, {
+            key: 2,
+            value: 'Confirming',
+            name: '反馈中'
+        }, {
+            key: 3,
+            value: 'Closed',
+            name: '已关闭'
+        }],
+        "ComplaintCategory": [{
+            key: 0,
+            value: 'Advises',
+            name: '售前咨询'
+        }, {
+            key: 1,
+            value: 'Transportation',
+            name: '运输服务'
+        }, {
+            key: 2,
+            value: 'Finances',
+            name: '财务问题'
+        }, {
+            key: 3,
+            value: 'System',
+            name: '系统使用'
+        }, {
+            key: 4,
+            value: 'Operation',
+            name: '运营服务'
         }]
     };
 
