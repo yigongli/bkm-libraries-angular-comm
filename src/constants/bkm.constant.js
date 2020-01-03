@@ -776,14 +776,15 @@ if (typeof module == 'object') {
             key: 3,
             value: 'Unpay',
             name: '未付款'
+        }],
+        'PaidTo': [{
+            key: 0,
+            value: 'PaidTo',
+            name: '银行卡'
         }, {
-            key: 4,
-            value: 'Cash',
-            name: '提现中'
-        }, {
-            key: 5,
-            value: 'CashFailed',
-            name: '提现失败'
+            key: 1,
+            value: 'DriverWallet',
+            name: '司机钱包'
         }],
         'InvoiceStatus': [{
             key: 0,
