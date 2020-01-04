@@ -777,6 +777,23 @@ if (typeof module == 'object') {
             value: 'Unpay',
             name: '未付款'
         }],
+        'CashStatus': [{
+            key: 0,
+            value: 'Ongoing',
+            name: '提现中'
+        }, {
+            key: 1,
+            value: 'Success',
+            name: '提现成功'
+        }, {
+            key: 2,
+            value: 'Failure',
+            name: '提现失败'
+        }, {
+            key: 3,
+            value: 'Unpay',
+            name: '未提现'
+        }],
         'PaidTo': [{
             key: 0,
             value: 'PaidTo',
