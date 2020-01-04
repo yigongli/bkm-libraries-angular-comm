@@ -786,6 +786,15 @@ if (typeof module == 'object') {
             value: 'DriverWallet',
             name: '司机钱包'
         }],
+        'DispatchCreatedBy': [{
+            key: 0,
+            value: 'ByAgent',
+            name: '车队派车'
+        }, {
+            key: 1,
+            value: 'ByDriver',
+            name: '司机接单'
+        }],
         'InvoiceStatus': [{
             key: 0,
             value: 'Normal',
