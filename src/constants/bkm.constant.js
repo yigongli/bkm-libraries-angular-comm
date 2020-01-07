@@ -994,6 +994,10 @@ if (typeof module == 'object') {
             key: 5,
             name: '已生成',
             value: 'Created'
+        }, {
+            key: 6,
+            name: '撤回中',
+            value: 'Canceling'
         }],
         'DispatchStatus': [{
             key: 0,
