@@ -2162,6 +2162,7 @@ var bkm = bkm || {};
     }
 
     function _getBankInfoByCardNo(cardNo) {
+      var cardTypeEnums = [{key: 0, value: 'DC'}, {key: 1, value: 'CC'}, {key: 2, value:'SCC'}, {key: 3, value: 'PC'}];
       for (var i = 0, len = bankcardList.length; i < len; i++) {
         var bankcard = bankcardList[i];
         var patterns = bankcard.patterns;
@@ -2170,6 +2171,8 @@ var bkm = bkm || {};
           if ((new RegExp(pattern.reg)).test(cardNo)) {
             var info = extend(bankcard, pattern);
             info.bankCardType = info.cardType;
+            var found = cardTypeEnums.filter((elem) => elem.value == info.cardType);
+            info.bankCardEnumType = found.length > 0 ? found[0].key: null;
             delete info.patterns;
             delete info.reg;
             info.cardTypeName = getCardTypeName(info.cardType);
