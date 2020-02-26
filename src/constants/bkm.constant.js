@@ -1333,6 +1333,15 @@ if (typeof module == 'object') {
             key: 2,
             value: 'Normal',
             name: '一般'
+        }],
+        "DriverJoinWay" :[{
+            key: 0,
+            value: 'ByAgent',
+            name: '车队添加'
+        }, {
+            key: 1,
+            value: 'Register',
+            name: '司机注册'
         }]
     };
 
