@@ -1342,6 +1342,36 @@ if (typeof module == 'object') {
             key: 1,
             value: 'Register',
             name: '司机注册'
+        }],
+        "Gener": [{
+            key: 0,
+            value: 'Male',
+            name: '男'
+        }, {
+            key: 1,
+            value: 'Female',
+            name: '女'
+        }, {
+            key: 2,
+            value: 'Male',
+            name: '未知'
+        }],
+        "CertificateType": [{
+            key: 0,
+            value: 'IDCard',
+            name: '身份证'
+        }, {
+            key: 1,
+            value: 'Passport',
+            name: '护照'
+        }, {
+            key: 2,
+            value: 'Company',
+            name: '营业执照'
+        }, {
+            key: 3,
+            value: 'Officer',
+            name: '军官证'
         }]
     };
 
