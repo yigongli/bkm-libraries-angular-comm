@@ -1343,7 +1343,7 @@ if (typeof module == 'object') {
             value: 'Register',
             name: '司机注册'
         }],
-        "Gener": [{
+        "Gender": [{
             key: 0,
             value: 'Male',
             name: '男'
@@ -1353,7 +1353,7 @@ if (typeof module == 'object') {
             name: '女'
         }, {
             key: 2,
-            value: 'Male',
+            value: 'Unknow',
             name: '未知'
         }],
         "CertificateType": [{
