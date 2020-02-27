@@ -1372,6 +1372,39 @@ if (typeof module == 'object') {
             key: 3,
             value: 'Officer',
             name: '军官证'
+        }],
+        "DrivingLicenseType": [{
+            key: 0,
+            value: 'A1',
+            name: 'A1'
+        }, {
+            key: 1,
+            value: 'A2',
+            name: 'A2'
+        }, {
+            key: 2,
+            value: 'A3',
+            name: 'A3'
+        }, {
+            key: 3,
+            value: 'B1',
+            name: 'B1'
+        }, {
+            key: 4,
+            value: 'B2',
+            name: 'B2'
+        }, {
+            key: 5,
+            value: 'C1',
+            name: 'C1'
+        }, {
+            key: 6,
+            value: 'C2',
+            name: 'C2'
+        }, {
+            key: 7,
+            value: 'C3',
+            name: 'C3'
         }]
     };
 
