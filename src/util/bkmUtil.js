@@ -437,7 +437,7 @@
         for (var index in data) {
             if (!data[index][key]) return -1;
             if (data[index][key] == value) {
-                return index;
+                return parseInt(index);
             }
         }
         return -1;
