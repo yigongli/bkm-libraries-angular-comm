@@ -714,10 +714,7 @@
             default:
                 return str;
         }
-    }
-
-
-
+    };
     return bkm.util;
 })();
 
@@ -753,12 +750,12 @@
             myweekday = "0" + myweekday;
         }
         return (myyear + "-" + mymonth + "-" + myweekday);
-    }
+    };
     //比较两个时间的大小
     bkm.date.compare = function (beginTime, endTime) {
         //将字符串转换为日期
-        var begin = new Date(beginTime.replace(/-/g, "/"));
-        var end = new Date(endTime.replace(/-/g, "/"));
+        var begin = new Date(beginTime);
+        var end = new Date(endTime);
         return begin <= end;
     };
     //获得某月的天数 
@@ -767,7 +764,7 @@
         var monthEndDate = new Date(nowYear, month + 1, 1);
         var days = (monthEndDate - monthStartDate) / (1000 * 60 * 60 * 24);
         return days;
-    }
+    };
     //获得本季度的开端月份 
     bkm.date.getQuarterStartMonth = function () {
         var quarterStartMonth = 0;
@@ -784,7 +781,7 @@
             quarterStartMonth = 9;
         }
         return quarterStartMonth;
-    }
+    };
     // 获取今天
     bkm.date.today = function (input, isBegin, isCurrent) {
         var offset = input || 0;
@@ -803,52 +800,52 @@
     bkm.date.getWeekStartDate = function () {
         var weekStartDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek);
         return bkm.date.format(weekStartDate);
-    }
+    };
     //获得本周的停止日期 
     bkm.date.getWeekEndDate = function () {
         var weekEndDate = new Date(nowYear, nowMonth, nowDay + (6 - nowDayOfWeek));
         //return bkm.date.format(weekEndDate);
         return weekEndDate;
-    }
+    };
     //获得本月的开始日期 
     bkm.date.getMonthStartDate = function () {
         var monthStartDate = new Date(nowYear, nowMonth, 1);
         return bkm.date.format(monthStartDate);
-    }
+    };
     //获得本月的停止日期 
     bkm.date.getMonthEndDate = function () {
         var monthEndDate = new Date(nowYear, nowMonth, bkm.date.getMonthDays(nowMonth));
         return bkm.date.format(monthEndDate);
-    }
+    };
     //获得上月开始日期 
     bkm.date.getLastMonthStartDate = function () {
         var lastMonthStartDate = new Date(nowYear, lastMonth, 1);
         return bkm.date.format(lastMonthStartDate);
-    }
+    };
     //获得上月停止日期 
     bkm.date.getLastMonthEndDate = function () {
         var lastMonthEndDate = new Date(nowYear, lastMonth, bkm.date.getMonthDays(lastMonth));
         return bkm.date.format(lastMonthEndDate);
-    }
+    };
     //获得本季度的开始日期 
     bkm.date.getQuarterStartDate = function () {
         var quarterStartDate = new Date(nowYear, getQuarterStartMonth(), 1);
         return bkm.date.format(quarterStartDate);
-    }
+    };
     //获得本季度的停止日期 
     bkm.date.getQuarterEndDate = function () {
         var quarterEndMonth = getQuarterStartMonth() + 2;
         var quarterStartDate = new Date(nowYear, quarterEndMonth, bkm.date.getMonthDays(quarterEndMonth));
         return bkm.date.format(quarterStartDate);
-    }
+    };
     // 比较时间相差天数
     bkm.date.diffDays = function (beginDay, endDay) {
-        if (angular.isDate(beginDay) && angular.isDate(endDay)) {
+        if ( beginDay instanceof Date  && endDay instanceof Date) {
             return (endDay.getTime() - beginDay.getTime()) / (1000 * 60 * 60 * 24);
         } else {
             return null;
         }
-    }
+    };
 
     return bkm.date;
 })();
