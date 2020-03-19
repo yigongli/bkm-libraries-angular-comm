@@ -1335,7 +1335,7 @@ if (typeof module == 'object') {
             value: 'Normal',
             name: '一般'
         }],
-        "DriverJoinWay" :[{
+        "DriverJoinWay": [{
             key: 0,
             value: 'ByAgent',
             name: '车队添加'
@@ -1431,6 +1431,15 @@ if (typeof module == 'object') {
             key: 5,
             value: "Five",
             name: "五星"
+        }],
+        "RatingType": [{
+            key: 0,
+            value: "ByTrader",
+            name: "货主评价"
+        }, {
+            key: 1,
+            value: "ByDriver",
+            name: "司机评价"
         }]
     };
 
