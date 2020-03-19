@@ -1406,6 +1406,31 @@ if (typeof module == 'object') {
             key: 7,
             value: 'C3',
             name: 'C3'
+        }],
+        "RatingStar": [{
+            key: 0,
+            value: "Unknow",
+            name: "未知"
+        }, {
+            key: 1,
+            value: "One",
+            name: "一星"
+        }, {
+            key: 2,
+            value: "Two",
+            name: "二星"
+        }, {
+            key: 3,
+            value: "Three",
+            name: "三星"
+        }, {
+            key: 4,
+            value: "Four",
+            name: "四星"
+        }, {
+            key: 5,
+            value: "Five",
+            name: "五星"
         }]
     };
 
