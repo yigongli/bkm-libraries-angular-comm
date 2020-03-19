@@ -8,24 +8,25 @@
         .filter('EnumType', [EnumType])
         .filter('BankName', [BankName])
         .filter('TransType', [TransType])
+        .filter('Ratings', [Ratings])
         .filter('splitCardNo', splitCardNo);
 
     function pathUrl() {
-        return function(input, isSaveAs) {
+        return function (input, isSaveAs) {
             return abp.appPath + 'api/file/download?id=' + input + '&isSaveAs=' + (!!isSaveAs ? 'true' : 'false');
         };
     }
 
     function kbSize() {
-        return function(input) {
+        return function (input) {
             return !isNaN(input) ? parseInt(input / 1024) : input;
         };
     }
 
     //获取银行的名称
-    function BankName(){
-        return function(input){
-            if(input == null){return input;}
+    function BankName() {
+        return function (input) {
+            if (input == null) { return input; }
             return bkm.bank.getBankNameByCode(input);
         };
     }
@@ -47,7 +48,7 @@
 
     //字典数据的过滤器
     function EnumType() {
-        return function(input, typeName, isRtnObj, isRtnUnknow) {
+        return function (input, typeName, isRtnObj, isRtnUnknow) {
             if (!angular.isString(typeName) || input == null) return isRtnUnknow === true ? "未知" : input;
             var rtnObj = bkm.DICT[typeName].filter(item => (item.key === input || item.value === input));
             if (rtnObj.length == 0) return input;
@@ -57,10 +58,22 @@
 
     //判断是装运还是签收的记录
     function TransType() {
-        return function(input, type, field) {
+        return function (input, type, field) {
             if (type == null || !field || !input || input.length == 0) return input;
             for (var i = 0; i < input.length; i++) {
                 if (input[i].type == type) {
+                    return input[i][field];
+                }
+            }
+        };
+    }
+
+    // 判断评价类型
+    function Ratings() {
+        return function (input, type, field) {
+            if (type == null || !field || !input || input.length == 0) return null;
+            for (var i = 0; i < input.length; i++) {
+                if (input[i].ratingType == type) {
                     return input[i][field];
                 }
             }
