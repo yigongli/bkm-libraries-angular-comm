@@ -520,6 +520,10 @@ if (typeof module == 'object') {
             key: 15,
             value: 'GrossProfit',
             name: '利润户'
+        } ,{
+            key: 16,
+            value: 'InvoicePayCredit',
+            name: '欠款账户'
         }],
         'AssetSettleStatus': [{
             key: 0,
