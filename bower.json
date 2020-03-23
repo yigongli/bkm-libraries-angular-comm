@@ -1,6 +1,6 @@
 {
   "name": "bkm-angular-comm",
-  "version": "2.9.116",
+  "version": "2.9.117",
   "homepage": "https://github.com/yigongli/bkm-libraries-angular-comm",
   "authors": [
     "bkm"
@@ -38,7 +38,7 @@
   "devDependencies": {
   },
   "resolutions": {
-    "angular": "~1.4.8"
+    "angular": "~1.7.9"
   },
   "overrides": {
   }
