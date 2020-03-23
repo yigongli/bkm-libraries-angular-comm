@@ -37,9 +37,9 @@ bkm.settle.downstreamSettlementComputing = function (settleParams) {
     //含税结算金额:  含税运费金额 - 亏吨扣款 + 运费增减  - 服务费 - 装卸费
     v.downstreamFinalAmount = v.taxedFreightAmount - v.downstreamLossAmount + (v.downAmountAdjust || 0) - v.downServiceAmount - v.loadUnloadAmount;
     v.downstreamFinalAmount = v.downstreamFinalAmount > 0 ? v.downstreamFinalAmount : 0;
-    v.downstreamFinalAmount = bkm.util.round(v.downstreamFinalAmount);
     // 结算金额抹0
     v.downstreamFinalAmount = (v.isIgnoreSmall ? parseInt(v.downstreamFinalAmount / 10) * 10 : v.downstreamFinalAmount);
+    v.downstreamFinalAmount = bkm.util.round(v.downstreamFinalAmount);
     //下游对账金额: 对账金额把扣减掉的单车服务费还原回来，用于外部客户对账显示(华信客户)
     v.downExternalFinalAmount = v.downstreamFinalAmount + v.downServiceAmount;
     return v;
