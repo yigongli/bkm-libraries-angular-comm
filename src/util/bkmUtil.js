@@ -203,7 +203,7 @@
         Object.defineProperty(inputModel, dispProp, {
             get: function () {
                 if (inputModel && inputModel[dataProp] != null) {
-                    return (Math.round(inputModel[dataProp] * base * base) / base);
+                    return bkm.util.round(Math.round(inputModel[dataProp] * base * base) / base, 5);
                 } else {
                     return null;
                 }
@@ -213,7 +213,7 @@
                 if (newValue == null) {
                     inputModel[dispProp] = inputModel[dataProp] = null;
                 } else {
-                    inputModel[dataProp] = newValue / base;
+                    inputModel[dataProp] = bkm.util.round(newValue / base, 5);
                     inputModel[dispProp] = Math.round(inputModel[dataProp] * base * base) / base;
                 }
 
