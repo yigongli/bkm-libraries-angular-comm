@@ -1287,6 +1287,10 @@ if (typeof module == 'object') {
             key: 3,
             value: 'Car',
             name: '车'
+        }, {
+            key: 4,
+            value: 'Piece',
+            name: '件'
         }],
         "ComplaintStatus": [{
             key: 0,
