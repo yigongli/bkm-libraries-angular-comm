@@ -622,7 +622,7 @@ if (typeof module == 'object') {
         'UploadStatus': [{
             key: 0,
             value: 'NotUpload',
-            name: "未上传"
+            name: "上传中"
         }, {
             key: 1,
             value: 'Success',
@@ -635,6 +635,10 @@ if (typeof module == 'object') {
             key: 3,
             value: 'ValidFailure',
             name: "验证失败"
+        }, {
+            key: 99,
+            value: 'NotGenerated',
+            name: "未生成"
         }],
         'SendToAgentStatus': [{
             key: 0,
