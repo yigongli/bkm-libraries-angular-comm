@@ -1452,6 +1452,23 @@ if (typeof module == 'object') {
             key: 1,
             value: "ByDriver",
             name: "司机评价"
+        }],
+        "RefundStatus": [{
+            key: 0,
+            value: "Processing",
+            name: "处理中"
+        }, {
+            key: 1,
+            value: "Success",
+            name: "成功"
+        }, {
+            key: 2,
+            value: "Failed",
+            name: "失败"
+        }, {
+            key: 3,
+            value: "Unprocessed",
+            name: "未处理"
         }]
     };
 
