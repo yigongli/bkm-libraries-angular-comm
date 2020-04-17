@@ -2123,10 +2123,14 @@ var bkm = bkm || {};
     }
   ];
 
-  bkm.bank.getBankNameByCode = function (cardCode) {
-    var found = bankcardList.filter(item => item.bankCode == cardCode);
+  bkm.bank.getBankNameByCode = function (bankCode) {
+    var found = bankcardList.filter(item => item.bankCode == bankCode);
     return found.length > 0 ? found[0].bankName : "";
   };
+  bkm.bank.getBankInfoByCode = function (bankCode) {
+    var found = bankcardList.filter(item => item.bankCode == bankCode);
+    return found.length > 0 ? found[0] : null;
+  }
   bkm.bank.bankcardList = bankcardList;
   bkm.bank.getBankInfoByNo = function (cardNo) {
     var cardTypeMap = {
