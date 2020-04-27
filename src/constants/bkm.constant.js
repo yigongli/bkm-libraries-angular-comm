@@ -819,7 +819,7 @@ if (typeof module == 'object') {
         }, {
             key: 1,
             value: 'ByDriver',
-            name: '司机接单'
+            name: '司机抢单'
         }],
         'InvoiceStatus': [{
             key: 0,
