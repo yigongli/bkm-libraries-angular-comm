@@ -846,6 +846,14 @@
             return null;
         }
     };
+    // 比较时间相差小时
+    bkm.date.diffHours = function (beginDay, endDay) {
+        if ( beginDay instanceof Date  && endDay instanceof Date) {
+            return (endDay.getTime() - beginDay.getTime()) / (1000 * 60 * 60);
+        } else {
+            return null;
+        }
+    };
 
     return bkm.date;
 })();
