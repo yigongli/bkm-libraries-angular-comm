@@ -799,48 +799,47 @@
     //获得本周的开始日期 
     bkm.date.getWeekStartDate = function () {
         var weekStartDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek);
-        return bkm.date.format(weekStartDate);
+        return weekStartDate;
     };
     //获得本周的停止日期 
     bkm.date.getWeekEndDate = function () {
         var weekEndDate = new Date(nowYear, nowMonth, nowDay + (6 - nowDayOfWeek));
-        //return bkm.date.format(weekEndDate);
         return weekEndDate;
     };
     //获得本月的开始日期 
     bkm.date.getMonthStartDate = function () {
         var monthStartDate = new Date(nowYear, nowMonth, 1);
-        return bkm.date.format(monthStartDate);
+        return monthStartDate;
     };
     //获得本月的停止日期 
     bkm.date.getMonthEndDate = function () {
         var monthEndDate = new Date(nowYear, nowMonth, bkm.date.getMonthDays(nowMonth));
-        return bkm.date.format(monthEndDate);
+        return monthEndDate;
     };
     //获得上月开始日期 
     bkm.date.getLastMonthStartDate = function () {
         var lastMonthStartDate = new Date(nowYear, lastMonth, 1);
-        return bkm.date.format(lastMonthStartDate);
+        return lastMonthStartDate;
     };
     //获得上月停止日期 
     bkm.date.getLastMonthEndDate = function () {
         var lastMonthEndDate = new Date(nowYear, lastMonth, bkm.date.getMonthDays(lastMonth));
-        return bkm.date.format(lastMonthEndDate);
+        return lastMonthEndDate;
     };
     //获得本季度的开始日期 
     bkm.date.getQuarterStartDate = function () {
         var quarterStartDate = new Date(nowYear, getQuarterStartMonth(), 1);
-        return bkm.date.format(quarterStartDate);
+        return quarterStartDate;
     };
     //获得本季度的停止日期 
     bkm.date.getQuarterEndDate = function () {
         var quarterEndMonth = getQuarterStartMonth() + 2;
         var quarterStartDate = new Date(nowYear, quarterEndMonth, bkm.date.getMonthDays(quarterEndMonth));
-        return bkm.date.format(quarterStartDate);
+        return quarterStartDate;
     };
     // 比较时间相差天数
     bkm.date.diffDays = function (beginDay, endDay) {
-        if ( beginDay instanceof Date  && endDay instanceof Date) {
+        if (beginDay instanceof Date && endDay instanceof Date) {
             return (endDay.getTime() - beginDay.getTime()) / (1000 * 60 * 60 * 24);
         } else {
             return null;
@@ -848,7 +847,7 @@
     };
     // 比较时间相差小时
     bkm.date.diffHours = function (beginDay, endDay) {
-        if ( beginDay instanceof Date  && endDay instanceof Date) {
+        if (beginDay instanceof Date && endDay instanceof Date) {
             return (endDay.getTime() - beginDay.getTime()) / (1000 * 60 * 60);
         } else {
             return null;
