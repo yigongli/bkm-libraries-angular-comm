@@ -1469,6 +1469,15 @@ if (typeof module == 'object') {
             key: 3,
             value: "Unprocessed",
             name: "未处理"
+        }],
+        "AntCreditAgreementType": [{
+            key: 0,
+            value: "CreditAuth",
+            name: "授权协议"
+        }, {
+            key: 1,
+            value: "CreditConfirm",
+            name: "应收转让协议"
         }]
     };
 
