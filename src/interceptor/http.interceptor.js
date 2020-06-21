@@ -15,7 +15,7 @@
                 return $q.reject(config);
             },
             response: function (response) {
-                setDictionary(response, $filter);
+                setDictionary(response, $injector, $filter);
                 return response || $q.when(response);
             },
             responseError: function (response) {
@@ -61,7 +61,7 @@
     }
 
     //设置字典缓存
-    function setDictionary(response, $filter) {
+    function setDictionary(response, $injector, $filter) {
         if (!isApi(response.config.url)) {
             return;
         }
