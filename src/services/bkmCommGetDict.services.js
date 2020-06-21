@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    var myModule = angular.module('bkm.library.angular.comm', ['abp'])
+    angular.module('bkm.library.angular.comm', ['abp'])
         .provider('dictionary', ['$provide', '$filterProvider', function ($provide, $filterProvider) {
             this.initial = function (constantVal) {
                 //创建常量
@@ -11,92 +11,15 @@
                 return '';
             };
         }])
-        .factory('bkm.library.angular.comm.httpInterceptor', ['$q', '$injector', '$filter', httpInterceptor])
         .service('bkmCommGetDict', ['abp.services.app.sysDictionary', 'dictionaryConst', '$q', bkmCommGetDict]);
 
-    //http 请求拦截器
-    function httpInterceptor($q, $injector, $filter) {
-        return {
-            request: function (config) {
-                sendDictionaryMD5Request(config);
-                return config;
-            },
-            requestError: function (config) {
-                return $q.reject(config);
-            },
-            response: function (response) {
-                setDictionary(response);
-                return response || $q.when(response);
-            },
-            responseError: function (response) {
-                return $q.reject(response);
-            }
-        };
-
-        //判断是否为WebApi请求
-        function isApi(url) {
-            var reg = /^\/api\/[\w]{1,}/ig;
-            reg.lastIndex = 0;
-            return reg.test(url);
-        }
-
-        //发送字典缓存MD5请求
-        function sendDictionaryMD5Request(config) {
-            if (!isApi(config.url)) {
-                return;
-            }
-            var param = angular.fromJson(config.data || config.params);
-            if (!!param && angular.isArray(param.dictionaryTypes) && !!param.dictionaryTypes.length) {
-                var dctionaryService = $injector.get('bkmCommGetDict'),
-                    key = '',
-                    arr, tArr = [];
-                for (var i in param.dictionaryTypes) {
-                    key = param.dictionaryTypes[i];
-                    arr = dctionaryService.dictionary[key];
-                    if (!!arr && !!arr.length) {
-                        Array.prototype.push.apply(tArr, arr);
-                    }
-                }
-                if (!!!tArr.length) {
-                    return;
-                }
-                param.dictionaryHash = md5(angular.toJson(tArr).split('').sort().join(''));
-                if (!!config.data) {
-                    config.data = angular.toJson(param);
-                } else if (!!config.params) {
-                    config.params = angular.toJson(param);
-                }
-            }
-        }
-
-        //设置字典缓存
-        function setDictionary(response) {
-            if (!isApi(response.config.url)) {
-                return;
-            }
-            if (!!response.data && !!response.data.dictionaries && !!response.data.dictionaries.length) {
-                var dctionaryService = $injector.get('bkmCommGetDict');
-                var param = angular.fromJson(response.config.data || response.config.params);
-                for (var i in param.dictionaryTypes) {
-                    var key = param.dictionaryTypes[i];
-                    if (angular.isFunction(dctionaryService['set' + key])) {
-                        dctionaryService['set' + key]($filter('filter')(response.data.dictionaries, {
-                            type: key
-                        }, true));
-                    }
-                }
-            }
-        }
-    }
-
     /** @ngInject */
-    function bkmCommGetDict(abpDict, dictConst, $q) {
+    function bkmCommGetDict(sysDictionaryApi, dictConst, $q) {
         var self = this;
         self.dictionary = {};
         for (var i in dictConst) {
             (function declareServiceFn(keyName) {
                 self[keyName] = function () {
-
                     if (!angular.isArray(self.dictionary[dictConst[keyName]])) {
                         self.dictionary[dictConst[keyName]] = [];
                     }
@@ -114,7 +37,7 @@
                     if (self.dictionary[dictConst[keyName]] && !!self.dictionary[dictConst[keyName]].length) {
                         deferred.resolve(self.dictionary[dictConst[keyName]]);
                     } else {
-                        abpDict.getAll({
+                        sysDictionaryApi.getAll({
                             'type': dictConst[keyName],
                             maxResultCount: '500',
                             sorting: 'index ASC'
@@ -170,7 +93,7 @@
 
         //根据常量创建 filter
         angular.forEach(constantVal, function declareFilterFn(i, key) {
-            $filterProvider.register(key, ['bkmCommGetDict', '$filter', function (s, f) {
+            $filterProvider.register(key, ['bkmCommGetDict', function (dictSvc) {
                 /**
                  * @description
                  *
@@ -184,11 +107,9 @@
                     fieldName = fieldName || 'key';
                     if (angular.isUndefined(input)) return input;
                     //从 'bkmCommGetDict' 服务中获取 dictionary 配置
-                    var dicts = s.dictionary[key];
+                    var dicts = dictSvc.dictionary[key];
                     if (angular.isArray(dicts) && !!dicts.length) {
-                        var filtered = dicts.filter(function (item) {
-                            return item[fieldName] == input;
-                        });
+                        var filtered = dicts.filter((item) => item[fieldName] == input);
                         return !!isObj ? (filtered.length == 0 ? '未知' : filtered[0]) :
                             (filtered.length == 0 ? '未知' : filtered[0].name);
                     }
