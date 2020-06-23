@@ -887,8 +887,8 @@ if (typeof module == 'object') {
             name: '运费资产生成'
         }, {
             key: 1,
-            value: 'BatchPay',
-            name: '单车批量付款'
+            value: 'AgencyPay',
+            name: '单车批量付款-1'
         }, {
             key: 2,
             value: 'Recharge',
@@ -906,9 +906,29 @@ if (typeof module == 'object') {
             value: 'Cash',
             name: '提现'
         }, {
-            key: 6,
-            value: 'Advance',
+            key: 7,
+            value: 'InvoicePay',
+            name: '运费补差'
+        }, {
+            key: 8,
+            value: 'ServiceFee',
             name: '预付款'
+        }, {
+            key: 9,
+            value: 'SettlementAssist',
+            name: '物流辅助'
+        }, {
+            key: 10,
+            value: 'FundCollection',
+            name: '资金归集'
+        }, {
+            key: 11,
+            value: 'Refund',
+            name: '退款'
+        }, {
+            key: 18,
+            value: 'InnerAgencyPay',
+            name: '单车批量付款-0'
         }],
         'TransDocType': [{
             key: 0,
