@@ -1498,6 +1498,19 @@ if (typeof module == 'object') {
             key: 1,
             value: "CreditConfirm",
             name: "应收转让协议"
+        }],
+        "LocationType": [{
+            key: 0,
+            value: 'VehiclePosition',
+            name: '当前位置'
+        }, {
+            key: 1,
+            value: 'DispatchTrack',
+            name: '运单轨迹'
+        }, {
+            key: 2,
+            value: 'VehicleTrack',
+            name: '车辆轨迹'
         }]
     };
 
