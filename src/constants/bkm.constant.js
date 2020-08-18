@@ -1511,6 +1511,35 @@ if (typeof module == 'object') {
             key: 2,
             value: 'VehicleTrack',
             name: '车辆轨迹'
+        }],
+        "OrderStatus": [{
+            key: 0,
+            value: 'Checking',
+            name: '待审核'
+        }, {
+            key: 1,
+            value: 'Rejected',
+            name: '已拒绝'
+        }, {
+            key: 2,
+            value: 'Excuting',
+            name: '执行中'
+        }, {
+            key: 3,
+            value: 'CancelConfirm',
+            name: '取消中'
+        }, {
+            key: 4,
+            value: 'Cancelled',
+            name: '已取消'
+        }, {
+            key: 5,
+            value: 'Finished',
+            name: '已完成'
+        }, {
+            key: 6,
+            value: 'Recycled',
+            name: '已回收'
         }]
     };
 
