@@ -1540,6 +1540,37 @@ if (typeof module == 'object') {
             key: 6,
             value: 'Recycled',
             name: '已回收'
+        }],
+        "TransInType": [{
+            key: 0,
+            value: 'PayBehalf',
+            name: '代付'
+        },{
+            key: 1,
+            value: 'AdvanceSb',
+            name: '垫资'
+        }],
+        "DifferTransType": [{
+            key: 0,
+            value: 'Pending',
+            name: '待处理'
+        }, {
+            key: 1,
+            value: 'Refund',
+            name: '退款'
+        }, {
+            key: 2,
+            value: 'Distribute',
+            name: '调拨中'
+        }, {
+            key: 3,
+            value: 'AddWhiteList',
+            name: '加入白名单'
+        }],
+        "SmsMobileType": [{
+            key: 0,
+            value: 'DifferTransIn',
+            name: '异名来账'
         }]
     };
 
