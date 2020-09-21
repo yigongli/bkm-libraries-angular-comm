@@ -1,6 +1,6 @@
 {
   "name": "bkm-libraries-angular-comm",
-  "version": "2.9.138",
+  "version": "2.9.140",
   "description": "bkm common modules",
   "main": "index.d.ts",
   "scripts": {
