@@ -10,6 +10,15 @@ var bkm = bkm || {};
   'use strict';
 
   var bankcardList = [{
+    bankName: "山东省农村信用社联合社",
+    bankCode: "RCC",
+    cnapsCode: "402451000010",
+    "bankNo": "4024",
+    patterns: [{
+      reg: /^(621521|622320)\d{10}$/g,
+      cardType: "DC"
+        }]
+    },{
     bankName: "网商银行",
     bankCode: "MYBANK",
     cnapsCode: "323331000001",
