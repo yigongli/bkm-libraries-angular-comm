@@ -1562,7 +1562,7 @@ if (typeof module == 'object') {
         }, {
             key: 2,
             value: 'Distribute',
-            name: '调拨中'
+            name: '已调拨'
         }, {
             key: 3,
             value: 'AddWhiteList',
