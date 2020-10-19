@@ -21,7 +21,7 @@ if (typeof module == 'object') {
             PHONE_NO: "^1\\d{10}$",
             CHINESE_NAME: "^[\u4e00-\u9fa5\.·]{2,10}$",
             BANKCARD_NO: "^([1-9]{1})(\\d{14}|\\d{15}|\\d{16}|\\d{17}|\\d{18})$",
-            PASSWORD: "^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,10}$",
+            PASSWORD: "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,10}$",
         },
         MSG: {
             NetErr: "对不起，网络请求错误，请稍后重试！"
