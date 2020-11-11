@@ -522,7 +522,7 @@ if (typeof module == 'object') {
             key: 15,
             value: 'GrossProfit',
             name: '利润户'
-        } ,{
+        }, {
             key: 16,
             value: 'InvoicePayCredit',
             name: '欠款账户'
@@ -1547,7 +1547,7 @@ if (typeof module == 'object') {
             key: 0,
             value: 'PayBehalf',
             name: '代付'
-        },{
+        }, {
             key: 1,
             value: 'AdvanceSb',
             name: '垫资'
@@ -1573,6 +1573,23 @@ if (typeof module == 'object') {
             key: 0,
             value: 'DifferTransIn',
             name: '异名来账'
+        }],
+        "SettleBatchStatus": [{
+            key: 0,
+            value: 'NotUpload',
+            name: '未上链'
+        }, {
+            key: 1,
+            value: 'Uploaded',
+            name: '已上链'
+        }, {
+            key: 2,
+            value: 'Verified',
+            name: '已核验'
+        }, {
+            key: 3,
+            value: 'Issused',
+            name: '已发行'
         }]
     };
 
