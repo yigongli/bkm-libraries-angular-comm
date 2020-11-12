@@ -1243,6 +1243,10 @@ if (typeof module == 'object') {
             key: 2,
             value: "LogisAssistant",
             name: "物流辅助单"
+        }, {
+            key: 3,
+            value: "PreSettleAsset",
+            name: "结算批次"
         }],
         "TradingOrderStatus": [{
             key: 0,
@@ -1577,11 +1581,11 @@ if (typeof module == 'object') {
         "SettleBatchStatus": [{
             key: 0,
             value: 'NotUpload',
-            name: '未上链'
+            name: '未申请'
         }, {
             key: 1,
             value: 'Uploaded',
-            name: '已上链'
+            name: '已申额度'
         }, {
             key: 2,
             value: 'Verified',
