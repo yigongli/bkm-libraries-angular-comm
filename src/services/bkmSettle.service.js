@@ -23,7 +23,7 @@ bkm.settle.downstreamSettlementComputing = function (settleParams) {
     v.downstreamFinalWeight = v.downFinalWeightPolicy === bkm.CST.FinalWeightPolicy_Loaded ? v.loaded : (v.downFinalWeightPolicy === bkm.CST.FinalWeightPolicy_Reception ? v.receipt : Math.min(v.loaded, v.receipt));
     //下游结算数量增减
     v.downstreamFinalWeight = v.downstreamFinalWeight + (v.downFinalWeightAdjust || 0);
-    v.downstreamFinalWeight = bkm.util.round(v.downstreamFinalWeight);
+    v.downstreamFinalWeight = bkm.util.round(v.downstreamFinalWeight, 3);
     //下游运输服务费(元/车)(Ture表示收取服务费，false 表示不收取服务费)
     v.downServiceAmount = v.downIsIncludeServiceCharge ? v.downServiceCharge : 0;
     //下游含税运价
