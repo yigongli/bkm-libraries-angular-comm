@@ -1577,6 +1577,7 @@ if (typeof module == 'object') {
             key: 0,
             value: 'DifferTransIn',
             name: '异名来账'
+
         }],
         "SettleBatchStatus": [{
             key: 0,
@@ -1594,6 +1595,23 @@ if (typeof module == 'object') {
             key: 3,
             value: 'Issused',
             name: '已发行'
+        }],
+        "IgnoreSmallPos": [{
+            key: 0,
+            value: 'IgnoreJiao',
+            name: '抹除角和分'
+        }, {
+            key: 1,
+            value: 'IgnoreFen',
+            name: '抹除分'
+        }, {
+            key: 10,
+            value: 'IgnoreYuan',
+            name: '抹除个位元'
+        }, {
+            key: 100,
+            value: 'IgnoreShiYuan',
+            name: '抹除个十位元'
         }]
     };
 

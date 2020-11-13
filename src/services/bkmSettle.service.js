@@ -16,7 +16,7 @@ bkm.settle.downstreamSettlementComputing = function (settleParams) {
     v.downLossRangeQuant = bkm.util.round(v.downLossRangeQuant);
     //下游亏吨扣款: (亏吨数量-免责途损数量) * 货品单价, 如果未设置途损，则不扣款
     v.losses = bkm.util.round(v.losses);
-    v.downstreamLossAmount = (v.losses - (v.downLossWay === bkm.CST.LossWay_NotSet  ? v.losses : v.downLossRangeQuant)) * (v.goodsUnitPrice || 0);
+    v.downstreamLossAmount = (v.losses - (v.downLossWay === bkm.CST.LossWay_NotSet ? v.losses : v.downLossRangeQuant)) * (v.goodsUnitPrice || 0);
     v.downstreamLossAmount = v.downstreamLossAmount > 0 ? v.downstreamLossAmount : 0;
     v.downstreamLossAmount = bkm.util.round(v.downstreamLossAmount) || 0;
     //下游结算数量: 判断下游结算数量策略
@@ -38,7 +38,10 @@ bkm.settle.downstreamSettlementComputing = function (settleParams) {
     v.downstreamFinalAmount = v.taxedFreightAmount - v.downstreamLossAmount + (v.downAmountAdjust || 0) - v.downServiceAmount - v.loadUnloadAmount;
     v.downstreamFinalAmount = v.downstreamFinalAmount > 0 ? v.downstreamFinalAmount : 0;
     // 结算金额抹0
-    v.downstreamFinalAmount = (v.isIgnoreSmall ? parseInt(v.downstreamFinalAmount / 10) * 10 : v.downstreamFinalAmount);
+    if (v.isIgnoreSmall) {
+        let ignoreSmallPos = v.ignoreSmallPos == null ? 10 : v.ignoreSmallPos;
+        v.downstreamFinalAmount = ignoreSmallPos > 1 ? (parseInt(v.downstreamFinalAmount / ignoreSmallPos) * ignoreSmallPos) : bkm.util.decimal(v.downstreamFinalAmount, ignoreSmallPos);
+    }
     v.downstreamFinalAmount = bkm.util.round(v.downstreamFinalAmount);
     //下游对账金额: 对账金额把扣减掉的单车服务费还原回来，用于外部客户对账显示(华信客户)
     v.downExternalFinalAmount = v.downstreamFinalAmount + v.downServiceAmount;
