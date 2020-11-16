@@ -22,7 +22,8 @@ if (typeof module == 'object') {
             CHINESE_NAME: "^[\u4e00-\u9fa5\.·]{2,25}$",
             BANKCARD_NO: "^([1-9]{1})(\\d{14}|\\d{15}|\\d{16}|\\d{17}|\\d{18})$",
             PASSWORD: "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$",
-            USERNAME: "^[a-zA-Z][a-zA-Z0-9_]{4,15}$"
+            USERNAME: "^[a-zA-Z][a-zA-Z0-9_]{4,15}$",
+            AMOUNT: "^(\\-|\\+)?\\d+(\\.\\d+)?$"
         },
         MSG: {
             NetErr: "对不起，网络请求错误，请稍后重试！"
