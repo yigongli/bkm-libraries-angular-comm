@@ -703,7 +703,7 @@ var bkm = bkm || {};
     },
     {
       bankName: "深圳农村商业银行",
-      bankCode: "SRCB",
+      bankCode: "SNXS",
       cnapsCode: "402584000000",
       "bankNo": "1404",
       patterns: [{
