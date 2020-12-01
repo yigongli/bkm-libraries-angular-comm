@@ -1613,6 +1613,36 @@ if (typeof module == 'object') {
             key: 100,
             value: 'IgnoreShiYuan',
             name: '抹除个十位元'
+        }],
+        "SignType": [{
+            key: 0,
+            value: 'Driver',
+            name: '司机'
+        }, {
+            key: 1,
+            value: 'Agent',
+            name: '车队长'
+        }, {
+            key: 2,
+            value: 'LogisCompany',
+            name: '物流公司'
+        }],
+        "SignStatus": [{
+            key: -1,
+            value: 'Failed',
+            name: '签约失败'
+        }, {
+            key: 0,
+            value: 'UnSign',
+            name: '未签约'
+        }, {
+            key: 1,
+            value: 'Signed',
+            name: '已签约'
+        }, {
+            key: 2,
+            value: 'Signing',
+            name: '签约中'
         }]
     };
 
