@@ -1597,6 +1597,19 @@ if (typeof module == 'object') {
             value: 'Issused',
             name: '已发行'
         }],
+        "WaybillCheckResult": [{
+            key: 0,
+            value: 'WaitCheck',
+            name: '待核验'
+        }, {
+            key: 1,
+            value: 'Pass',
+            name: '通过'
+        }, {
+            key: 2,
+            value: 'UnPass',
+            name: '不通过'
+        }],
         "IgnoreSmallPos": [{
             key: 0,
             value: 'IgnoreJiao',
