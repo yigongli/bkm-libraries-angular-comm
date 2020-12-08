@@ -1656,15 +1656,6 @@ if (typeof module == 'object') {
             key: 2,
             value: 'Signing',
             name: '签约中'
-        }],
-        "TonType": [{
-            key: 0,
-            value: 'Single',
-            name: '单车'
-        }, {
-            key: 1,
-            value: 'Total',
-            name: '汇总'
         }]
     };
 
