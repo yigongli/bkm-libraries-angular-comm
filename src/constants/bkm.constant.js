@@ -390,6 +390,10 @@ if (typeof module == 'object') {
             key: 1,
             value: 'JJD_15',
             name: '提现快(晋金贷15天期)'
+        },{
+            key: 2,
+            value: 'AntCredit90',
+            name: '蚂蚁凭证(蚂蚁凭证90天期)'
         }],
         'CapitalStatus': [{
             key: 0,
@@ -1583,17 +1587,21 @@ if (typeof module == 'object') {
         "SettleBatchStatus": [{
             key: 0,
             value: 'NotUpload',
-            name: '未申请'
+            name: '待申额度'
         }, {
             key: 1,
             value: 'Uploaded',
-            name: '已申额度'
+            name: '待核验'
         }, {
             key: 2,
             value: 'Verified',
             name: '已核验'
         }, {
             key: 3,
+            value: 'Issusing',
+            name: '发行中'
+        }, {
+            key: 4,
             value: 'Issused',
             name: '已发行'
         }],
