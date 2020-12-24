@@ -150,7 +150,7 @@ if (typeof module == 'object') {
         'TimeType': [{
             key: 0,
             value: "loaded",
-            name: "矿发"
+            name: "发货"
         }, {
             key: 1,
             value: "receipt",
@@ -236,7 +236,7 @@ if (typeof module == 'object') {
         'FinalWeightPolicy': [{
             key: 0,
             value: 'Loaded',
-            name: '按矿发'
+            name: '按发货'
         }, {
             key: 1,
             value: 'Reception',
@@ -979,7 +979,7 @@ if (typeof module == 'object') {
         'TransDocsType': [{
             key: 0,
             value: 'Load',
-            name: '矿发'
+            name: '发货'
         }, {
             key: 1,
             value: 'Receipt',
