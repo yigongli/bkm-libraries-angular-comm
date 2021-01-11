@@ -1673,6 +1673,15 @@ if (typeof module == 'object') {
             key: 2,
             value: 'Signing',
             name: '签约中'
+        }],
+        "ChargeTiming": [ {
+            key: 0,
+            value: 'Before',
+            name: '前收'
+        }, {
+            key: 1,
+            value: 'After',
+            name: '后收'
         }]  
     };
 
