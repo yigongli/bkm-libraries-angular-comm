@@ -1599,7 +1599,7 @@ if (typeof module == 'object') {
         }, {
             key: 3,
             value: 'Issusing',
-            name: '发行中'
+            name: '凭证申请中'
         }, {
             key: 4,
             value: 'Issused',
