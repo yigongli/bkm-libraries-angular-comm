@@ -390,7 +390,7 @@ if (typeof module == 'object') {
             key: 1,
             value: 'JJD_15',
             name: '提现快(晋金贷15天期)'
-        },{
+        }, {
             key: 2,
             value: 'AntCredit90',
             name: '蚂蚁凭证(蚂蚁凭证90天期)'
@@ -1605,18 +1605,58 @@ if (typeof module == 'object') {
             value: 'Issused',
             name: '已发行'
         }],
-        "WaybillCheckResult": [{
+        "WaybillCheckStatus": [{
             key: 0,
-            value: 'WaitCheck',
-            name: '待核验'
+            value: 'UnKnow',
+            name: '未知'
         }, {
             key: 1,
             value: 'Pass',
-            name: '通过'
+            name: '核验通过'
         }, {
             key: 2,
             value: 'UnPass',
-            name: '不通过'
+            name: '核验不通过'
+        }, {
+            key: 3,
+            value: 'UnCheck',
+            name: '未核验'
+        }, {
+            key: 4,
+            value: 'NoSpecInfo',
+            name: '无信息'
+        }, {
+            key: 5,
+            value: 'IssuedSuccess',
+            name: '凭证发行成功'
+        }, {
+            key: 6,
+            value: 'IssuedFailed',
+            name: '凭证发行失败'
+        }, {
+            key: 7,
+            value: 'IssuedUnComplete',
+            name: '凭证发行未完成'
+        }, {
+            key: 8,
+            value: 'Create',
+            name: '批次已创建'
+        }, {
+            key: 9,
+            value: 'Upload',
+            name: '已申额度'
+        }, {
+            key: 10,
+            value: 'Cashing',
+            name: '提现中'
+        }, {
+            key: 11,
+            value: 'CashFailure',
+            name: '提现失败'
+        }, {
+            key: 12,
+            value: 'CashSuccess',
+            name: '提现成功'
         }],
         "IgnoreSmallPos": [{
             key: 0,
@@ -1674,7 +1714,7 @@ if (typeof module == 'object') {
             value: 'Signing',
             name: '签约中'
         }],
-        "ChargeTiming": [ {
+        "ChargeTiming": [{
             key: 0,
             value: 'Before',
             name: '前收'
@@ -1682,7 +1722,7 @@ if (typeof module == 'object') {
             key: 1,
             value: 'After',
             name: '后收'
-        }]  
+        }]
     };
 
     var dictionariesProxy = new Proxy(dictionaries, {
