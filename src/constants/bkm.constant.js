@@ -1722,6 +1722,142 @@ if (typeof module == 'object') {
             key: 1,
             value: 'After',
             name: '后收'
+        }],
+        "OperationModel": [{
+            key: 0,
+            value: "SelfAll",
+            name: "自购自营"
+        }, {
+            key: 1,
+            value: "SelfBuyForRent",
+            name: "自购出租"
+        }, {
+            key: 2,
+            value: "JointOpera",
+            name: "整合加盟"
+        }, {
+            key: 3,
+            value: "Outsource",
+            name: "委托承运"
+        }, {
+            key: 4,
+            value: "CustomerLogis",
+            name: "客户自提"
+        }],
+        "VehicleStatus": [{
+            key: 0,
+            value: "Stoped",
+            name: "停运"
+        }, {
+            key: 1,
+            value: "Normal",
+            name: "正常"
+        }, {
+            key: 2,
+            value: "Waiting",
+            name: "待派"
+        }, {
+            key: 3,
+            value: "Dispatched",
+            name: "已派"
+        }],
+        "AgentType": [{
+            key: 0,
+            value: "Own",
+            name: "自有"
+        }, {
+            key: 1,
+            value: "Delegate",
+            name: "委托"
+        }, {
+            key: 2,
+            value: "Customer",
+            name: "客户"
+        }, {
+            key: 3,
+            value: "TenantDefault",
+            name: "租户默认车队"
+        }],
+        "FuelType": [{
+            key: 0,
+            value: "Gasoline",
+            name: "汽油"
+        }, {
+            key: 1,
+            value: "Diesel",
+            name: "柴油"
+        }, {
+            key: 2,
+            value: "CNG",
+            name: "CNG"
+        }, {
+            key: 3,
+            value: "LNG",
+            name: "LNG"
+        }, {
+            key: 4,
+            value: "Other",
+            name: "其他"
+        }, {
+            key: 5,
+            value: "Electric",
+            name: "纯电"
+        }, {
+            key: 6,
+            value: "Hydrogen",
+            name: "氢能源"
+        }],
+        "VehicleContractType": [{
+            key: 0,
+            value: "Repayed",
+            name: "已还贷款"
+        }, {
+            key: 1,
+            value: "ToRepay",
+            name: "未还贷款"
+        }, {
+            key: 2,
+            value: "JointOpera",
+            name: "整合加盟"
+        }, {
+            key: 3,
+            value: "Outsource",
+            name: "委托承运"
+        }],
+        "ManageStatus": [{
+            key: 0,
+            value: "Unconfirmed",
+            name: "未确认"
+        }, {
+            key: 1,
+            value: "Confirmed",
+            name: "已确认"
+        }, {
+            key: 2,
+            value: "Removed",
+            name: "已移除"
+        }],
+        "NotificationState": [{
+            key: 0,
+            value: "UnRead",
+            name: "未读"
+        }, {
+            key: 1,
+            value: "Read",
+            name: "已读"
+        }],
+        "ContractStatus": [{
+            key: 0,
+            value: "Initial",
+            name: "初始"
+        }, {
+            key: 1,
+            value: "signed",
+            name: "签订"
+        }, {
+            key: 2,
+            value: "Terminated",
+            name: "终止"
         }]
     };
 
