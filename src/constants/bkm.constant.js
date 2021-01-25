@@ -1793,7 +1793,7 @@ if (typeof module == 'object') {
         }, {
             key: 3,
             value: "LNG",
-            name: "LNG"
+            name: "天然气"
         }, {
             key: 4,
             value: "Other",
@@ -1806,6 +1806,10 @@ if (typeof module == 'object') {
             key: 6,
             value: "Hydrogen",
             name: "氢能源"
+        }, {
+            key: 7,
+            value: "Ethanol",
+            name: "乙醇"
         }],
         "VehicleContractType": [{
             key: 0,
