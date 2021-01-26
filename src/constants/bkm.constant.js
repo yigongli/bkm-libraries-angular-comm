@@ -1862,6 +1862,15 @@ if (typeof module == 'object') {
             key: 2,
             value: "Terminated",
             name: "终止"
+        }],
+        "VehicleDriverBindingStatus": [{
+            key: 0,
+            value: "Inactive",
+            name: "未绑定"
+        }, {
+            key: 1,
+            value: "Active",
+            name: "当前绑定"
         }]
     };
 
