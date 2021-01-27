@@ -1871,6 +1871,23 @@ if (typeof module == 'object') {
             key: 1,
             value: "Active",
             name: "当前绑定"
+        }],
+        "onlineSvcType":[{
+            key: 0,
+            value: "dispatch",
+            name: "运单"
+        }, {
+            key: 1,
+            value: "vehicle",
+            name: "车辆"
+        }, {
+            key: 2,
+            value: "driver",
+            name: "司机"
+        }, {
+            key: 3,
+            value: "loginkPayment",
+            name: "资金流水"
         }]
     };
 
