@@ -767,6 +767,19 @@ if (typeof module == 'object') {
             value: 'Rate',
             name: '按比例'
         }],
+        'FuleChargeType': [{
+            key: 0,
+            value: 'None',
+            name: '无'
+        },{
+            key: 1,
+            value: 'FixedAmount',
+            name: '固定金额'
+        }, {
+            key: 2,
+            value: 'Rate',
+            name: '按比例'
+        }],
         'BatchPayType': [{
             key: 0,
             value: 'BySettle',
