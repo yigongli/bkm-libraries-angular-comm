@@ -2126,7 +2126,7 @@ var bkm = bkm || {};
       cnapsCode: "402161002352",
       "bankNo": "1455",
       patterns: [{
-        reg: /^(623051)\d{13}$/g,
+        reg: /^(623051|621580)\d{13}$/g,
         cardType: "DC"
       }]
     }
