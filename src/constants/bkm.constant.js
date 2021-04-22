@@ -771,7 +771,7 @@ if (typeof module == 'object') {
             key: 0,
             value: 'None',
             name: '无'
-        },{
+        }, {
             key: 1,
             value: 'FixedAmount',
             name: '固定金额'
@@ -1885,7 +1885,7 @@ if (typeof module == 'object') {
             value: "Active",
             name: "当前绑定"
         }],
-        "onlineSvcType":[{
+        "onlineSvcType": [{
             key: 0,
             value: "dispatch",
             name: "运单"
@@ -1901,6 +1901,19 @@ if (typeof module == 'object') {
             key: 3,
             value: "loginkPayment",
             name: "资金流水"
+        }],
+        "SpecificationType": [{
+            key: 0,
+            value: "vehicleNo",
+            name: "车牌号"
+        }, {
+            key: 1,
+            value: "vehicleNoProinvceCity",
+            name: "车牌号+省市"
+        }, {
+            key: 2,
+            value: "vehicleNoAddress",
+            name: "车牌号+线路"
         }]
     };
 
