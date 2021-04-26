@@ -34,8 +34,13 @@ bkm.settle.downstreamSettlementComputing = function (settleParams) {
     v.downTaxedFreightPriceGrp = v.downTaxedFreightPrice;
     //下游含税运费金额：结算数量 * 含税运费单价
     v.taxedFreightAmount = bkm.util.round(v.downstreamFinalWeight * v.downTaxedFreightPrice);
-    //含税结算金额:  含税运费金额 - 亏吨扣款 + 运费增减  - 服务费 - 装卸费
-    v.downstreamFinalAmount = v.taxedFreightAmount - v.downstreamLossAmount + (v.downAmountAdjust || 0) - v.downServiceAmount - v.loadUnloadAmount;
+    // 油气费金额
+    v.oilChargeAmount = v.oilChargeType === bkm.CST.FuleChargeType_FixedAmount ? v.oilCharge : (v.oilCharge * v.taxedFreightAmount);
+    v.oilChargeAmount = v.oilChargeType === bkm.CST.FuleChargeType_None ? 0 : bkm.util.round(v.oilChargeAmount || 0);
+    v.gasChargeAmount = v.gasChargeType === bkm.CST.FuleChargeType_FixedAmount ? v.gasCharge : (v.gasCharge * v.taxedFreightAmount);
+    v.gasChargeAmount = v.gasChargeType === bkm.CST.FuleChargeType_None ? 0 : bkm.util.round(v.gasChargeAmount || 0);
+    //含税结算金额:  含税运费金额 - 亏吨扣款 + 运费增减  - 服务费 - 装卸费 - 油气费
+    v.downstreamFinalAmount = v.taxedFreightAmount - v.downstreamLossAmount + (v.downAmountAdjust || 0) - v.downServiceAmount - v.loadUnloadAmount - v.oilChargeAmount - v.gasChargeAmount;
     v.downstreamFinalAmount = v.downstreamFinalAmount > 0 ? v.downstreamFinalAmount : 0;
     // 结算金额抹0
     if (v.isIgnoreSmall) {
@@ -44,7 +49,7 @@ bkm.settle.downstreamSettlementComputing = function (settleParams) {
     }
     v.downstreamFinalAmount = bkm.util.round(v.downstreamFinalAmount);
     //下游对账金额: 对账金额把扣减掉的单车服务费还原回来，用于外部客户对账显示(华信客户)
-    v.downExternalFinalAmount = v.downstreamFinalAmount + v.downServiceAmount;
+    v.downExternalFinalAmount = v.downstreamFinalAmount + v.downServiceAmount + v.oilChargeAmount + v.gasChargeAmount;
     return v;
 };
 
