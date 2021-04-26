@@ -767,7 +767,7 @@ if (typeof module == 'object') {
             value: 'Rate',
             name: '按比例'
         }],
-        'FuleChargeType': [{
+        'FuelChargeType': [{
             key: 0,
             value: 'None',
             name: '无'
