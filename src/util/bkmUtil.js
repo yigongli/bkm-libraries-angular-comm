@@ -197,6 +197,7 @@
         return result;
     };
 
+    // 比例和整数字段之间的转换显示
     bkm.util.objectPercentPropertyDef = function (inputModel, dispProp, dataProp, factor) {
         var base = factor || 100;
         if ((typeof inputModel != 'object') || (typeof dispProp != 'string') || (typeof dataProp != 'string')) return;
@@ -222,6 +223,41 @@
             configurable: true
         });
     };
+
+    /**
+         * 比例和重量的数据模型转换
+         *
+         * @param {*} inputModel -- 输入对象
+         * @param {*} percentModel -- 比例模型属性名称
+         * @param {*} weightModel -- 数量模型属性名称
+         * @param {*} categoryModel -- 类型模型属性名称
+         * @param {*} percentEnumValue -- 类型等于比例时的常量值
+         * @param {*} percentBase -- 比例的基底
+         */
+    bkm.util.percentTransferObjectPropertyDef = function (inputModel, percentModel, weightModel, categoryModel, percentEnumValue, percentBase) {
+        percentBase = percentBase || 100;
+        Object.defineProperty(inputModel, percentModel, {
+            get: function () {
+                if (inputModel[weightModel] != null) {
+                    if (inputModel[categoryModel] === percentEnumValue) { //按比例
+                        return inputModel[weightModel] * percentBase;
+                    } else {
+                        return inputModel[weightModel];
+                    }
+                }
+                return null;
+            },
+            set: function (newValue) {
+                if (inputModel[categoryModel] == percentEnumValue && newValue != null) {
+                    inputModel[weightModel] = newValue / percentBase;
+                } else {
+                    inputModel[weightModel] = newValue;
+                }
+            },
+            enumerable: true,
+            configurable: true
+        });
+    }
 
     /*
      * 判断是否为字符串
