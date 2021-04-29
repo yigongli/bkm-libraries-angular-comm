@@ -10,6 +10,7 @@ bkm.settle.downstreamSettlementComputing = function (settleParams) {
     }
     var v = angular.extend({}, settleParams);
     v.loadUnloadAmount = (v.loadingPrice || 0) + (v.unloadingPrice || 0);
+    v.downAmountAdjust = v.downAmountAdjust || 0;
     v.downLossWay = (v.downLossWay == null) ? v.lossWay : v.downLossWay;
     //下游免责途损数量: 按比例时，转换为每车的免责数量
     v.downLossRangeQuant = v.downLossWay === bkm.CST.LossWay_Rate ? v.downLossRange * v.loaded : v.downLossRange;
@@ -26,22 +27,27 @@ bkm.settle.downstreamSettlementComputing = function (settleParams) {
     v.downstreamFinalWeight = bkm.util.round(v.downstreamFinalWeight, 3);
     //下游运输服务费(元/车)(Ture表示收取服务费，false 表示不收取服务费)
     v.downServiceAmount = v.downIsIncludeServiceCharge ? v.downServiceCharge : 0;
+    v.downServiceAmount = bkm.util.round(v.downServiceAmount || 0);
     //下游含税运价
     v.downTaxRate = v.downTaxRate || 0;
     v.downTaxedFreightPrice = v.isDownIncludeTax ? v.freightPrice : (v.finalAmountSettlePolicy == bkm.CST.FinalAmountSettlePolicy_ByDivision ? (v.freightPrice / (1 - v.downTaxRate)) : (v.freightPrice * (1 + v.downTaxRate)));
-    v.downTaxedFreightPrice = bkm.util.round(v.downTaxedFreightPrice);
+    v.downTaxedFreightPrice = bkm.util.round(v.downTaxedFreightPrice || 0);
     //用于含税运价分组汇总
     v.downTaxedFreightPriceGrp = v.downTaxedFreightPrice;
     //下游含税运费金额：结算数量 * 含税运费单价
     v.taxedFreightAmount = bkm.util.round(v.downstreamFinalWeight * v.downTaxedFreightPrice);
     // 油气费金额
     v.oilChargeAmount = v.oilChargeType === bkm.CST.FuelChargeType_FixedAmount ? v.oilCharge : (v.oilCharge * v.taxedFreightAmount);
-    v.oilChargeAmount = v.oilChargeType === bkm.CST.FuelChargeType_None ? 0 : bkm.util.round(v.oilChargeAmount || 0);
+    v.oilChargeAmount = v.hasOilGas && (v.oilChargeType !== bkm.CST.FuelChargeType_None) ? bkm.util.round(v.oilChargeAmount || 0) : 0;
     v.gasChargeAmount = v.gasChargeType === bkm.CST.FuelChargeType_FixedAmount ? v.gasCharge : (v.gasCharge * v.taxedFreightAmount);
-    v.gasChargeAmount = v.gasChargeType === bkm.CST.FuelChargeType_None ? 0 : bkm.util.round(v.gasChargeAmount || 0);
-    //含税结算金额:  含税运费金额 - 亏吨扣款 + 运费增减  - 服务费 - 装卸费 - 油气费
-    v.downstreamFinalAmount = v.taxedFreightAmount - v.downstreamLossAmount + (v.downAmountAdjust || 0) - v.downServiceAmount - v.loadUnloadAmount - v.oilChargeAmount - v.gasChargeAmount;
+    v.gasChargeAmount = v.hasOilGas && (v.gasChargeType !== bkm.CST.FuelChargeType_None) ? bkm.util.round(v.gasChargeAmount || 0) : 0;
+    //含税运费结算金额:  含税运费金额 - 亏吨扣款 + 运费增减  - 服务费 - 装卸费 - 油费 - 气费 (该公式用于运费付款)
+    v.downstreamFinalAmount = v.taxedFreightAmount - v.downstreamLossAmount + v.downAmountAdjust - v.downServiceAmount - v.loadUnloadAmount - v.oilChargeAmount - v.gasChargeAmount;
     v.downstreamFinalAmount = v.downstreamFinalAmount > 0 ? v.downstreamFinalAmount : 0;
+    // 如果报告明细用于结算单时，油气的费用是不包含在运费中，将上面公式中扣除的油气费还回到运费结算金额中
+    if (v.reportDetailForWhich === bkm.CST.SettleBillType_Settlement) {
+        v.downstreamFinalAmount = v.downstreamFinalAmount + v.oilChargeAmount + v.gasChargeAmount;
+    }
     // 结算金额抹0
     if (v.isIgnoreSmall) {
         let ignoreSmallPos = v.ignoreSmallPos == null ? 10 : v.ignoreSmallPos;
