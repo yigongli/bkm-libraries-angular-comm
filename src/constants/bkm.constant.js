@@ -37,6 +37,76 @@ if (typeof module == 'object') {
         }
     };
 
+
+
+    let AuditTypeEnum = {
+        AgentAuth: {
+            key: 0,
+            value: "AgentAuth",
+            name: "车队审核类型"
+        },
+        Vehicle: {
+            key: 1,
+            value: "Vehicle",
+            name: "车辆认证类型"
+        },
+        GoodsAuth: {
+            key: 2,
+            value: "GoodsAuth",
+            name: "货源审核类型"
+        },
+        DispatchAuth: {
+            key: 3,
+            value: "DispatchAuth",
+            name: "派遣单审核类型"
+        },
+        InvoiceAuth: {
+            key: 4,
+            value: "InvoiceAuth",
+            name: "发票申请单审核类型"
+        },
+        DispatchDocsAuth: {
+            key: 5,
+            value: "DispatchDocsAuth",
+            name: "派单单发货和签收单证审核类型"
+        },
+        TenantDriver: {
+            key: 6,
+            value: "TenantDriver",
+            name: "司机认证类型"
+        },
+        VehicleLicenseAuth: {
+            key: 7,
+            value: "VehicleLicenseAuth",
+            name: "车辆行驶证审核类型"
+        },
+        VehicleOperationAuth: {
+            key: 8,
+            value: "VehicleOperationAuth",
+            name: "道路运输证审核类型"
+        },
+        VehicleSemitrailerLicenseAuth: {
+            key: 9,
+            value: "VehicleSemitrailerLicenseAuth",
+            name: "挂车行驶证审核类型"
+        },
+        DriverLicenseAuth: {
+            key: 10,
+            value: "DriverLicenseAuth",
+            name: "司机驾驶证审核类型"
+        },
+        DriverIdentityAuth: {
+            key: 11,
+            value: "DriverIdentityAuth",
+            name: "司机身份证审核类型"
+        },
+        DriverQualificationAuth: {
+            key: 12,
+            value: "DriverQualificationAuth",
+            name: "司机从业资格证审核类型"
+        },
+    };
+
     //前端字典数据的本地定义
     var dictionaries = {
         'HasDataError': [{
@@ -1915,72 +1985,21 @@ if (typeof module == 'object') {
             value: "vehicleNoAddress",
             name: "车牌号+地址名称"
         }],
+        "AuditTypeEnum": AuditTypeEnum,
         "AuditType": [
-            {
-                key: 0,
-                value: "AgentAuth",
-                name: "车队审核类型"
-            },
-            {
-                key: 1,
-                value: "Vehicle",
-                name: "车辆认证类型"
-            },
-            {
-                key: 2,
-                value: "GoodsAuth",
-                name: "货源审核类型"
-            },
-            {
-                key: 3,
-                value: "DispatchAuth",
-                name: "派遣单审核类型"
-            },
-            {
-                key: 4,
-                value: "InvoiceAuth",
-                name: "发票申请单审核类型"
-            },
-            {
-                key: 5,
-                value: "DispatchDocsAuth",
-                name: "派单单发货和签收单证审核类型"
-            },
-            {
-                key: 6,
-                value: "TenantDriver",
-                name: "司机认证类型"
-            },
-            {
-                key: 7,
-                value: "VehicleLicenseAuth",
-                name: "车辆行驶证审核类型"
-            },
-            {
-                key: 8,
-                value: "VehicleOperationAuth",
-                name: "道路运输证审核类型"
-            },
-            {
-                key: 9,
-                value: "VehicleSemitrailerLicenseAuth",
-                name: "挂车行驶证审核类型"
-            },
-            {
-                key: 10,
-                value: "DriverLicenseAuth",
-                name: "司机驾驶证审核类型"
-            },
-            {
-                key: 11,
-                value: "DriverIdentityAuth",
-                name: "司机身份证审核类型"
-            },
-            {
-                key: 12,
-                value: "DriverQualificationAuth",
-                name: "司机从业资格证审核类型"
-            }
+            AuditTypeEnum.AgentAuth,
+            AuditTypeEnum.Vehicle,
+            AuditTypeEnum.GoodsAuth,
+            AuditTypeEnum.DispatchAuth,
+            AuditTypeEnum.InvoiceAuth,
+            AuditTypeEnum.DispatchDocsAuth,
+            AuditTypeEnum.TenantDriver,
+            AuditTypeEnum.VehicleLicenseAuth,
+            AuditTypeEnum.VehicleOperationAuth,
+            AuditTypeEnum.VehicleSemitrailerLicenseAuth,
+            AuditTypeEnum.DriverLicenseAuth,
+            AuditTypeEnum.DriverIdentityAuth,
+            AuditTypeEnum.DriverQualificationAuth
         ]
     };
 
