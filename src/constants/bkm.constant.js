@@ -1985,7 +1985,7 @@ if (typeof module == 'object') {
             value: "vehicleNoAddress",
             name: "车牌号+地址名称"
         }],
-        "AuditTypeEnum": AuditTypeEnum,
+        // "AuditTypeEnum": AuditTypeEnum,
         "AuditType": [
             AuditTypeEnum.AgentAuth,
             AuditTypeEnum.Vehicle,
