@@ -601,6 +601,14 @@ if (typeof module == 'object') {
             key: 16,
             value: 'InvoicePayCredit',
             name: '欠款账户'
+        }, {
+            key: 25,
+            value: 'InnerFuelIn',
+            name: '油气户'
+        }, {
+            key: 26,
+            value: 'InnerGrossProfit',
+            name: '利润户'
         }],
         'AssetSettleStatus': [{
             key: 0,
