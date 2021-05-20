@@ -549,7 +549,7 @@ if (typeof module == 'object') {
             value: 'Failure',
             name: '认证失败'
         }],
-        'AccountCategory': [ {
+        'AccountCategory': [{
             key: 3,
             value: 'CASH',
             name: '充值账户'
@@ -932,41 +932,21 @@ if (typeof module == 'object') {
             name: '四要素验证'
         }],
         'TradingOrderType': [{
-            key: 0,
-            value: 'Settlement',
-            name: '运费资产生成'
-        }, {
             key: 1,
             value: 'AgencyPay',
-            name: '单车批量付款-1'
+            name: '支付司机运费'
         }, {
             key: 2,
             value: 'Recharge',
-            name: '用户充值'
-        }, {
-            key: 3,
-            value: 'Loan',
-            name: '贷款'
+            name: '客户充值充值'
         }, {
             key: 4,
             value: 'Repayment',
             name: '还款'
         }, {
-            key: 5,
-            value: 'Cash',
-            name: '提现'
-        }, {
             key: 7,
             value: 'InvoicePay',
             name: '运费补差'
-        }, {
-            key: 8,
-            value: 'ServiceFee',
-            name: '预付款'
-        }, {
-            key: 9,
-            value: 'SettlementAssist',
-            name: '物流辅助'
         }, {
             key: 10,
             value: 'FundCollection',
@@ -976,9 +956,21 @@ if (typeof module == 'object') {
             value: 'Refund',
             name: '退款'
         }, {
-            key: 18,
-            value: 'InnerAgencyPay',
-            name: '单车批量付款-0'
+            key: 12,
+            value: 'FundDistribute',
+            name: '资金调拨'
+        }, {
+            key: 13,
+            value: 'TransOut',
+            name: '利润转出'
+        }, {
+            key: 17,
+            value: 'FreightPay',
+            name: '代付还款'
+        }, {
+            key: 22,
+            value: 'CascadeTrans',
+            name: '支付下游运费'
         }],
         'TransDocType': [{
             key: 0,
