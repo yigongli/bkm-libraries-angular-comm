@@ -36,9 +36,9 @@ bkm.settle.downstreamSettlementComputing = function (settleParams) {
     //下游含税运费金额：结算数量 * 含税运费单价
     v.taxedFreightAmount = bkm.util.round(v.downstreamFinalWeight * v.downTaxedFreightPrice);
     // 油气费金额
-    v.oilChargeAmount = v.oilChargeType === bkm.CST.FuelChargeType_FixedAmount ? v.oilCharge : (v.oilCharge * v.taxedFreightAmount);
+    v.oilChargeAmount = v.oilChargeAmount ? v.oilChargeAmount : (v.oilChargeType === bkm.CST.FuelChargeType_FixedAmount ? v.oilCharge : (v.oilCharge * v.taxedFreightAmount));
     v.oilChargeAmount = v.hasOilGas && (v.oilChargeType !== bkm.CST.FuelChargeType_None) ? bkm.util.round(v.oilChargeAmount || 0) : 0;
-    v.gasChargeAmount = v.gasChargeType === bkm.CST.FuelChargeType_FixedAmount ? v.gasCharge : (v.gasCharge * v.taxedFreightAmount);
+    v.gasChargeAmount = v.gasChargeAmount ? v.gasChargeAmount : (v.gasChargeType === bkm.CST.FuelChargeType_FixedAmount ? v.gasCharge : (v.gasCharge * v.taxedFreightAmount));
     v.gasChargeAmount = v.hasOilGas && (v.gasChargeType !== bkm.CST.FuelChargeType_None) ? bkm.util.round(v.gasChargeAmount || 0) : 0;
     // 现金结算金额:  含税运费金额 - 亏吨扣款 + 运费增减  - 运输服务费 - 装卸费 - 油费 - 气费 (该公式用于运费付款)
     v.downstreamFinalAmount = v.taxedFreightAmount - v.downstreamLossAmount + v.downAmountAdjust - v.downServiceAmount - v.loadUnloadAmount - v.oilChargeAmount - v.gasChargeAmount;
