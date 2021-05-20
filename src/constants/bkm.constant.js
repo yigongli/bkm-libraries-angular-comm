@@ -554,6 +554,14 @@ if (typeof module == 'object') {
             value: 'CASH',
             name: '充值账户'
         }, {
+            key: 4,
+            value: 'LOAN',
+            name: '贷款账户'
+        }, {
+            key: 5,
+            value: 'LEND',
+            name: '放贷账户'
+        }, {
             key: 8,
             value: 'ADVANCE',
             name: '运费预付款账户'
