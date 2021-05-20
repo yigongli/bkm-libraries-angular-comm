@@ -549,66 +549,18 @@ if (typeof module == 'object') {
             value: 'Failure',
             name: '认证失败'
         }],
-        'AccountCategory': [{
-            key: 0,
-            value: 'BANK',
-            name: '银行卡账户'
-        }, {
-            key: 1,
-            value: 'REV_LOGIS',
-            name: '应收运费账户'
-        }, {
-            key: 2,
-            value: 'PAY_LOGIS',
-            name: '应付运费账户'
-        }, {
+        'AccountCategory': [ {
             key: 3,
             value: 'CASH',
             name: '充值账户'
-        }, {
-            key: 4,
-            value: 'LOAN',
-            name: '贷款账户'
-        }, {
-            key: 5,
-            value: 'LEND',
-            name: '放贷账户'
-        }, {
-            key: 6,
-            value: 'NEW_PAY',
-            name: '新生支付账户'
-        }, {
-            key: 7,
-            value: 'CITIC_PAY',
-            name: '中信支付账户'
         }, {
             key: 8,
             value: 'ADVANCE',
             name: '运费预付款账户'
         }, {
-            key: 9,
-            value: 'TENANT_REV_LOGIS',
-            name: '平台运费收入账户'
-        }, {
-            key: 11,
-            value: 'BORROW',
-            name: '往来户'
-        }, {
-            key: 15,
-            value: 'GrossProfit',
-            name: '利润户'
-        }, {
-            key: 16,
-            value: 'InvoicePayCredit',
-            name: '欠款账户'
-        }, {
             key: 25,
             value: 'InnerFuelIn',
             name: '油气户'
-        }, {
-            key: 26,
-            value: 'InnerGrossProfit',
-            name: '利润户'
         }],
         'AssetSettleStatus': [{
             key: 0,
