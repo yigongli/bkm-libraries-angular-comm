@@ -946,7 +946,7 @@ if (typeof module == 'object') {
         }, {
             key: 2,
             value: 'Recharge',
-            name: '客户充值充值'
+            name: '客户充值'
         }, {
             key: 4,
             value: 'Repayment',
