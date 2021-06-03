@@ -121,7 +121,7 @@ if (typeof module == 'object') {
         ByAgentDriver: {
             key: 2,
             value: "ByAgentDriver",
-            name: "车队派注册司机"
+            name: "车队派在线司机"
         }
     };
 
