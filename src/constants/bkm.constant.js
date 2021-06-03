@@ -110,12 +110,12 @@ if (typeof module == 'object') {
     let TakeOrderTypeEnum = {
         ByDriver: {
             key: 0,
-            value: "ByDriver",
+            value: "ByAgent",
             name: "车队派车"
         },
         ByAgent: {
             key: 1,
-            value: "ByAgent",
+            value: "ByDriver",
             name: "司机抢单"
         },
         ByAgentDriver: {
