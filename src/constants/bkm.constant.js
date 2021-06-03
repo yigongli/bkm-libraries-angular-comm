@@ -107,7 +107,7 @@ if (typeof module == 'object') {
         },
     };
 
-    let TackOrderTypeEnum = {
+    let TakeOrderTypeEnum = {
         ByDriver: {
             key: 0,
             value: "ByDriver",
@@ -1979,10 +1979,10 @@ if (typeof module == 'object') {
             AuditTypeEnum.DriverIdentityAuth,
             AuditTypeEnum.DriverQualificationAuth
         ],
-        "TackOrderType": [
-            TackOrderTypeEnum.ByDriver,
-            TackOrderTypeEnum.ByAgent,
-            TackOrderTypeEnum.ByAgentDriver
+        "TakeOrderType": [
+            TakeOrderTypeEnum.ByDriver,
+            TakeOrderTypeEnum.ByAgent,
+            TakeOrderTypeEnum.ByAgentDriver
         ]
     };
 
