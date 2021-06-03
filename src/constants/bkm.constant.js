@@ -107,6 +107,24 @@ if (typeof module == 'object') {
         },
     };
 
+    let TackOrderTypeEnum = {
+        ByDriver: {
+            key: 0,
+            value: "ByDriver",
+            name: "车队派车"
+        },
+        ByAgent: {
+            key: 1,
+            value: "ByAgent",
+            name: "司机抢单"
+        },
+        ByAgentDriver: {
+            key: 2,
+            value: "ByAgentDriver",
+            name: "车队派注册司机"
+        }
+    };
+
     //前端字典数据的本地定义
     var dictionaries = {
         'HasDataError': [{
@@ -1960,6 +1978,11 @@ if (typeof module == 'object') {
             AuditTypeEnum.DriverLicenseAuth,
             AuditTypeEnum.DriverIdentityAuth,
             AuditTypeEnum.DriverQualificationAuth
+        ],
+        "TackOrderType": [
+            TackOrderTypeEnum.ByDriver,
+            TackOrderTypeEnum.ByAgent,
+            TackOrderTypeEnum.ByAgentDriver
         ]
     };
 
