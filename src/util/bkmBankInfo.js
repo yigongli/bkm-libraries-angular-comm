@@ -10,15 +10,6 @@ var bkm = bkm || {};
   'use strict';
 
   var bankcardList = [{
-    bankName: "贵州省农村信用社联合社",
-    bankCode: "GZNX",
-    cnapsCode: "402701012010",
-    "bankNo": "4027",
-    patterns: [{
-      reg: /^(621779)\d{10}$/g,
-      cardType: "DC"
-        }]
-    },{
     bankName: "山东省农村信用社联合社",
     bankCode: "RCC",
     cnapsCode: "402161000007",
