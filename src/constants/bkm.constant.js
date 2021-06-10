@@ -125,6 +125,19 @@ if (typeof module == 'object') {
         }
     };
 
+    let TagType = {
+        Vehicle: {
+            key: 0,
+            value: "Vehicle",
+            name: "车辆"
+        },
+        Goods: {
+            key: 1,
+            value: "Goods",
+            name: "货源"
+        }
+    };
+
     //前端字典数据的本地定义
     var dictionaries = {
         'HasDataError': [{
@@ -1983,6 +1996,10 @@ if (typeof module == 'object') {
             TakeOrderTypeEnum.ByDriver,
             TakeOrderTypeEnum.ByAgent,
             TakeOrderTypeEnum.ByAgentDriver
+        ],
+        "TagType": [
+            TagType.Vehicle,
+            TagType.Goods
         ]
     };
 
