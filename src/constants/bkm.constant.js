@@ -1824,10 +1824,6 @@ if (typeof module == 'object') {
             name: "停运"
         }, {
             key: 1,
-            value: "Normal",
-            name: "正常"
-        }, {
-            key: 2,
             value: "Waiting",
             name: "待派"
         }, {
