@@ -1970,6 +1970,23 @@ if (typeof module == 'object') {
             key: 94,
             value: "GradientGreen",
             name: "渐变绿"
+        }],
+        "EmissionsStandards":[{
+            key: 0,
+            value: "Unknow",
+            name:"未知"
+        }, {
+            key: 4,
+            value: "IV",
+            name:"国四"
+        }, {
+            key: 5,
+            value: "V",
+            name:"国五"
+        }, {
+            key: 6,
+            value: "VI",
+            name:"国四"
         }]
     };
 
