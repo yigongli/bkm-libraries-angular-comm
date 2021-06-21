@@ -1986,7 +1986,7 @@ if (typeof module == 'object') {
         }, {
             key: 6,
             value: "VI",
-            name:"国四"
+            name:"国六"
         }]
     };
 
