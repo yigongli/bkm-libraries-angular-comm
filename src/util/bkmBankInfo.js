@@ -1582,8 +1582,8 @@ var bkm = bkm || {};
     {
       bankName: "湖南省农村信用社联合社",
       bankCode: "HNRCC",
-      cnapsCode: "",
-      "bankNo": "1438",
+      cnapsCode: "402551080008",
+      "bankNo": "4025",
       patterns: [{
         reg: /^(622169|621519|621539|623090)\d{13}$/g,
         cardType: "DC"
