@@ -1971,22 +1971,35 @@ if (typeof module == 'object') {
             value: "GradientGreen",
             name: "渐变绿"
         }],
-        "EmissionsStandards":[{
+        "EmissionsStandards": [{
             key: 0,
             value: "Unknow",
-            name:"未知"
+            name: "未知"
         }, {
             key: 4,
             value: "IV",
-            name:"国四"
+            name: "国四"
         }, {
             key: 5,
             value: "V",
-            name:"国五"
+            name: "国五"
         }, {
             key: 6,
             value: "VI",
-            name:"国六"
+            name: "国六"
+        }],
+        "LivingFaceStatus": [{
+            key: 0,
+            value: "NotCheck",
+            name: "未识别"
+        }, {
+            key: 1,
+            value: "Pass",
+            name: "识别通过"
+        }, {
+            key: 2,
+            value: "NotPass",
+            name: "识别失败"
         }]
     };
 
