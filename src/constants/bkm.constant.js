@@ -2000,6 +2000,44 @@ if (typeof module == 'object') {
             key: 2,
             value: "NotPass",
             name: "识别失败"
+        }],
+        "OCRType": [{
+            key: 1,
+            value: "DrivingLicense",
+            name: "驾驶证识别"
+        }, {
+            key: 2,
+            value: "VehicelLicense",
+            name: "行驶证证识别"
+        }, {
+            key: 3,
+            value: "OperationFile",
+            name: "道路运输证识别"
+        }, {
+            key: 4,
+            value: "Identity",
+            name: "身份证证识别"
+        }, {
+            key: 5,
+            value: "LivingFace",
+            name: "人脸活体识别"
+        }],
+        "OCRRelatedType": [{
+            key: 0,
+            value: "Front",
+            name: "证件正面"
+        }, {
+            key: 1,
+            value: "Back",
+            name: "证件背面"
+        }, {
+            key: 20,
+            value: "Driver",
+            name: "司机人脸识别"
+        }, {
+            key: 21,
+            value: "Agent",
+            name: "车队长人脸识别"
         }]
     };
 
