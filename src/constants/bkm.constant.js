@@ -2038,7 +2038,11 @@ if (typeof module == 'object') {
             key: 21,
             value: "Agent",
             name: "车队长人脸识别"
-        }]
+        }],
+        "AgentFeedback": [
+            { key: 0, value: "PendingFeedback", name: "待返馈" },
+            { key: 1, value: "Excuting", name: "执行中" }
+        ]
     };
 
     var dictionariesProxy = new Proxy(dictionaries, {
