@@ -1409,6 +1409,10 @@ if (typeof module == 'object') {
             key: 7,
             value: 'C3',
             name: 'C3'
+        }, {
+            key: 8,
+            value: 'A2D',
+            name: 'A2D'
         }],
         "RatingStar": [{
             key: 0,
