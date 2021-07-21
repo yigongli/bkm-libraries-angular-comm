@@ -2041,7 +2041,8 @@ if (typeof module == 'object') {
         }],
         "AgentFeedback": [
             { key: 0, value: "PendingFeedback", name: "待返馈" },
-            { key: 1, value: "Excuting", name: "执行中" }
+            { key: 1, value: "Excuting", name: "执行中" },
+            { key: 2, value: "QuotedPrice", name: "已报价" }
         ]
     };
 
