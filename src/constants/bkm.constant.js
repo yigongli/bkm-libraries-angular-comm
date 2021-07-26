@@ -2047,7 +2047,16 @@ if (typeof module == 'object') {
             { key: 0, value: "PendingFeedback", name: "待返馈" },
             { key: 1, value: "Excuting", name: "执行中" },
             { key: 2, value: "QuotedPrice", name: "已报价" }
-        ]
+        ],
+        "ExternalTaxDistrictPolicy":[{
+            key: 0,
+            value: "SameWithInternal",
+            name: "终端客户结算优先"
+        }, {
+            key: 1,
+            value: "InternalAllFirstPriority",
+            name: "税源地结算优先"
+        }]
     };
 
     var dictionariesProxy = new Proxy(dictionaries, {
