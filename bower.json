@@ -1,6 +1,6 @@
 {
   "name": "bkm-angular-comm",
-  "version": "2.9.163",
+  "version": "2.9.205",
   "homepage": "https://github.com/yigongli/bkm-libraries-angular-comm",
   "authors": [
     "bkm"
@@ -32,6 +32,7 @@
     "./src/fileUpload/2.chunk.min.js",
     "./src/util/bkmUtil.js",
     "./src/util/bkmBankInfo.js",
+    "./src/util/bkmSettle.js",
     "./src/constants/bkm.constant.js",
     "./src/filter/bkm.comm.filter.js",
     "./src/interceptor/http.interceptor.js"
