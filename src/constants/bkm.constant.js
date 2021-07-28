@@ -483,6 +483,10 @@ if (typeof module == 'object') {
             value: 'ADVANCE',
             name: '运费预付款账户'
         }, {
+            key: 20,
+            value: 'Cleaning',
+            name: '清分户'
+        }, {
             key: 25,
             value: 'InnerFuelIn',
             name: '油气户'
