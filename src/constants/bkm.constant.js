@@ -490,6 +490,10 @@ if (typeof module == 'object') {
             key: 25,
             value: 'InnerFuelIn',
             name: '油气户'
+        }, {
+            key: 26,
+            value: 'InnerGrossProfit',
+            name: '服务费暂扣户'
         }],
         'AssetSettleStatus': [{
             key: 0,
@@ -896,6 +900,10 @@ if (typeof module == 'object') {
             key: 17,
             value: 'FreightPay',
             name: '代付还款'
+        }, {
+            key: 18,
+            value: 'InnerAgencyPay',
+            name: '支付司机钱包'
         }, {
             key: 22,
             value: 'CascadeTrans',
@@ -2052,7 +2060,7 @@ if (typeof module == 'object') {
             { key: 1, value: "Excuting", name: "执行中" },
             { key: 2, value: "QuotedPrice", name: "已报价" }
         ],
-        "ExternalTaxDistrictPolicy":[{
+        "ExternalTaxDistrictPolicy": [{
             key: 0,
             value: "SameWithInternal",
             name: "终端客户结算优先"
