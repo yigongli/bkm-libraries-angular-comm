@@ -2072,6 +2072,15 @@ if (typeof module == 'object') {
             key: 1,
             value: "InternalAllFirstPriority",
             name: "税源地结算优先"
+        }],
+        "FundFlow": [{
+            key: 0,
+            value: "ByCompany",
+            name: "指定付款公司"
+        }, {
+            key: 1,
+            value: "ByInputTaxPath",
+            name: "按进项路径"
         }]
     };
 
