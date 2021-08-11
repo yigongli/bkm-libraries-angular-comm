@@ -1938,16 +1938,12 @@ if (typeof module == 'object') {
         "TakeOrderType": [{
             key: 0,
             value: "ByAgent",
-            name: "车队派车"
-        }, {
-            key: 1,
-            value: "ByDriver",
-            name: "司机抢单"
+            name: "运力资料"
         },
         {
-            key: 2,
-            value: "ByAgentDriver",
-            name: "车队派在线司机"
+            key: 1,
+            value: "ByDriver",
+            name: "注册司机"
         }],
         "TagType": [{
             key: 0,
