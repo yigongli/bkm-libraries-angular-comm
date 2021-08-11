@@ -1786,6 +1786,10 @@ if (typeof module == 'object') {
             key: 7,
             value: "Ethanol",
             name: "乙醇"
+        }, {
+            key: 8,
+            value: "Methanol",
+            name: "甲醇"
         }],
         "VehicleContractType": [{
             key: 0,
