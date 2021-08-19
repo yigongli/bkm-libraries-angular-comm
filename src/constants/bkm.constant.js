@@ -2081,6 +2081,15 @@ if (typeof module == 'object') {
             key: 1,
             value: "ByInputTaxPath",
             name: "按进项路径"
+        }], 
+        "BankAccountType": [{
+            key: 0,
+            value: "Public",
+            name: "公户"
+        }, {
+            key: 1,
+            value: "Private",
+            name: "私户"
         }]
     };
 
