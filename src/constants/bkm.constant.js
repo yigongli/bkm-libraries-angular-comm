@@ -1084,6 +1084,18 @@ if (typeof module == 'object') {
             key: 5,
             value: 'LoadAndUnloadLocationError',
             name: '轨迹存在'
+        }, {
+            key: 6,
+            value: 'PassLoadLocation',
+            name: '经过装货地'
+        }, {
+            key: 7,
+            value: 'PassUnloadLocation',
+            name: '经过卸货地'
+        }, {
+            key: 8,
+            value: 'PassLoadAndUnloadLocation',
+            name: '经过装卸货地'
         }],
         'GoodsStatus': [{
             key: 0,
