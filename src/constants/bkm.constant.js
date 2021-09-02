@@ -1441,6 +1441,10 @@ if (typeof module == 'object') {
             key: 8,
             value: 'A2D',
             name: 'A2D'
+        },{
+            key: 9,
+            value: 'A2E',
+            name: 'A2E'
         }],
         "RatingStar": [{
             key: 0,
@@ -2093,7 +2097,7 @@ if (typeof module == 'object') {
             key: 1,
             value: "ByInputTaxPath",
             name: "按进项路径"
-        }], 
+        }],
         "BankAccountType": [{
             key: 0,
             value: "Public",
