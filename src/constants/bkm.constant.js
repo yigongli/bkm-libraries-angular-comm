@@ -1441,7 +1441,7 @@ if (typeof module == 'object') {
             key: 8,
             value: 'A2D',
             name: 'A2D'
-        },{
+        }, {
             key: 9,
             value: 'A2E',
             name: 'A2E'
@@ -2106,6 +2106,19 @@ if (typeof module == 'object') {
             key: 1,
             value: "Private",
             name: "私户"
+        }],
+        "UpFreightPricePolicy": [{
+            key: 0,
+            value: 'Default',
+            name: '默认为上游运价'
+        }, {
+            key: 1,
+            value: 'DefaultAutoDown',
+            name: '默认为上游运价且自动计算下游运价'
+        }, {
+            key: 2,
+            value: 'DownPrice',
+            name: '司机(车队)下游抢单运价'
         }]
     };
 
