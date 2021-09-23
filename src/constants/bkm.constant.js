@@ -2119,6 +2119,23 @@ if (typeof module == 'object') {
             key: 2,
             value: 'DownPrice',
             name: '司机(车队)下游抢单运价'
+        }],
+        "RiskStatus": [{
+            key: 0,
+            value: "Uncheck",
+            name: "未校验"
+        }, {
+            key: 1,
+            value: 'Checking',
+            name: '校验中'
+        }, {
+            key: 2,
+            value: 'Success',
+            name: '校验通过'
+        }, {
+            key: 3,
+            value: 'Failure',
+            name: '校验失败'
         }]
     };
 
