@@ -592,7 +592,7 @@ var bkm = bkm || {};
     {
       bankName: "北京银行",
       bankCode: "BJBANK",
-      cnapsCode: "313100000000",
+      cnapsCode: "313100000013",
       "bankNo": "0403",
       patterns: [{
           reg: /^(623111|421317|422161|602969|422160|621030|621420|621468)\d{10}$/g,
