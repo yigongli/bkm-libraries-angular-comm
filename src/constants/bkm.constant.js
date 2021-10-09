@@ -871,7 +871,7 @@ if (typeof module == 'object') {
         'TradingOrderType': [{
             key: 1,
             value: 'AgencyPay',
-            name: '支付司机运费'
+            name: '运费转至银行卡'
         }, {
             key: 2,
             value: 'Recharge',
@@ -912,6 +912,10 @@ if (typeof module == 'object') {
             key: 22,
             value: 'CascadeTrans',
             name: '支付下游运费'
+        }, {
+            key: 23,
+            value: 'ChannelSubAccount',
+            name: '银行渠道子户交易'
         }],
         'TransDocType': [{
             key: 0,
