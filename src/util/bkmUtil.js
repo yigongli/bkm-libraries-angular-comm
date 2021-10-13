@@ -721,14 +721,21 @@
     };
 
     /* 
-     * 将输入的数字类型的值截取小数位数
+     * 将输入的数字类型的值保留小数位数
+     * withCarry -- 是否四舍五入
      */
-    bkm.util.decimal = function (numValue, n) {
+    bkm.util.decimal = function (numValue, n, withCarry) {
         if (isNaN(numValue)) {
             return numValue;
         }
-        var power = n != null && !isNaN(n) ? n : 2;
-        var result = Number(Math.floor(numValue + 'e' + power) + 'e-' + power);
+        let result = null;
+        let power = n != null && !isNaN(n) ? n : 2;
+        if (withCarry) {
+            if (power <= 0) return Math.round(numValue);
+            result = Math.round(numValue * Math.pow(10, n)) / Math.pow(10, n);
+        } else {
+            result = Number(Math.floor(numValue + 'e' + power) + 'e-' + power);
+        }
         return result;
     };
 

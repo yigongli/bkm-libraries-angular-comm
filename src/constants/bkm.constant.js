@@ -1661,19 +1661,27 @@ if (typeof module == 'object') {
         "IgnoreSmallPos": [{
             key: 0,
             value: 'IgnoreJiao',
-            name: '抹除角和分'
+            name: '抹除角和分(截取)'
         }, {
             key: 1,
             value: 'IgnoreFen',
-            name: '抹除分'
+            name: '抹除分(截取)'
+        }, {
+            key: 2,
+            value: 'IgnoreJiaoCarry',
+            name: '抹除角和分(四舍五入)'
+        }, {
+            key: 3,
+            value: 'IgnoreFenCarry',
+            name: '抹除分(四舍五入)'
         }, {
             key: 10,
             value: 'IgnoreYuan',
-            name: '抹除个位元'
+            name: '抹除个位元(截取)'
         }, {
             key: 100,
             value: 'IgnoreShiYuan',
-            name: '抹除个十位元'
+            name: '抹除个十位元(截取)'
         }],
         "TonType": [{
             key: 0,
