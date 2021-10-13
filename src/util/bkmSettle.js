@@ -59,7 +59,7 @@ var bkm = bkm || {};
         if (v.isIgnoreSmall) {
             let ignoreSmallPos = v.ignoreSmallPos == null ? bkm.CST.IgnoreSmallPos_IgnoreYuan : v.ignoreSmallPos;
             let withCarry = (ignoreSmallPos === bkm.CST.IgnoreSmallPos_IgnoreJiaoCarry || ignoreSmallPos === bkm.CST.IgnoreSmallPos_IgnoreFenCarry);
-            v.downstreamFinalAmount = ignoreSmallPos > 9 ? (parseInt(v.downstreamFinalAmount / ignoreSmallPos) * ignoreSmallPos) : bkm.util.decimal(v.downstreamFinalAmount, ignoreSmallPos, withCarry);
+            v.downstreamFinalAmount = ignoreSmallPos > 9 ? (parseInt(v.downstreamFinalAmount / ignoreSmallPos) * ignoreSmallPos) : bkm.util.decimal(v.downstreamFinalAmount, (ignoreSmallPos > 1 ? (ignoreSmallPos - 2) : ignoreSmallPos), withCarry);
         }
         v.downstreamFinalAmount = bkm.util.round(v.downstreamFinalAmount);
         //下游对账金额: 对账金额把扣减掉的单车服务费还原回来，用于外部客户对账显示(华信客户)
