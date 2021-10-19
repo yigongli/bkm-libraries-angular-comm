@@ -2148,7 +2148,26 @@ if (typeof module == 'object') {
             key: 3,
             value: 'Failure',
             name: '校验失败'
-        }]
+        }],
+        "RiskCheckTiming": [
+            {
+                key: 0,
+                value: 'None',
+                name: '不触发检查'
+            }, {
+                key: 1,
+                value: 'DispatchSigned',
+                name: '已签收'
+            }, {
+                key: 2,
+                value: 'DispatchFinished',
+                name: '运单已完成'
+            }, {
+                key: 3,
+                value: 'DispatchPayed',
+                name: '已支付'
+            }
+        ]
     };
 
     var dictionariesProxy = new Proxy(dictionaries, {
