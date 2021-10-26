@@ -2178,6 +2178,10 @@ if (typeof module == 'object') {
             name: '网货车'
         }],
         "ETCState": [{
+            key: 0,
+            value: 'Succeed',
+            name: '成功'
+        },{
             key: 1,
             value: 'Ongoing',
             name: '未结束'
