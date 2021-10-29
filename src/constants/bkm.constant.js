@@ -2308,11 +2308,11 @@ if (typeof module == 'object') {
         "ServiceOperation": [{
             key: 1,
             value: 'Business',
-            name: '蓝色'
+            name: '营运'
         }, {
             key: 2,
             value: 'NonBusiness',
-            name: '黄色'
+            name: '非营运'
         }],
         "BusinessState": [{
             key: 100,
@@ -2329,7 +2329,7 @@ if (typeof module == 'object') {
         }, {
             key: 109,
             value: 'NonETC',
-            name: '黄色'
+            name: '不对接ETC'
         }]
     };
 
