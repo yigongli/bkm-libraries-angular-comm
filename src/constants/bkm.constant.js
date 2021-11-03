@@ -33,7 +33,8 @@ if (typeof module == 'object') {
             Location: "Location",
             Payment: "Payment",
             Finance: "Finance",
-            InvoiceOnline: "InvoiceOnline"
+            InvoiceOnline: "InvoiceOnline",
+            ETCTrade: "ETCTrade",
         }
     };
 
@@ -2201,6 +2202,18 @@ if (typeof module == 'object') {
             key: 99,
             value: 'Overtime',
             name: '超时作废'
+        }, {
+            key: 200,
+            value: 'NotSend',
+            name: '未发送'
+        }, {
+            key: 201,
+            value: 'NotFulfill',
+            name: '不发送(不满足条件)'
+        }, {
+            key: 202,
+            value: 'ApplyFail',
+            name: '申请失败'
         }],
         "ETCError": [{
             key: -1,
@@ -2255,13 +2268,25 @@ if (typeof module == 'object') {
             value: 'ExceedLimit',
             name: '访问过于频繁'
         }, {
-            key: 20001,
+            key: 21002,
+            value: 'ParamError',
+            name: '参数错误'
+        }, {
+            key: 30000,
+            value: 'RegisterVehicleError',
+            name: '备案车辆失败'
+        }, {
+            key: 30001,
             value: 'StartOrderError',
             name: '开始运单错误'
         }, {
-            key: 20002,
+            key: 30002,
             value: 'EndOrderError',
             name: '结束运单错误'
+        }, {
+            key: 30003,
+            value: 'FreightPriceAndDistanceError',
+            name: '运距或运价不满足启运条件'
         }],
         "ETCTriggerEndState": [{
             key: 0,
