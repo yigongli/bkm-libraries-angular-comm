@@ -2355,6 +2355,23 @@ if (typeof module == 'object') {
             key: 109,
             value: 'NonETC',
             name: '不对接ETC'
+        }],
+        "UserType":[{
+            key: 0,
+            value: "Driver",
+            name: "司机"
+        }, {
+            key: 1,
+            value: "Trader",
+            name: "货主"
+        }, {
+            key: 2,
+            value: "Agent",
+            name: "经纪人"
+        }, {
+            key: 3,
+            value: "Operation",
+            name: "运营"
         }]
     };
 
