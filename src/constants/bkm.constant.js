@@ -576,23 +576,11 @@ if (typeof module == 'object') {
         'WalletCustomerRole': [{
             key: 0,
             value: 'Agent',
-            name: '经纪人'
+            name: '车队'
         }, {
             key: 1,
             value: 'Driver',
             name: '司机'
-        }, {
-            key: 2,
-            value: 'Trader',
-            name: '货主'
-        }, {
-            key: 3,
-            value: 'Tenant',
-            name: '租户'
-        }, {
-            key: 4,
-            value: 'Host',
-            name: '平台'
         }],
         'UploadStatus': [{
             key: 0,
