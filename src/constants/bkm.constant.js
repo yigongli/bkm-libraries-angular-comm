@@ -1438,6 +1438,10 @@ if (typeof module == 'object') {
             key: 9,
             value: 'A2E',
             name: 'A2E'
+        }, {
+            key: 10,
+            value: 'B2E',
+            name: 'B2E'
         }],
         "RatingStar": [{
             key: 0,
@@ -2344,7 +2348,7 @@ if (typeof module == 'object') {
             value: 'NonETC',
             name: '不对接ETC'
         }],
-        "UserType":[{
+        "UserType": [{
             key: 0,
             value: "Driver",
             name: "司机"
