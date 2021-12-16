@@ -35,6 +35,7 @@ if (typeof module == 'object') {
             Finance: "Finance",
             InvoiceOnline: "InvoiceOnline",
             ETCTrade: "ETCTrade",
+            Subcontrac: "Subcontrac"
         }
     };
 
