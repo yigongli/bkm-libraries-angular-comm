@@ -39,6 +39,10 @@
                     if (!file.type.match(/^image/)) {
                         return false;
                     }
+                    if (uploadFile.size / 1024 < 500) {
+                        deferred.reject({ file: file, target: target })
+                        return false;
+                    }
                 },
                 done: function (file, base64) {
                     //压缩成功
