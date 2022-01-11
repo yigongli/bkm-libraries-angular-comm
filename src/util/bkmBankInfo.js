@@ -1492,7 +1492,7 @@ var bkm = bkm || {};
     {
       bankName: "江苏省农村信用社联合社",
       bankCode: "JSRCU",
-      cnapsCode: "402301000000",
+      cnapsCode: "402301099998",
       "bankNo": "1424",
       patterns: [{
           reg: /^(621578|623066|622452|622324)\d{13}$/g,
