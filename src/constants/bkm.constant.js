@@ -2365,6 +2365,28 @@ if (typeof module == 'object') {
             key: 3,
             value: "Operation",
             name: "运营"
+        }],
+        "BalanceOperationType": [{
+            key: 0,
+            value: "Reduce",
+            name: "减少余额"
+        }, {
+            key: 1,
+            value: "Increase",
+            name: "增加余额"
+        },],
+        "BalanceTradingOrderType": [{
+            key: 11,
+            value: "Refund",
+            name: "退款"
+        }, {
+            key: 2,
+            value: "Recharge",
+            name: "充值"
+        }, {
+            key: 999,
+            value: "Other",
+            name: "其它"
         }]
     };
 
