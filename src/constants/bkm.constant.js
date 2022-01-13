@@ -906,6 +906,10 @@ if (typeof module == 'object') {
             key: 23,
             value: 'ChannelSubAccount',
             name: '银行渠道子户交易'
+        }, {
+            key: 999,
+            value: 'Other',
+            name: '其它'
         }],
         'TransDocType': [{
             key: 0,
