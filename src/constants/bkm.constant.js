@@ -2391,7 +2391,28 @@ if (typeof module == 'object') {
             key: 999,
             value: "Other",
             name: "其它"
-        }]
+        }],
+        "PaymentApplySendStatus": [{
+            key: 0,
+            value: "NotSend",
+            name: "未发送"
+        }, {
+            key: 1,
+            value: "Sending",
+            name: "发送中"
+        }, {
+            key: 2,
+            value: "SendSuccess",
+            name: "发送成功"
+        }, {
+            key: 3,
+            value: "SendFail",
+            name: "发送失败"
+        }, {
+            key: 4,
+            value: "Rollback",
+            name: "已撤回"
+        }],
     };
 
     var dictionariesProxy = new Proxy(dictionaries, {
