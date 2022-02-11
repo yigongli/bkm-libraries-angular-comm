@@ -2413,6 +2413,24 @@ if (typeof module == 'object') {
             value: "Rollback",
             name: "已撤回"
         }],
+        "CebTransferStatus": [{
+            key: 1,
+            value: "Success",
+            name: "成功"
+        }, {
+            key: 2,
+            value: "Failed",
+            name: "失败"
+        }],
+        "CebTransferType": [{
+            key: 27,
+            value: "CebInterest",
+            name: "利息转自有资金"
+        }, {
+            key: 28,
+            value: "CebIncome",
+            name: "收入资金划转"
+        }],
     };
 
     var dictionariesProxy = new Proxy(dictionaries, {
