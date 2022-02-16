@@ -446,6 +446,10 @@ if (typeof module == 'object') {
             key: 3,
             value: 'Failed',
             name: '还款失败'
+        }, {
+            key: 4,
+            value: 'RollBack',
+            name: '已撤回'
         }],
         'AccountStatus': [{
             key: 0,
