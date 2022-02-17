@@ -2430,10 +2430,6 @@ if (typeof module == 'object') {
             key: 27,
             value: "CebInterest",
             name: "利息转自有资金"
-        }, {
-            key: 28,
-            value: "CebIncome",
-            name: "收入资金划转"
         }],
     };
 
