@@ -1036,7 +1036,7 @@ var bkm = bkm || {};
     {
       bankName: "乌鲁木齐市商业银行",
       bankCode: "URMQCCB",
-      cnapsCode: "313881000000",
+      cnapsCode: "313881000002",
       "bankNo": "0427",
       patterns: [{
           reg: /^(621751|622143|940001|621754)\d{13}$/g,
