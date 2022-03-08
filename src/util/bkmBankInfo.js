@@ -10,6 +10,15 @@ var bkm = bkm || {};
   'use strict';
 
   var bankcardList = [{
+    bankName: "山西银行",
+    bankCode: " SXYH",
+    cnapsCode: "313175000011",
+    "bankNo": "3131",
+    patterns: [{
+      reg: /^(621780)\d{13}$/g,
+      cardType: "DC"
+        }]
+    },{
     bankName: "山东省农村信用社联合社",
     bankCode: "RCC",
     cnapsCode: "402161000007",
