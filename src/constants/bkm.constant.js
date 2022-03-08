@@ -1524,6 +1524,19 @@ if (typeof module == 'object') {
             key: 2,
             value: 'VehicleTrack',
             name: '车辆轨迹'
+        }, {
+            key: 3,
+            value: 'DriverTrack',
+            name: '司机轨迹'
+        }],
+        "LocationPlatform": [{
+            key: 0,
+            value: "ThirdParty",
+            name: "第三方"
+        }, {
+            key: 1,
+            value: "App",
+            name: "App"
         }],
         "OrderStatus": [{
             key: 0,
