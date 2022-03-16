@@ -2444,6 +2444,17 @@ if (typeof module == 'object') {
             value: "CebInterest",
             name: "利息转自有资金"
         }],
+        "InvoiceTypeCode": [{
+            key: 0,
+            value: "ValueAddedTax",
+            name: "增值税专用发票"
+        },{
+            key: 1,
+            value: "EValueAddedTax",
+            name: "增值税电子专用发票"
+        }],
+
+        
     };
 
     var dictionariesProxy = new Proxy(dictionaries, {
